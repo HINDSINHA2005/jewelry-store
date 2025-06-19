@@ -18,7 +18,7 @@ const Navbar = () => {
             height="50"
             className="rounded-circle border border-2 border-warning"
           />
-          <span className="fw-bold fs-4 text-warning">JewelsAura</span>
+          <span className="fw-bold fs-4 text-warning">Jewelora.in</span>
         </Link>
 
         <button
