@@ -12,10 +12,12 @@ import SignUp from "./pages/auth/SignUp";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import OrderConfirmation from "./pages/OrderConfirmation";
+import ScrollToTop from './pages/ScrollToTop'
 
 function App() {
   return (
     <>
+    <ScrollToTop/>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

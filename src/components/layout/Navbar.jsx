@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom"; 
-import logo from '../../assets/logo.png' // Replace with your logo
+import logo from '../../assets/logo1.png' // Replace with your logo
 
 const Navbar = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -16,9 +16,9 @@ const Navbar = () => {
             alt="Logo"
             width="80"
             height="50"
-            className="rounded-circle border border-2 border-warning"
+            className="rounded-circle border border-2 border-warning" style={{ width: '90px', height: '60px' }}
           />
-          <span className="fw-bold fs-4 text-warning">Jewelora.in</span>
+          <span className="fw-bold fs-4 text-warning">Jewelora</span>
         </Link>
 
         <button

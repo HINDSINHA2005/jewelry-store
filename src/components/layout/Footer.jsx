@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Twitter } from "lucide-react";
-import logo from "../../assets/logo.png"; // Use your logo image
+import logo from "../../assets/log1.png"; // Use your logo image
 
 const Footer = () => {
   return (
@@ -41,7 +41,7 @@ const Footer = () => {
             <h6 className="text-warning mb-3">Follow Us</h6>
             <div className="d-flex gap-3">
               <a href="#" className="text-white fs-5"><Facebook /></a>
-              <a href="#" className="text-white fs-5"><Instagram /></a>
+              <a href="https://www.instagram.com/jew_elora?igsh=MWt6aGZ2ejhmbTFtMg%3D%3D&utm_source=qr" className="text-white fs-5"><Instagram /></a>
               <a href="#" className="text-white fs-5"><Twitter /></a>
             </div>
           </div>

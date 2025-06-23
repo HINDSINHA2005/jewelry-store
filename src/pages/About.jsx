@@ -1,4 +1,5 @@
 import React from "react";
+import logo from "../assets/logo1.png"
 
 const About = () => {
   return (
@@ -7,7 +8,7 @@ const About = () => {
       <div className="row align-items-center g-5">
         <div className="col-md-4">
           <img
-            src="/logo.png" // Replace with a beautiful jewelry image
+            src={logo} // Replace with a beautiful jewelry image
             className="img-fluid rounded shadow"
             alt="About Us"
           />
