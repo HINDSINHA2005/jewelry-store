@@ -1,5 +1,5 @@
-import mangalsutra2 from '../assets/Necklace/necklace1.jpg';
 
+import mangalsutra from '../assets/Mangalsutra/mangalsutra4'
 import { useParams } from "react-router-dom";
 
 const ProductDetail = () => {
@@ -9,7 +9,7 @@ const ProductDetail = () => {
   const product = {
     id,
     name: "Gold Necklace",
-    image: mangalsutra2,
+    image: mangalsutra,
     description: "Elegant handcrafted gold necklace with modern finish.",
     price: "₹12,000",
   };
