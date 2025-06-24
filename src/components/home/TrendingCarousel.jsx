@@ -2,7 +2,7 @@
 import mangalsutra2 from '../../assets/Mangalsutra/mangalsutra2.jpg';
 import mangalsutra3 from '../../assets/Mangalsutra/mangalsutra5.jpg';
 import mangalsutra from '../../assets/Mangalsutra/mangalsutra4.jpg'
-import './TrendingCarousel.css'; // Import custom styles
+import '../home/TrendingCarousel.css'; // Import custom styles
 
 const TrendingCarousel = () => {
   return (
