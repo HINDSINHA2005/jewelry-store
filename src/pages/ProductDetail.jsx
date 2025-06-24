@@ -1,5 +1,5 @@
 
-import mangalsutra from '../assets/Mangalsutra/mangalsutra4'
+import mangalsutra from '../assets/Mangalsutra/mangalsutra4.jpg';
 import { useParams } from "react-router-dom";
 
 const ProductDetail = () => {
