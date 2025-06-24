@@ -1,6 +1,6 @@
 import mangalsutra2 from '../../assets/Mangalsutra/mangalsutra2.jpg';
 import mangalsutra3 from '../../assets/Mangalsutra/mangalsutra5.jpg';
-import necklace from '../../assets/Necklace/necklace1.jpg';
+import necklace from '../../assets/Necklace/Necklace1.jpg';
 import Pendant from '../../assets/Pendants/pd1.jpg';
 
 
