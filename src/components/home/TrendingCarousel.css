@@ -1,0 +1,21 @@
+/* Black carousel controls */
+.custom-control .carousel-control-prev-icon,
+.custom-control .carousel-control-next-icon {
+  background-image: none;
+  width: 2rem;
+  height: 2rem;
+  background-color: black;
+  border-radius: 50%;
+}
+
+/* Optional hover effect */
+.custom-control:hover .carousel-control-prev-icon,
+.custom-control:hover .carousel-control-next-icon {
+  background-color: #333;
+}
+
+/* Position carousel caption lower and centered */
+.custom-caption {
+  bottom: 20px !important;
+  text-align: center;
+}

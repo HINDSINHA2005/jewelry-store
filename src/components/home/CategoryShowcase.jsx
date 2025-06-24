@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
-import ring from '../../assets/ring.jpg'
-import earring from '../../assets/earring.webp'
-import necklace from '../../assets/necklace.webp'
-import bracelets from '../../assets/bracelet.webp'
+
+import necklace from '../../assets/Necklace/Necklace1.jpg'
+import bracelets from '../../assets/Bracelets/bracelet1.jpg'
+import mangalsutra from '../../assets/Mangalsutra/mangalsutra1.jpg';
+import pendant from '../../assets/Pendants/pendant1.jpg'
+
 
 const categories = [
   {
-    name: "Rings",
-    image: ring,
-    slug: "rings",
+    name: "Mangalsutra",
+    image: mangalsutra,
+    slug: "Mangalsutra",
   },
   {
     name: "Necklaces",
@@ -16,15 +18,16 @@ const categories = [
     slug: "necklaces",
   },
   {
-    name: "Earrings",
-    image: earring,
-    slug: "earrings",
+    name: "Pendants",
+    image: pendant,
+    slug: "Pendants",
   },
   {
     name: "Bracelets",
     image: bracelets,
     slug: "bracelets",
   },
+  
 ];
 
 const CategoryShowcase = () => {

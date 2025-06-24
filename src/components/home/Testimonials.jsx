@@ -1,4 +1,6 @@
-import person from '../../assets/perosn.png'
+import person2 from '../../assets/person2.jpg'
+import person1 from '../../assets/person1.jpg'
+import person3 from '../../assets/person3.jpg'
 
 const testimonials = [
   {
@@ -6,21 +8,21 @@ const testimonials = [
     name: "Priya Sharma",
     review:
       "Absolutely stunning collection! I loved the necklace I bought. Fast delivery and beautiful packaging.",
-    image: person,
+    image: person1,
   },
   {
     id: 2,
     name: "Amit Verma",
     review:
       "Great quality and amazing customer service. The ring I ordered exceeded my expectations!",
-    image: person,
+    image: person2,
   },
   {
     id: 3,
     name: "Neha Singh",
     review:
       "Very elegant designs. The earrings I bought were perfect for my wedding!",
-    image: person,
+    image: person3,
   },
 ];
 

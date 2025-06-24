@@ -1,32 +1,33 @@
-import ring from '../../assets/ring.jpg'
-import bracelet from '../../assets/bracelet.webp'
-import earring from '../../assets/earring.webp'
-import necklace from '../../assets/necklace.webp'
+import mangalsutra2 from '../../assets/Mangalsutra/mangalsutra2.jpg';
+import mangalsutra3 from '../../assets/Mangalsutra/mangalsutra5.jpg';
+import necklace from '../../assets/Necklace/necklace1.jpg';
+import Pendant from '../../assets/Pendants/pd1.jpg';
+
 
 const products = [
   {
     id: 1,
-    name: "Elegant Gold Necklace",
-    price: "₹12,999",
-    image: necklace,
+    name: "Circular Floral Pattern Mangalsutra Set",
+    price: "₹499",
+    image: mangalsutra2,
   },
   {
     id: 2,
-    name: "Silver Stud Earrings",
-    price: "₹1,899",
-    image: earring,
+    name: "Peacock Aura Mangalsutra Set",
+    price: "₹699",
+    image: mangalsutra3,
   },
   {
     id: 3,
-    name: "Diamond Ring",
-    price: "₹24,999",
-    image: ring,
+    name: "Blush Blossom Set",
+    price: "₹1700",
+    image: necklace,
   },
   {
     id: 4,
-    name: "Ruby Bracelet",
-    price: "₹5,499",
-    image: bracelet,
+    name: "Ocean Heart Set",
+    price: "₹1200",
+    image: Pendant,
   },
 ];
 

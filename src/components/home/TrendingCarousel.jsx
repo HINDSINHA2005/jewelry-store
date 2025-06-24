@@ -1,7 +1,8 @@
 import React from "react";
-import product1 from "../../assets/trending1.jpg";
-import product2 from "../../assets/trending2.jpg";
-import product3 from "../../assets/trending3.jpg";
+import mangalsutra2 from '../../assets/Mangalsutra/mangalsutra2.jpg';
+import mangalsutra3 from '../../assets/Mangalsutra/mangalsutra5.jpg';
+import mangalsutra from '../../assets/Mangalsutra/mangalsutra4.jpg'
+import './TrendingCarousel.css'; // Import custom styles
 
 const TrendingCarousel = () => {
   return (
@@ -15,13 +16,13 @@ const TrendingCarousel = () => {
             {/* Slide 1 */}
             <div className="carousel-item active">
               <img
-                src={product1}
-                className="d-block w-100 object-fit-cover"
+                src={mangalsutra2}
+                className="d-block w-100"
                 alt="Trending 1"
-                style={{ height: "400px", objectFit: "cover" }}
+                style={{ height: "400px", objectFit: "contain", objectPosition: "center" }}
               />
-              <div className="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-2">
-                <h5 className="text-warning">Elegant Gold Necklace</h5>
+              <div className="carousel-caption custom-caption bg-dark bg-opacity-50 rounded p-2">
+                <h5 className="text-warning">Circular Floral Pattern Mangalsutra</h5>
                 <p>Pure craftsmanship with 22K brilliance.</p>
               </div>
             </div>
@@ -29,27 +30,27 @@ const TrendingCarousel = () => {
             {/* Slide 2 */}
             <div className="carousel-item">
               <img
-                src={product2}
+                src={mangalsutra3}
                 className="d-block w-100"
                 alt="Trending 2"
-                style={{ height: "400px", objectFit: "cover" }}
+                style={{ height: "400px", objectFit: "contain", objectPosition: "center" }}
               />
-              <div className="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-2">
-                <h5 className="text-warning">Diamond Ring</h5>
-                <p>Shine bright with our bestseller diamond rings.</p>
+              <div className="carousel-caption custom-caption bg-dark bg-opacity-50 rounded p-2">
+                <h5 className="text-warning">Peacock Aura Mangalsutra Set</h5>
+                <p>Shine bright with our bestseller mangalsutras</p>
               </div>
             </div>
 
             {/* Slide 3 */}
             <div className="carousel-item">
               <img
-                src={product3}
+                src={mangalsutra}
                 className="d-block w-100"
                 alt="Trending 3"
-                style={{ height: "400px", objectFit: "cover" }}
+                style={{ height: "400px", objectFit: "contain", objectPosition: "center" }}
               />
-              <div className="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-2">
-                <h5 className="text-warning">Traditional Jhumkas</h5>
+              <div className="carousel-caption custom-caption bg-dark bg-opacity-50 rounded p-2">
+                <h5 className="text-warning">Twilight Bloom Mangalsutra Set</h5>
                 <p>Classic design with a modern twist.</p>
               </div>
             </div>
@@ -58,7 +59,7 @@ const TrendingCarousel = () => {
 
           {/* Carousel Controls */}
           <button
-            className="carousel-control-prev"
+            className="carousel-control-prev custom-control"
             type="button"
             data-bs-target="#trendingCarousel"
             data-bs-slide="prev"
@@ -66,7 +67,7 @@ const TrendingCarousel = () => {
             <span className="carousel-control-prev-icon" />
           </button>
           <button
-            className="carousel-control-next"
+            className="carousel-control-next custom-control"
             type="button"
             data-bs-target="#trendingCarousel"
             data-bs-slide="next"
