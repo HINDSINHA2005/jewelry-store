@@ -18,7 +18,7 @@ const Footer = () => {
                 height="40"
                 className="me-2 rounded-circle border border-warning"
               />
-              <h5 className="text-warning mb-0">JewelsAURA</h5>
+              <h5 className="text-warning mb-0">Jewelora</h5>
             </div>
             <p className="text-muted">
               Discover timeless elegance. Premium crafted jewelry just for you.
@@ -40,9 +40,9 @@ const Footer = () => {
           <div className="col-md-4">
             <h6 className="text-warning mb-3">Follow Us</h6>
             <div className="d-flex gap-3">
-              <a href="#" className="text-white fs-5"><Facebook /></a>
+              <a href="https://www.instagram.com/jew_elora?igsh=MWt6aGZ2ejhmbTFtMg%3D%3D&utm_source=qr" className="text-white fs-5"><Facebook /></a>
               <a href="https://www.instagram.com/jew_elora?igsh=MWt6aGZ2ejhmbTFtMg%3D%3D&utm_source=qr" className="text-white fs-5"><Instagram /></a>
-              <a href="#" className="text-white fs-5"><Twitter /></a>
+              <a href="https://www.instagram.com/jew_elora?igsh=MWt6aGZ2ejhmbTFtMg%3D%3D&utm_source=qr" className="text-white fs-5"><Twitter /></a>
             </div>
           </div>
         </div>

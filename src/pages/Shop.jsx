@@ -1,17 +1,29 @@
+import { useLocation } from "react-router-dom";
 
-import CategoryGrid from "../components/shop/CategoryGrid";
 import ProductGrid from "../components/shop/ProductGrid";
+import CategoryShowcase from "../components/home/CategoryShowcase";
 
 const Shop = () => {
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const category = query.get("category");
+
   return (
     <div className="container py-5">
-      <h2 className="fw-bold text-center text-warning mb-4">Shop by Category</h2>
-      <CategoryGrid />
+      <h2 className="fw-bold text-center text-warning mb-4">
+        {category ? `${category} Collection` : "Our Products"}
+      </h2>
 
-      <hr className="my-5" />
+      {!category && (
+        <>
+          
+          
+          <hr className="my-5" />
+        </>
+      )}
 
-      <h2 className="fw-bold text-center text-warning mb-4">Our Products</h2>
-      <ProductGrid />
+      <ProductGrid category={category} />
+      <CategoryShowcase/>
     </div>
   );
 };

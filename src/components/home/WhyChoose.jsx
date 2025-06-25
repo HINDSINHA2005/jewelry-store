@@ -23,7 +23,7 @@ const WhyChooseUs = () => {
   return (
     <section className="py-5 bg-light">
       <div className="container text-center">
-        <h2 className="fw-bold text-warning mb-4">Why Choose JewelsHub?</h2>
+        <h2 className="fw-bold text-warning mb-4">Why Choose Jewelora?</h2>
         <p className="mb-5 text-muted">
           Experience elegance, quality, and trust with every purchase.
         </p>

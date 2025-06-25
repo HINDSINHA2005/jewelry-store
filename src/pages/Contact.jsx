@@ -25,9 +25,9 @@ const Contact = () => {
         <div className="col-md-6">
           <div className="p-4 bg-light border rounded shadow-sm">
             <h5 className="fw-bold mb-3">Get in Touch</h5>
-            <p><strong>Email:</strong> support@jewelshub.in</p>
-            <p><strong>Phone:</strong> +91 98765 43210</p>
-            <p><strong>Address:</strong> JewelsHub Store, Delhi - 110001, India</p>
+            <p><strong>Email:</strong> info@jewelora.in</p>
+            <p><strong>Phone:</strong> +91 000000000</p>
+            <p><strong>Address:</strong> Jewelora Store, Delhi - 110001, India</p>
             <iframe
               title="Map"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224345.83797095512!2d77.06889944999999!3d28.5272803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce3652e091203%3A0xf4f37a2413a9f733!2sDelhi%2C%20India!5e0!3m2!1sen!2sin!4v1718373642793"

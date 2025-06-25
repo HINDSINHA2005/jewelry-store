@@ -1,12 +1,15 @@
 import React from 'react';
-
+import Necklace1 from '../../assets/Necklace/Necklace1.jpg'
+import mangalsutra from '../../assets/Mangalsutra/mangalsutra1.jpg'
+import pendant from '../../assets/Pendants/pd1.jpg'
+import bracelet from '../../assets/Bracelets/bracelet1.jpg'
 // Using placeholder images for demonstration purposes to ensure consistent sizing.
 // In a real application, you would manage your image assets consistently.
 const categories = [
-  { title: "Necklaces", image: "https://placehold.co/300x300/F0E68C/black?text=Necklaces" },
-  { title: "Rings", image: "https://placehold.co/300x300/ADD8E6/black?text=Rings" },
-  { title: "Earrings", image: "https://placehold.co/300x300/FFD700/black?text=Earrings" },
-  { title: "Bracelets", image: "https://placehold.co/300x300/C0C0C0/black?text=Bracelets" },
+  { title: "Necklaces", image:Necklace1  },
+  { title: "Mangalsutras", image: mangalsutra },
+  { title: "Pendants", image:pendant },
+  { title: "Bracelets", image: bracelet },
 ];
 
 const CategoryGrid = () => {
