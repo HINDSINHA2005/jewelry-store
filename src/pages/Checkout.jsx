@@ -41,7 +41,7 @@ const subtotal = cartItems.reduce((sum, item) => {
   return sum + price * item.quantity;
 }, 0);
 
-const shipping = 200;
+const shipping = 50;
 const total = subtotal + shipping;
 
  

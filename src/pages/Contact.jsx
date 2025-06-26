@@ -26,7 +26,7 @@ const Contact = () => {
           <div className="p-4 bg-light border rounded shadow-sm">
             <h5 className="fw-bold mb-3">Get in Touch</h5>
             <p><strong>Email:</strong> info@jewelora.in</p>
-            <p><strong>Phone:</strong> +91 9129987687</p>
+            
             <p><strong>Address:</strong> Jewelora Store, Delhi - 110001, India</p>
             <iframe
               title="Map"
