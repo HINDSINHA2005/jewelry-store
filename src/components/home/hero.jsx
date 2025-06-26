@@ -9,13 +9,30 @@ const images = [heroImg1, heroImg2, heroImg3, heroImg4];
 
 const HeroSection = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
+  // Preload images
+  useEffect(() => {
+    images.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
+  // Image changer interval
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 2000);
+    }, 3000); // 5 seconds
 
     return () => clearInterval(interval);
+  }, []);
+
+  // Check screen size on resize
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -23,8 +40,9 @@ const HeroSection = () => {
       className="text-white d-flex align-items-center justify-content-center"
       style={{
         backgroundImage: `url(${images[currentImageIndex]})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundSize: isMobile ? "contain" : "cover",
+        backgroundPosition: "center center",
+        backgroundRepeat: "no-repeat",
         minHeight: "90vh",
         position: "relative",
         transition: "background-image 1s ease-in-out",

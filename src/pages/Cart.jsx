@@ -1,19 +1,16 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { collection, getDocs, updateDoc, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import products from "../components/shop/product"; // or wherever your static products file is
+import products from "../components/shop/product";
 
 const Cart = () => {
   const navigate = useNavigate();
-  const goToCheckout = () => {
-    navigate("/checkout");
-  };
   const { currentUser } = useAuth();
   const [cartItems, setCartItems] = useState([]);
 
+  // Fetch Cart Items
   useEffect(() => {
     const fetchCart = async () => {
       if (!currentUser) return;
@@ -26,7 +23,6 @@ const Cart = () => {
         ...doc.data(),
       }));
 
-      // Merge with product.js data
       const merged = firebaseItems.map((item) => {
         const local = products.find((p) => p.id === item.productId);
         return {
@@ -40,6 +36,46 @@ const Cart = () => {
 
     fetchCart();
   }, [currentUser]);
+
+  // Increase Quantity
+  const handleIncrease = async (item) => {
+    const itemRef = doc(db, "carts", currentUser.uid, "items", item.id);
+    const newQuantity = item.quantity + 1;
+
+    await updateDoc(itemRef, { quantity: newQuantity });
+
+    setCartItems((prev) =>
+      prev.map((i) =>
+        i.id === item.id ? { ...i, quantity: newQuantity } : i
+      )
+    );
+  };
+
+  // Decrease Quantity
+  const handleDecrease = async (item) => {
+    if (item.quantity <= 1) return; // Prevent 0 quantity
+
+    const itemRef = doc(db, "carts", currentUser.uid, "items", item.id);
+    const newQuantity = item.quantity - 1;
+
+    await updateDoc(itemRef, { quantity: newQuantity });
+
+    setCartItems((prev) =>
+      prev.map((i) =>
+        i.id === item.id ? { ...i, quantity: newQuantity } : i
+      )
+    );
+  };
+
+  // Remove Item
+  const handleRemove = async (itemId) => {
+    const itemRef = doc(db, "carts", currentUser.uid, "items", itemId);
+    await deleteDoc(itemRef);
+
+    setCartItems((prev) => prev.filter((i) => i.id !== itemId));
+  };
+
+  const goToCheckout = () => navigate("/checkout");
 
   const totalPrice = cartItems.reduce(
     (sum, item) =>
@@ -74,7 +110,10 @@ const Cart = () => {
                   </div>
                   <div className="col-md-3 d-flex flex-column align-items-center">
                     <div className="d-flex mb-2">
-                      <button className="btn btn-sm btn-outline-secondary">
+                      <button
+                        className="btn btn-sm btn-outline-secondary"
+                        onClick={() => handleDecrease(item)}
+                      >
                         -
                       </button>
                       <input
@@ -84,11 +123,19 @@ const Cart = () => {
                         value={item.quantity}
                         readOnly
                       />
-                      <button className="btn btn-sm btn-outline-secondary">
+                      <button
+                        className="btn btn-sm btn-outline-secondary"
+                        onClick={() => handleIncrease(item)}
+                      >
                         +
                       </button>
                     </div>
-                    <button className="btn btn-sm btn-danger">Remove</button>
+                    <button
+                      className="btn btn-sm btn-danger"
+                      onClick={() => handleRemove(item.id)}
+                    >
+                      Remove
+                    </button>
                   </div>
                 </div>
               </div>
