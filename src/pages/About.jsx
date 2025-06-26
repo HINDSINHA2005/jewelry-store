@@ -4,7 +4,7 @@ import logo from "../assets/logo1.png"
 const About = () => {
   return (
     <div className="container py-5">
-      <h2 className="text-center fw-bold text-warning mb-4">About JewelsHub</h2>
+      <h2 className="text-center fw-bold text-warning mb-4">About Jewelora</h2>
       <div className="row align-items-center g-5">
         <div className="col-md-4">
           <img
@@ -15,7 +15,7 @@ const About = () => {
         </div>
         <div className="col-md-6">
           <p className="lead">
-            At <strong>JewelsAURA</strong>, we celebrate tradition and innovation. Our mission is to bring you the finest handcrafted jewelry that reflects your personality and style.
+            At <strong>Jewelora</strong>, we celebrate tradition and innovation. Our mission is to bring you the finest handcrafted jewelry that reflects your personality and style.
           </p>
           <p>
             We work with India’s most skilled artisans to design unique gold, diamond, and silver pieces that blend elegance with authenticity.

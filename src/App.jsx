@@ -13,6 +13,9 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import OrderConfirmation from "./pages/OrderConfirmation";
 import ScrollToTop from './pages/ScrollToTop'
+import MyOrders from "./pages/MyOrder";
+import AdminOrders from "./pages/AdminOrders";
+
 
 function App() {
   return (
@@ -28,7 +31,9 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/orders" element={<MyOrders />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/admin/orders" element={<AdminOrders />} />
         <Route path="/order-confirmation" element={<OrderConfirmation />} />
         {/* Add more routes here */}
       </Routes>
