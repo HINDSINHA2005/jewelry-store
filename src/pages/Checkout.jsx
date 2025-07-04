@@ -41,7 +41,7 @@ const subtotal = cartItems.reduce((sum, item) => {
   return sum + price * item.quantity;
 }, 0);
 
-const shipping = 50;
+const shipping = 0;
 const total = subtotal + shipping;
 
  
@@ -117,7 +117,7 @@ const total = subtotal + shipping;
                 <label className="form-label">Payment Method</label>
                 <select className="form-select" value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)}>
                   <option>Cash on Delivery</option>
-                  <option disabled>Online Payment (Coming Soon)</option>
+                  <option>Online Payment</option>
                 </select>
               </div>
             </form>

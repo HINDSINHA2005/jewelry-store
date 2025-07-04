@@ -31,9 +31,11 @@ const MyOrders = () => {
              <p className="mb-1"><strong>Status:</strong> ₹{order.status}</p>
             <p className="mb-1"><strong>Date:</strong> {new Date(order.createdAt.seconds * 1000).toLocaleDateString()}</p>
             <p className="mb-1"><strong>Payment:</strong> {order.shippingInfo?.paymentMethod}</p>
+            
+
             <p className="mb-1"><strong>Total:</strong> ₹{order.total}</p>
 
-            <p className="mb-2"><strong>Shipping To:</strong> {order.shippingInfo?.fullName}, {order.shippingInfo?.city}</p>
+            <p className="mb-2"><strong>Shipping To:</strong> {order.shippingInfo?.fullName}, {order.shippingInfo?.city},{order.shippingInfo?.address}</p>
             <ul className="list-group">
               {order.items.map((item, idx) => (
                 <li key={idx} className="list-group-item d-flex justify-content-between">

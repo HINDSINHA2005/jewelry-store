@@ -16,6 +16,23 @@ import necklace8 from '../../assets/Necklace/necklace8.jpg';
 import necklace9 from '../../assets/Necklace/necklace9.jpg';
 import necklace10 from '../../assets/Necklace/necklace10.jpg';
 
+import pd from '../../assets/Pendants/djhf.jpg';
+import pd1 from '../../assets/Pendants/gbg.jpg';
+import pd2 from '../../assets/Pendants/gbb.jpg';
+import pd3 from '../../assets/Pendants/pgh.jpg';
+import pd4 from '../../assets/Pendants/pfg.jpg';
+import pd5 from '../../assets/Pendants/pd1.jpg';
+import pd6 from '../../assets/Pendants/jfdk.jpg';
+import pd7 from '../../assets/Pendants/jdfkj.jpg';
+import pd8 from '../../assets/Pendants/ikl.jpg';
+import po from '../../assets/Pendants/po.jpg'
+import pd89 from '../../assets/Pendants/pd89.jpg'
+
+import pd45 from '../../assets/Pendants/pd45.jpg';
+import pd34 from '../../assets/Pendants/pd34.jpg';
+import pd78 from '../../assets/Pendants/pd78.jpg';
+
+
 import bracelet1 from '../../assets/Bracelets/bracelet1.jpg';
 
 const products = [
@@ -51,7 +68,43 @@ const products = [
     id: "m5",
     name: "Peacock Aura Mangalsutra Set",
     category: "Mangalsutra",
-    price: "₹499",
+    price: "₹600",
+    description: `
+✨ By Jewelora – Designer Artificial Jewellery
+
+Product Highlights:
+- **Design**: Elegant peacock-inspired circular pendant with intricate CZ stone setting.
+- **Earrings**: Matching designer earrings with secure stud closures.
+- **Finish**: Premium rose gold plating for a luxurious, elegant look.
+- **Beads**: Classic double-strand black beads in traditional mangalsutra style.
+- **Occasion**: Ideal for weddings, engagements, parties, or daily wear.
+- **Perfect For**: Brides, bridesmaids, festive wear, or as a thoughtful gift.
+
+Specifications:
+- **Base Material**: Alloy
+- **Stone Type**: Cubic Zirconia (CZ)
+- **Plating**: Rose Gold
+- **Pendant Width**: Approx. 4.5 cm
+- **Pendant Height**: Approx. 5 cm
+- **Earring Length**: Approx. 3 cm
+- **Mangalsutra Length**: Approx. 18 inches (adjustable)
+- **Weight**: Lightweight for comfortable all-day wear
+- **Package Contents**: 1 Mangalsutra, 1 Pair of Earrings
+- **Care Instructions**: Avoid contact with water, perfume, or harsh chemicals. Store in a jewelry box or pouch.
+
+Product Description:
+Bring home a touch of regal charm with the Peacock Aura Mangalsutra Set by Jewelora. This stunning set features a mesmerizing circular pendant adorned with shimmering CZ stones crafted to perfection in a graceful peacock motif, symbolizing beauty, prosperity, and eternal love.
+
+The rose gold finish elevates its elegance, making it a standout piece whether you pair it with a bridal lehenga, festive saree, or even a chic indo-western outfit. The black beaded mangalsutra chain retains the essence of tradition, while the contemporary design adds a modern twist every bride or fashionista will adore.
+
+Why Choose Jewelora?
+✔️ Premium quality designer artificial jewellery  
+✔️ Lightweight & skin-friendly  
+✔️ Perfect balance of tradition & modern design  
+✔️ Cash on Delivery available across India  
+✔️ Trusted brand with happy customers nationwide
+`,
+
     image: mangalsutra5,
   },
   {
@@ -132,12 +185,108 @@ const products = [
     image: necklace10,
   },
   {
-    id: "r1",
-    name: "Diamond Ring",
-    category: "Rings",
-    price: "₹25,000",
-    image: "https://placehold.co/300x300/ADD8E6/black?text=Ring",
+    id: "p1",
+    name: "Peacock Love Set",
+    category: "Pendants",
+    price: "₹499",
+    image: pd5,
   },
+  {
+    id: "p2",
+    name: "Shell Pendant With Pearl Accent",
+    category: "Pendants",
+    price: "₹499",
+    image: pd,
+  },
+  {
+    id: "p3",
+    name: "Classic Butterfly Pendant",
+    category: "Pendants",
+    price: "₹499",
+    image:pd7 ,
+  },
+  {
+    id: "p4",
+    name: "Butterfly Pendant With Cystal Drop",
+    category: "Pendants",
+    price: "₹499",
+    image: pd6,
+  },
+  {
+    id: "p5",
+    name: "Ruby Drop Pendant",
+    category: "Pendants",
+    price: "₹499",
+    image: pd1,
+  },
+  {
+    id: "p6",
+    name: "Square Glam Set",
+    category: "Pendants",
+    price: "₹499",
+    image: pd78,
+  },
+   {
+    id: "p7",
+    name: "Heart-Shaped Set",
+    category: "Pendants",
+    price: "₹499",
+    image: pd2,
+  },
+   {
+    id: "p8",
+    name: "Circular Sparkling Set",
+    category: "Pendants",
+    price: "₹499",
+    image:pd45 ,
+  },
+   {
+    id: "p9",
+    name: "Pink Rectangular Stone Set",
+    category: "Pendants",
+    price: "₹499",
+    image:pd8 ,
+  },
+  {
+    id: "p10",
+    name: "Royal Netti Drop Set",
+    category: "Pendants",
+    price: "₹499",
+    image:pd3 ,
+  },
+  {
+    id: "p11",
+    name: "Pearl Empress Pendant Set",
+    category: "Pendants",
+    price: "₹499",
+    image:pd4 ,
+  },
+  {
+    id: "p12",
+    name: "Peacock Radiance Pendant Set",
+    category: "Pendants",
+    price: "₹499",
+    image: pd89,
+  },
+  {
+    id: "p13",
+    name: "Crystal Cascade Bow Set",
+    category: "Pendants",
+    price: "₹499",
+    image: po,
+  },
+ {
+    id: "p14",
+    name: "Peacock Mangalsutra Set",
+    category: "Pendants",
+    price: "₹499",
+    image: pd34,
+  },
+ 
+
+
+
+
   {
     id: "b1",
     name: "Golden Heart Bracelet",

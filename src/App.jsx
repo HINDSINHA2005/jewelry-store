@@ -15,6 +15,8 @@ import OrderConfirmation from "./pages/OrderConfirmation";
 import ScrollToTop from './pages/ScrollToTop'
 import MyOrders from "./pages/MyOrder";
 import AdminOrders from "./pages/AdminOrders";
+import AddProduct from "./pages/AddProduct";
+import AdminContactMessages from "./pages/AdminContactPage";
 
 
 function App() {
@@ -34,6 +36,10 @@ function App() {
         <Route path="/orders" element={<MyOrders />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/admin/orders" element={<AdminOrders />} />
+        <Route path="/admin/message" element={<AdminContactMessages />} />
+        
+        <Route path="/addproduct" element={<AddProduct />} />
+        
         <Route path="/order-confirmation" element={<OrderConfirmation />} />
         {/* Add more routes here */}
       </Routes>

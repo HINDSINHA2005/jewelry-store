@@ -1,23 +1,83 @@
-import React from "react";
+import React, { useState } from "react";
+import { db } from "../firebase"; // make sure you have firebase config & Firestore initialized
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 const Contact = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await addDoc(collection(db, "contactMessages"), {
+        name,
+        email,
+        mobile,
+        message,
+        createdAt: serverTimestamp(),
+      });
+      alert("Message sent successfully!");
+      setName("");
+      setEmail("");
+      setMobile("");
+      setMessage("");
+    } catch (error) {
+      console.error("Error saving message:", error);
+      alert("Failed to send message. Please try again later.");
+    }
+  };
+
   return (
     <div className="container py-5">
       <h2 className="text-center text-warning fw-bold mb-4">Contact Us</h2>
       <div className="row g-4">
         <div className="col-md-6">
-          <form className="p-4 border rounded shadow-sm bg-light">
+          <form className="p-4 border rounded shadow-sm bg-light" onSubmit={handleSubmit}>
             <div className="mb-3">
               <label className="form-label">Your Name</label>
-              <input type="text" className="form-control" placeholder="Enter your name" required />
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter your name"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
             <div className="mb-3">
               <label className="form-label">Email Address</label>
-              <input type="email" className="form-control" placeholder="Enter your email" required />
+              <input
+                type="email"
+                className="form-control"
+                placeholder="Enter your email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Mobile Number</label>
+              <input
+                type="tel"
+                className="form-control"
+                placeholder="Enter your mobile number"
+                required
+                value={mobile}
+                onChange={(e) => setMobile(e.target.value)}
+              />
             </div>
             <div className="mb-3">
               <label className="form-label">Message</label>
-              <textarea className="form-control" rows="4" placeholder="Your message..." required></textarea>
+              <textarea
+                className="form-control"
+                rows="4"
+                placeholder="Your message..."
+                required
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              ></textarea>
             </div>
             <button type="submit" className="btn btn-warning fw-semibold">Send Message</button>
           </form>
@@ -26,7 +86,6 @@ const Contact = () => {
           <div className="p-4 bg-light border rounded shadow-sm">
             <h5 className="fw-bold mb-3">Get in Touch</h5>
             <p><strong>Email:</strong> info@jewelora.in</p>
-            
             <p><strong>Address:</strong> Jewelora Store, Delhi - 110001, India</p>
             <iframe
               title="Map"

@@ -11,21 +11,22 @@ const Navbar = () => {
   const [cartCount, setCartCount] = useState(0);
   const [isCollapsed, setIsCollapsed] = useState(true);
   const navigate = useNavigate();
-  const location = useLocation();            // 🆕 watch route changes
+  const location = useLocation();
+
+  const isAdmin = currentUser?.email === "info@jewelora.in";
 
   /* ───── Cart counter ───── */
   useEffect(() => {
-    if (!currentUser) return;
+    if (!currentUser || isAdmin) return; // Don't fetch cart for admin
     const unsub = onSnapshot(
       collection(db, "carts", currentUser.uid, "items"),
       (snap) => setCartCount(snap.size)
     );
     return () => unsub();
-  }, [currentUser]);
+  }, [currentUser, isAdmin]);
 
   /* ───── Auto‑collapse on route change ───── */
   useEffect(() => {
-    // Close menu whenever path changes
     setIsCollapsed(true);
   }, [location.pathname]);
 
@@ -34,12 +35,11 @@ const Navbar = () => {
     navigate("/signin");
   };
 
-  /* helper: common link with auto‑collapse */
   const NavLink = ({ to, children }) => (
     <Link
       to={to}
       className="nav-link text-dark fw-semibold"
-      onClick={() => setIsCollapsed(true)}   // 🆕 close on click
+      onClick={() => setIsCollapsed(true)}
     >
       {children}
     </Link>
@@ -48,7 +48,11 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top py-3">
       <div className="container">
-        <Link to="/" className="navbar-brand d-flex align-items-center gap-2" onClick={() => setIsCollapsed(true)}>
+        <Link
+          to="/"
+          className="navbar-brand d-flex align-items-center gap-2"
+          onClick={() => setIsCollapsed(true)}
+        >
           <img
             src={logo}
             alt="Logo"
@@ -70,7 +74,6 @@ const Navbar = () => {
         </button>
 
         <div className={`collapse navbar-collapse ${isCollapsed ? "" : "show"}`} id="navbarNav">
-          {/* -------- Menu links -------- */}
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-3">
             <li className="nav-item"><NavLink to="/">Home</NavLink></li>
             <li className="nav-item"><NavLink to="/shop">Shop</NavLink></li>
@@ -78,43 +81,86 @@ const Navbar = () => {
             <li className="nav-item"><NavLink to="/contact">Contact</NavLink></li>
           </ul>
 
-          {/* -------- Right‑hand buttons -------- */}
           <div className="d-flex gap-2 ms-lg-3 mt-3 mt-lg-0">
             {!currentUser ? (
               <>
-                <Link to="/signin" className="btn btn-outline-warning px-4 fw-semibold" onClick={() => setIsCollapsed(true)}>
+                <Link
+                  to="/signin"
+                  className="btn btn-outline-warning px-4 fw-semibold"
+                  onClick={() => setIsCollapsed(true)}
+                >
                   Sign In
                 </Link>
-                <Link to="/signup" className="btn btn-warning px-4 fw-semibold text-white" onClick={() => setIsCollapsed(true)}>
+                <Link
+                  to="/signup"
+                  className="btn btn-warning px-4 fw-semibold text-white"
+                  onClick={() => setIsCollapsed(true)}
+                >
                   Sign Up
                 </Link>
               </>
             ) : (
               <>
-                <Link to="/cart" className="btn btn-outline-secondary position-relative" onClick={() => setIsCollapsed(true)}>
-                  <ShoppingCart size={20} />
-                  {cartCount > 0 && (
-                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                      {cartCount}
-                    </span>
-                  )}
-                </Link>
+                {!isAdmin && (
+                  <>
+                    <Link
+                      to="/cart"
+                      className="btn btn-outline-secondary position-relative"
+                      onClick={() => setIsCollapsed(true)}
+                    >
+                      <ShoppingCart size={20} />
+                      {cartCount > 0 && (
+                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                          {cartCount}
+                        </span>
+                      )}
+                    </Link>
 
-                <Link to="/orders" className="btn btn-outline-warning fw-semibold" onClick={() => setIsCollapsed(true)}>
-                  My Orders
-                </Link>
+                    <Link
+                      to="/orders"
+                      className="btn btn-outline-warning fw-semibold"
+                      onClick={() => setIsCollapsed(true)}
+                    >
+                      My Orders
+                    </Link>
+                  </>
+                )}
 
-                {currentUser.email === "info@jewelora.in" && (
-                  <Link to="/admin/orders" className="btn btn-outline-dark fw-semibold" onClick={() => setIsCollapsed(true)}>
-                    Admin Panel
-                  </Link>
+                {isAdmin && (
+                  <>
+                    <Link
+                      to="/admin/orders"
+                      className="btn btn-outline-dark fw-semibold"
+                      onClick={() => setIsCollapsed(true)}
+                    >
+                      Admin Panel
+                    </Link>
+                    <Link
+                      to="/admin/message"
+                      className="btn btn-outline-dark fw-semibold"
+                      onClick={() => setIsCollapsed(true)}
+                    >
+                      Admin Messages
+                    </Link>
+
+                    <Link
+                      to="/addproduct"
+                      className="btn btn-outline-dark fw-semibold"
+                      onClick={() => setIsCollapsed(true)}
+                    >
+                      Add Product
+                    </Link>
+                  </>
                 )}
 
                 <button className="btn btn-outline-warning d-flex align-items-center" disabled>
                   <User className="me-1" size={18} />
                 </button>
 
-                <button onClick={handleLogout} className="btn btn-danger fw-semibold">
+                <button
+                  onClick={handleLogout}
+                  className="btn btn-danger fw-semibold"
+                >
                   Logout
                 </button>
               </>

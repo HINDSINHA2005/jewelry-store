@@ -1,48 +1,80 @@
 import { useParams } from "react-router-dom";
-import products from '../components/shop/product.js';
+import products from "../components/shop/product.js";
 import { useAuth } from "../context/AuthContext";
 import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
-import { db } from "../firebase"; // You must export `db` from firebase.js
-
+import { db } from "../firebase";
+import { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown"; // ✨ For rich text descriptions
+import { useNavigate } from "react-router-dom";
 
 const ProductDetail = () => {
+  const navigate = useNavigate(); 
   const { currentUser } = useAuth();
-const handleAddToCart = async () => {
-  if (!currentUser) {
-    alert("Please sign in to add items to cart.");
-    return;
-  }
+  const { id } = useParams();
+  const [dynamicProduct, setDynamicProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const cartItemRef = doc(db, "carts", currentUser.uid, "items", product.id);
+  const localProduct = products.find((p) => String(p.id) === id);
 
-  try {
-    const existing = await getDoc(cartItemRef);
+  useEffect(() => {
+    const fetchDynamicProduct = async () => {
+      if (localProduct) {
+        setDynamicProduct(null);
+        setLoading(false);
+        return;
+      }
+      try {
+        const prodRef = doc(db, "dynamic_products", id);
+        const docSnap = await getDoc(prodRef);
+        if (docSnap.exists()) {
+          setDynamicProduct({ id: docSnap.id, ...docSnap.data() });
+        }
+      } catch (err) {
+        console.error("Error fetching product:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    if (existing.exists()) {
-      // Product already in cart → increase quantity
-      const currentQty = existing.data().quantity || 1;
-      await updateDoc(cartItemRef, {
-        quantity: currentQty + 1,
-      });
-    } else {
-      // New product → add to cart
-      await setDoc(cartItemRef, {
-        productId: product.id,
-        name: product.name,
-        price: product.price,
-        quantity: 1,
-      });
+    fetchDynamicProduct();
+  }, [id, localProduct]);
+
+  const product = localProduct || dynamicProduct;
+
+  const handleAddToCart = async () => {
+    if (!currentUser) {
+      alert("Please sign in to add items to cart.");
+      return;
     }
 
-    alert("Added to cart!");
-  } catch (err) {
-    console.error("Error adding to cart:", err);
-    alert("Something went wrong while adding to cart.");
-  }
-};
+    const cartItemRef = doc(db, "carts", currentUser.uid, "items", product.id);
 
-  const { id } = useParams();
-  const product = products.find((p) => p.id === id);
+    try {
+      const existing = await getDoc(cartItemRef);
+
+      if (existing.exists()) {
+        await updateDoc(cartItemRef, {
+          quantity: existing.data().quantity + 1,
+        });
+      } else {
+        await setDoc(cartItemRef, {
+          productId: product.id,
+          name: product.name,
+          price: product.price,
+          quantity: 1,
+        });
+      }
+
+      alert("Added to cart!");
+    } catch (err) {
+      console.error("Error adding to cart:", err);
+      alert("Something went wrong while adding to cart.");
+    }
+  };
+
+  if (loading) {
+    return <div className="container py-5 text-center">Loading product...</div>;
+  }
 
   if (!product) {
     return <div className="container py-5 text-center">Product not found.</div>;
@@ -50,23 +82,38 @@ const handleAddToCart = async () => {
 
   return (
     <div className="container py-5">
-      <div className="row align-items-center g-5">
-        <div className="col-md-6">
+      <div className="row align-items-start g-5">
+        <div className="col-md-6 text-center">
           <img
             src={product.image}
             alt={product.name}
             className="img-fluid rounded shadow"
-            style={{ maxWidth: "400px", height: "auto" }}
+            style={{
+              maxWidth: "100%",
+              height: "auto",
+              objectFit: "contain",
+            }}
           />
         </div>
         <div className="col-md-6">
-          <h2 className="fw-bold">{product.name}</h2>
-          <p className="text-muted">{product.description || "Beautiful handcrafted jewelry."}</p>
-          <h4 className="text-warning fw-bold">{product.price}</h4>
-          
-          <button className="btn btn-warning mt-3" onClick={handleAddToCart}>
-  Add to Cart
-</button>
+          <h2 className="fw-bold mb-3">{product.name}</h2>
+          <div
+            className="mb-4"
+            style={{
+              fontSize: "1rem",
+              lineHeight: "1.6",
+              fontFamily: "'Roboto', sans-serif",
+            }}
+          >
+            <ReactMarkdown>
+              {product.description || "Beautiful handcrafted jewelry."}
+            </ReactMarkdown>
+          </div>
+          <h4 className="text-warning fw-bold mb-3">{product.price}</h4>
+
+          <button className="btn btn-warning px-4 py-2" onClick={handleAddToCart}>
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>
