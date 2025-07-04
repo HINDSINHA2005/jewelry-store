@@ -133,14 +133,14 @@ const Navbar = () => {
                       className="btn btn-outline-dark fw-semibold"
                       onClick={() => setIsCollapsed(true)}
                     >
-                      Admin Panel
+                      Customer orders
                     </Link>
                     <Link
                       to="/admin/message"
                       className="btn btn-outline-dark fw-semibold"
                       onClick={() => setIsCollapsed(true)}
                     >
-                      Admin Messages
+                      Messages
                     </Link>
 
                     <Link

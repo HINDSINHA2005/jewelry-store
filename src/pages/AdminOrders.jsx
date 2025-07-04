@@ -14,19 +14,8 @@ const AdminOrders = () => {
   const [orders, setOrders] = useState([]);
 
   const isAdmin = currentUser?.email === adminEmail;
-  const generateInvoice = async (order) => {
-  const element = document.getElementById(`order-${order.id}`);
-  const canvas = await html2canvas(element);
-  const imgData = canvas.toDataURL("image/png");
 
-  const pdf = new jsPDF();
-  const imgProps = pdf.getImageProperties(imgData);
-  const pdfWidth = pdf.internal.pageSize.getWidth();
-  const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
-  pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-  pdf.save(`Invoice_${order.id}.pdf`);
-};
+  
 
   useEffect(() => {
     if (!isAdmin) {
@@ -70,6 +59,7 @@ const AdminOrders = () => {
             <div className="d-flex justify-content-between">
               <div>
                 <h5 className="mb-1 fw-bold text-dark">Order ID: {order.id}</h5>
+                <p className="mb-0"><strong>Customer Name:</strong> {order.shippingInfo?.fullName}</p>
                 <p className="mb-0"><strong>User:</strong> {order.userId}</p>
                 <p className="mb-0"><strong>Date:</strong> {new Date(order.createdAt?.seconds * 1000).toLocaleDateString()}</p>
               </div>
@@ -88,7 +78,13 @@ const AdminOrders = () => {
 
             <hr />
             <div className="mb-2">
-              <strong>Shipping To:</strong> {order.shippingInfo?.fullName}, {order.shippingInfo?.address},{order.shippingInfo?.city}, {order.shippingInfo?.paymentMethod}
+              <strong>Shipping To:</strong> 
+              <br/>
+              <strong>Customer Name:{order.shippingInfo?.fullName}</strong><br/>
+              <strong>Address:{order.shippingInfo?.address}</strong> <br/>
+              <strong>City:{order.shippingInfo?.city}</strong> <br/>
+              <strong>Payment Type:{order.shippingInfo?.paymentMethod}</strong><br/>
+              <strong>Mobile no:{order.shippingInfo?.phone}</strong>
             </div>
 
             <ul className="list-group mb-3">
@@ -111,6 +107,8 @@ const AdminOrders = () => {
           </div>
         ))
       )}
+      
+
     </div>
   );
 };
