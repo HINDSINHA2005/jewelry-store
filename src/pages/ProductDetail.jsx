@@ -106,7 +106,7 @@ const ProductDetail = () => {
             }}
           >
             <ReactMarkdown>
-              {product.description || "Beautiful handcrafted jewelry."}
+              {product.description }
             </ReactMarkdown>
           </div>
           <h4 className="text-warning fw-bold mb-3">{product.price}</h4>

@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import necklace from '../../assets/Necklace/Necklace1.jpg'
 import bracelets from '../../assets/Bracelets/bracelet1.jpg'
 import mangalsutra from '../../assets/Mangalsutra/mangalsutra1.jpg';
-import pendant from '../../assets/Pendants/pd1.jpg'
-
+import pendant from '../../assets/Pendants/pd1.jpg';
+import RAKHI1 from '../../assets/Rakhi/RAKHI26.jpg';
 
 const categories = [
   {
@@ -27,6 +27,11 @@ const categories = [
     image: bracelets,
     slug: "Bracelets",
   },
+  {
+    name:"Rakhi",
+    image:RAKHI1,
+    slug:"Rakhi",
+  }
   
 ];
 
