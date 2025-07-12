@@ -77,6 +77,7 @@ const CategoryShowcase = () => {
                   />
                   <div className="card-body text-center">
                     <h5 className="card-title text-dark fw-semibold">{category.name}</h5>
+                    <h6 className="card-title text-warning fw-semibold">Click to see products </h6>
                   </div>
                 </div>
               </Link>
