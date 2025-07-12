@@ -106,12 +106,10 @@ const Navbar = () => {
       to="/orders"
       className="btn btn-outline-primary btn-sm fw-semibold"
     >
-      My Orders
+    Orders
     </Link>
 
-    <button className="btn btn-outline-warning btn-sm d-flex align-items-center" disabled>
-      <User size={18} />
-    </button>
+    
 
     <button
       onClick={handleLogout}
