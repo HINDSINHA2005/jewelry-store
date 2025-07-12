@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import logo from "../../assets/logo1.png";
-import { ShoppingCart, User, Home, Grid, Layers, Info, Phone } from "lucide-react";
+import { ShoppingCart,ShoppingBag, User, Home, Grid, Layers, Info, Phone } from "lucide-react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase";
 
@@ -54,6 +54,8 @@ const Navbar = () => {
             <Link to="/category" className="nav-link fw-semibold text-dark">Category</Link>
             <Link to="/about" className="nav-link fw-semibold text-dark">About</Link>
             <Link to="/contact" className="nav-link fw-semibold text-dark">Contact</Link>
+            
+
           </div>
 
           {/* Right buttons (always visible) */}
@@ -102,9 +104,9 @@ const Navbar = () => {
       )}
     </Link>
 
-    <Link
+     <Link
       to="/orders"
-      className="btn btn-outline-primary btn-sm fw-semibold"
+      className="btn btn-outline-primary btn-sm fw-semibold d-none d-lg-inline"
     >
     Orders
     </Link>
@@ -145,6 +147,10 @@ const Navbar = () => {
         <Link to="/contact" className="text-dark d-flex flex-column align-items-center text-decoration-none">
           <Phone size={20} />
           <small>Contact</small>
+        </Link>
+        <Link to="/orders" className="text-dark d-flex flex-column align-items-center text-decoration-none">
+          <ShoppingBag size={20} />
+          <small>Orders</small>
         </Link>
       </div>
     </>
