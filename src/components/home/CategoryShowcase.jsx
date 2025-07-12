@@ -6,7 +6,7 @@ import mangalsutra from '../../assets/Mangalsutra/mangalsutra1.jpg';
 import pendant from '../../assets/Pendants/pd1.jpg';
 import RAKHI1 from '../../assets/Rakhi/RAKHI26.jpg';
 import BANGLE7 from '../../assets/Bangles/BANGLE7.jpg';
-import KADHA8 from '../../assets/KADHA/KADHA8.jpg';
+import KADHA8 from '../../assets/Kadha/KADHA8.jpg';
 
 const categories = [
   {
