@@ -47,7 +47,8 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Nav Links */}
-          <div className="d-none d-lg-flex gap-4 align-items-center">
+         <div className="d-none d-lg-flex gap-4 ms-auto me-4">
+
             <Link to="/" className="nav-link fw-semibold text-dark">Home</Link>
             <Link to="/shop" className="nav-link fw-semibold text-dark">Shop</Link>
             <Link to="/category" className="nav-link fw-semibold text-dark">Category</Link>
@@ -56,44 +57,71 @@ const Navbar = () => {
           </div>
 
           {/* Right buttons (always visible) */}
-          <div className="d-flex gap-2 align-items-center">
+          <div className="d-flex gap-2 align-items-center ">
             {!currentUser ? (
-              <>
-                <Link to="/signin" className="btn btn-outline-warning btn-sm fw-semibold">
-                  Sign In
-                </Link>
-                <Link to="/signup" className="btn btn-warning btn-sm fw-semibold text-white">
-                  Sign Up
-                </Link>
-              </>
-            ) : (
-              <>
-                {!isAdmin && (
-                  <Link
-                    to="/cart"
-                    className="btn btn-outline-secondary position-relative btn-sm"
-                  >
-                    <ShoppingCart size={18} />
-                    {cartCount > 0 && (
-                      <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        {cartCount}
-                      </span>
-                    )}
-                  </Link>
-                )}
+  <>
+    <Link to="/signin" className="btn btn-outline-warning btn-sm fw-semibold">
+      Sign In
+    </Link>
+    <Link to="/signup" className="btn btn-warning btn-sm fw-semibold text-white">
+      Sign Up
+    </Link>
+  </>
+) : isAdmin ? (
+  <>
+    <Link to="/admin/orders" className="btn btn-outline-dark btn-sm fw-semibold">
+      Orders
+    </Link>
+    <Link to="/admin/message" className="btn btn-outline-dark btn-sm fw-semibold">
+      Messages
+    </Link>
+    <Link to="/addproduct" className="btn btn-outline-dark btn-sm fw-semibold">
+      Add Product
+    </Link>
+    <button className="btn btn-outline-warning btn-sm" disabled>
+      <User size={18} />
+    </button>
+    <button
+      onClick={handleLogout}
+      className="btn btn-danger btn-sm fw-semibold"
+    >
+      Logout
+    </button>
+  </>
+) : (
+  <>
+    <Link
+      to="/cart"
+      className="btn btn-outline-secondary position-relative btn-sm"
+    >
+      <ShoppingCart size={18} />
+      {cartCount > 0 && (
+        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          {cartCount}
+        </span>
+      )}
+    </Link>
 
-                <button className="btn btn-outline-warning btn-sm d-flex align-items-center" disabled>
-                  <User size={18} />
-                </button>
+    <Link
+      to="/orders"
+      className="btn btn-outline-primary btn-sm fw-semibold"
+    >
+      My Orders
+    </Link>
 
-                <button
-                  onClick={handleLogout}
-                  className="btn btn-danger btn-sm fw-semibold"
-                >
-                  Logout
-                </button>
-              </>
-            )}
+    <button className="btn btn-outline-warning btn-sm d-flex align-items-center" disabled>
+      <User size={18} />
+    </button>
+
+    <button
+      onClick={handleLogout}
+      className="btn btn-danger btn-sm fw-semibold"
+    >
+      Logout
+    </button>
+  </>
+)}
+
           </div>
         </div>
       </nav>
