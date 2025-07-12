@@ -64,6 +64,39 @@ import RAKHI27 from '../../assets/Rakhi/RAKHI27.jpg';
 import RAKHI28 from '../../assets/Rakhi/RAKHI28.jpg';
 
 import RAKHI30 from '../../assets/Rakhi/RAKHI30.jpg';
+
+import BANGLE1 from '../../assets/Bangles/BANGLE1.jpg';
+import BANGLE2 from "../../assets/Bangles/BANGLE2.jpg";
+import BANGLE3 from "../../assets/Bangles/BANGLE3.jpg";
+import BANGLE4 from "../../assets/Bangles/BANGLE4.jpg";
+import BANGLE5 from "../../assets/Bangles/BANGLE5.jpg";
+import BANGLE6 from "../../assets/Bangles/BANGLE6.jpg";
+import BANGLE7 from "../../assets/Bangles/BANGLE7.jpg";
+import BANGLE8 from "../../assets/Bangles/BANGLE8.jpg";
+import BANGLE9 from "../../assets/Bangles/BANGLE9.jpg";
+import BANGLE10 from "../../assets/Bangles/BANGLE10.jpg";
+import BANGLE11 from "../../assets/Bangles/BANGLE11.jpg";
+
+
+import KADHA from "../../assets/Kadha/KADHA.jpg";
+import KADHA1 from "../../assets/Kadha/KADHA1.jpg";
+import KADHA2 from "../../assets/Kadha/KADHA2.jpg";
+import KADHA3 from "../../assets/Kadha/KADHA3.jpg";
+import KADHA4 from "../../assets/Kadha/KADHA4.jpg";
+import KADHA5 from "../../assets/Kadha/KADHA5.jpg";
+import KADHA6 from "../../assets/Kadha/KADHA6.jpg";
+import KADHA7 from "../../assets/Kadha/KADHA7.jpg";
+import KADHA8 from "../../assets/Kadha/KADHA8.jpg";
+import KADHA9 from "../../assets/Kadha/KADHA9.jpg";
+import KADHA10 from "../../assets/Kadha/KADHA10.jpg";
+import KADHA11 from "../../assets/Kadha/KADHA11.jpg";
+import KADHA12 from "../../assets/Kadha/KADHA12.jpg";
+import KADHA13 from "../../assets/Kadha/KADHA13.jpg";
+import KADHA14 from "../../assets/Kadha/KADHA14.jpg";
+import KADHA15 from "../../assets/Kadha/KADHA15.jpg";
+import KADHA16 from "../../assets/Kadha/KADHA16.jpg";
+import KADHA17 from "../../assets/Kadha/KADHA17.jpg";
+
 const products = [
   {
     id: "m1",
@@ -313,7 +346,7 @@ Why Choose Jewelora?
   },
  
   {
-    id: "b1",
+    id: "br1",
     name: "Golden Heart Bracelet",
     category: "Bracelets",
     price: "₹600",
@@ -521,6 +554,240 @@ Why Choose Jewelora?
     price: "₹42",
     image: RAKHI30,
   },
+  {
+    id: "b1",
+    name: "Golden Bangles No.1 - Floral Motif",
+    category: "Bangles",
+    price:"₹550",
+    image: BANGLE1,
+    description: "Elegant gold bangles featuring intricate floral-inspired design.  ",
+    
+  },
+  {
+    id: "b2",
+    name: "Golden Bangles No.2 - Geometric Twist",
+    category: "Bangles",
+    price:"₹550",
+    description: "Modern gold bangles with clean geometric engravings.",
+    image: BANGLE2,
+  },
+  {
+    id: "b3",
+    name: "Golden Bangles No.3 - Classic Engraved",
+    category: "Bangles",
+    price:"₹550",
+    description: "Timeless bangles with traditional engraving work.",
+    image: BANGLE3,
+  },
+  {
+    id: "b4",
+    name: "Golden Bangles No.4 - Royal Carving",
+    category: "Bangles",
+    price: "₹550",
+    description: "Premium bangles with royal carved designs and shine.",
+    image: BANGLE4,
+  },
+  {
+    id: "b5",
+    name: "Golden Bangles No.5 - Dual Finish Design",
+    category: "Bangles",
+    price: "₹550",
+    description: "Gold bangles featuring matte and gloss combination pattern.",
+    image: BANGLE5,
+  },
+  {
+    id: "b6",
+    name: "Golden Bangles No.6 - Meshwork Detail",
+    category: "Bangles",
+    price: "₹550",
+    description: "Artistic bangles with finely woven mesh detailing.",
+    image: BANGLE6,
+  },
+  {
+    id: "b7",
+    name: "Golden Bangles No.7 - Diamond Cut Look",
+    category: "Bangles",
+    price:"₹550",
+    description: "Shiny diamond-cut effect gold bangles for festive wear.",
+    image: BANGLE7,
+  },
+  {
+    id: "b8",
+    name: "Golden Bangles No.8 - Traditional Fusion",
+    category: "Bangles",
+    price:"₹550",
+    description: "Fusion of modern polish and traditional motifs.",
+    image: BANGLE8,
+  },
+  {
+    id: "b9",
+    name: "Golden Bangles No.9 - Antique Glow",
+    category: "Bangles",
+    price: "₹550",
+    description: "Antique-finish gold bangles with soft shimmer and vintage style.",
+    image: BANGLE9,
+  },
+  {
+    id: "b10",
+    name: "Golden Bangles No.10.5 - Wave Cut Design",
+    category: "Bangles",
+    price:"₹550",
+    description: "Elegant wave-pattern gold bangles with two-tone detail.",
+    image: BANGLE10,
+  },
+  {
+    id: "b11",
+    name: "Golden Bangles No.10.5 - Linear Deco Style",
+    category: "Bangles",
+    price:"₹550",
+    description: "Stylish gold bangles with linear accents and glossy cuts.",
+    image: BANGLE11,
+  },
+  {
+    id: "k1",
+    name: "Golden Kadha No.1 - Regal Charm",
+    category: "Kada",
+    price: "₹750",
+    image: KADHA,
+    description: "Traditional gold kadha with a royal finish and intricate detail.",
+  },
+  {
+    id: "k2",
+    name: "Golden Kadha No.2 - Floral Mesh",
+    category: "Kada",
+    price: "₹750",
+    image: KADHA1,
+    description: "Elegant floral mesh pattern kadha for festive occasions.",
+  },
+  {
+    id: "k3",
+    name: "Golden Kadha No.3 - Bold Engraved",
+    category: "Kada",
+    price: "₹750",
+    image: KADHA2,
+    description: "Heavy gold kadha with strong engraved patterns and gloss finish.",
+  },
+  {
+    id: "k4",
+    name: "Golden Kadha No.4 - Dual Tone Shine",
+    category: "Kada",
+    price: "₹750",
+    image: KADHA3,
+    description: "Stylish kadha with a mix of matte and glossy golden finish.",
+  },
+  {
+    id: "k5",
+    name: "Golden Kadha No.5 - Antique Finish",
+    category: "Kada",
+    price: "₹750",
+    image: KADHA4,
+    description: "Antique-inspired kadha with vintage charm and fine craftsmanship.",
+  },
+  {
+    id: "k6",
+    name: "Golden Kadha No.6 - Diamond Cut",
+    category: "Kada",
+    price: "₹750",
+    image: KADHA5,
+    description: "Diamond-cut textured kadha perfect for special occasions.",
+  },
+  {
+    id: "k7",
+    name: "Golden Kadha No.7 - Royal Spiral",
+    category: "Kada",
+    price: "₹750",
+    image: KADHA6,
+    description: "Twisting spiral-style kadha with a touch of royal elegance.",
+  },
+  {
+    id: "k8",
+    name: "Golden Kadha No.8 - Smooth Gloss",
+    category: "Kada",
+    price: "₹750",
+    image: KADHA7,
+    description: "Smooth and glossy kadha design for daily or festive wear.",
+  },
+  {
+    id: "k9",
+    name: "Golden Kadha No.9 - Line Art Work",
+    category: "Kada",
+    price: "₹750",
+    image: KADHA8,
+    description: "Line-art styled kadha with subtle traditional detailing.",
+  },
+  {
+    id: "k10",
+    name: "Golden Kadha No.10 - Beaded Edge",
+    category: "Kada",
+    price: "₹750",
+    image: KADHA9,
+    description: "Unique kadha design with raised bead borders and floral finish.",
+  },
+  {
+    id: "k11",
+    name: "Golden Kadha No.11 - Grand Heritage",
+    category: "Kada",
+    price: "₹750",
+    image: KADHA10,
+    description: "Heavy traditional kadha showcasing heritage art in gold plating.",
+  },
+  {
+    id: "k12",
+    name: "Golden Kadha No.12 - Minimal Gloss Band",
+    category: "Kada",
+    price: "₹750",
+    image: KADHA11,
+    description: "Minimalistic kadha with smooth gold band for daily elegance.",
+  },
+  {
+    id: "k13",
+    name: "Golden Kadha No.13 - Peacock Edge",
+    category: "Kada",
+    price: "₹750",
+    image: KADHA12,
+    description: "Detailed kadha with peacock feather accents on the rim.",
+  },
+  {
+    id: "k14",
+    name: "Golden Kadha No.14 - Criss-Cross Gloss",
+    category: "Kada",
+    price: "₹750",
+    image: KADHA13,
+    description: "Glossy kadha with criss-cross pattern and stylish touch.",
+  },
+  {
+    id: "k15",
+    name: "Golden Kadha No.15 - Mirror Shine",
+    category: "Kada",
+    price: "₹750",
+    image: KADHA14,
+    description: "Mirror-finish kadha with pure gold shine for classic look.",
+  },
+  {
+    id: "k16",
+    name: "Golden Kadha No.16 - Royal Cut Work",
+    category: "Kada",
+    price: "₹750",
+    image: KADHA15,
+    description: "Royal kadha with premium cutwork and matte accents.",
+  },
+  {
+    id: "k17",
+    name: "Golden Kadha No.17 - Vine Pattern",
+    category: "Kada",
+    price: "₹750",
+    image: KADHA16,
+    description: "Decorative kadha featuring vine-style floral engravings.",
+  },
+  {
+    id: "k18",
+    name: "Golden Kadha No.18 - Heritage Wrap",
+    category: "Kada",
+    price: "₹750",
+    image: KADHA17,
+    description: "Bold kadha wrapped in heritage motifs and embossed lines.",
+  },
+
 ];
 
 export default products;

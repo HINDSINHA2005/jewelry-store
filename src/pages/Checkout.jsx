@@ -15,6 +15,7 @@ const Checkout = () => {
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [phone, setPhone] = useState("");
+  const [Pincode,setPincode]=useState("");
   const [paymentMethod, setPaymentMethod] = useState("Cash on Delivery");
 
   const navigate = useNavigate();
@@ -56,6 +57,7 @@ const total = subtotal + shipping;
     shippingInfo: {
       fullName,
       address,
+      Pincode,
       city,
       phone,
       paymentMethod,
@@ -106,6 +108,10 @@ const total = subtotal + shipping;
                 <input type="text" className="form-control" placeholder="Enter your address" value={address} onChange={(e) => setAddress(e.target.value)} />
               </div>
               <div className="mb-3">
+                <label className="form-label">Pincode</label>
+                <input type="text" className="form-control" placeholder="Enter your address" value={Pincode} onChange={(e) => setPincode(e.target.value)} />
+              </div>
+              <div className="mb-3">
                 <label className="form-label">City</label>
                 <input type="text" className="form-control" placeholder="Enter your city" value={city} onChange={(e) => setCity(e.target.value)} />
               </div>
@@ -133,6 +139,7 @@ const total = subtotal + shipping;
     <li key={item.id} className="list-group-item d-flex justify-content-between">
       <span>{item.name}</span>
       <span>₹{item.price}</span>
+
     </li>
   ))}
 

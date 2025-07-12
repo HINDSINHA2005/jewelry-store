@@ -5,6 +5,8 @@ import bracelets from '../../assets/Bracelets/bracelet1.jpg'
 import mangalsutra from '../../assets/Mangalsutra/mangalsutra1.jpg';
 import pendant from '../../assets/Pendants/pd1.jpg';
 import RAKHI1 from '../../assets/Rakhi/RAKHI26.jpg';
+import BANGLE7 from '../../assets/Bangles/BANGLE7.jpg';
+import KADHA8 from '../../assets/KADHA/KADHA8.jpg';
 
 const categories = [
   {
@@ -23,15 +25,26 @@ const categories = [
     slug: "Pendants",
   },
   {
+    name:"Bangles",
+    image:BANGLE7,
+    slug:"Bangles",
+  },
+  {
     name: "Bracelets",
     image: bracelets,
     slug: "Bracelets",
+  },
+  {
+    name: "KADA",
+    image: KADHA8,
+    slug: "Kada",
   },
   {
     name:"Rakhi",
     image:RAKHI1,
     slug:"Rakhi",
   }
+
   
 ];
 

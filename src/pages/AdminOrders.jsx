@@ -85,6 +85,7 @@ const AdminOrders = () => {
               <strong>City:{order.shippingInfo?.city}</strong> <br/>
               <strong>Payment Type:{order.shippingInfo?.paymentMethod}</strong><br/>
               <strong>Mobile no:{order.shippingInfo?.phone}</strong>
+              <strong>Pincode:{order.shippingInfo?.Pincode}</strong>
             </div>
 
             <ul className="list-group mb-3">

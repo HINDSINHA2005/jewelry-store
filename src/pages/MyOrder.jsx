@@ -40,7 +40,7 @@ const MyOrders = () => {
               {order.items.map((item, idx) => (
                 <li key={idx} className="list-group-item d-flex justify-content-between">
                   <span>{item.name}</span>
-                  <span>₹{item.price} × {item.quantity}</span>
+                  <span>{item.price} × {item.quantity}</span>
                 </li>
               ))}
             </ul>
