@@ -17,6 +17,7 @@ import MyOrders from "./pages/MyOrder";
 import AdminOrders from "./pages/AdminOrders";
 import AddProduct from "./pages/AddProduct";
 import AdminContactMessages from "./pages/AdminContactPage";
+import CategoryShowcase from "./components/home/CategoryShowcase";
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/orders" element={<MyOrders />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/category" element={<CategoryShowcase />} />
         <Route path="/admin/orders" element={<AdminOrders />} />
         <Route path="/admin/message" element={<AdminContactMessages />} />
         

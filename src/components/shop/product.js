@@ -241,7 +241,7 @@ Why Choose Jewelora?
   },
   {
     id: "n10",
-    name: "Classic Mangalsutra Set",
+    name: "Classic Necklace Set",
     category: "Necklaces",
     price: "₹1700",
     image: necklace10,
@@ -336,13 +336,6 @@ Why Choose Jewelora?
     category: "Pendants",
     price: "₹499",
     image: po,
-  },
- {
-    id: "p14",
-    name: "Peacock Mangalsutra Set",
-    category: "Pendants",
-    price: "₹499",
-    image: pd34,
   },
  
   {

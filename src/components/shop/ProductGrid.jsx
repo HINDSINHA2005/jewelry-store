@@ -1,185 +1,53 @@
 import { Link } from "react-router-dom";
-{/*}
-import mangalsutra1 from '../../assets/Mangalsutra/mangalsutra1.jpg';
-import mangalsutra2 from '../../assets/Mangalsutra/mangalsutra2.jpg';
-import mangalsutra3 from '../../assets/Mangalsutra/mangalsutra3.jpg';
-import mangalsutra4 from '../../assets/Mangalsutra/mangalsutra4.jpg';
-import mangalsutra5 from '../../assets/Mangalsutra/mangalsutra5.jpg';
-import mangalsutra6 from '../../assets/Mangalsutra/mangalsutra6.jpg';
-
-import Necklace1 from '../../assets/Necklace/Necklace1.jpg'
-import necklace2 from '../../assets/Necklace/necklace2.jpg'
-import necklace3 from '../../assets/Necklace/necklace3.jpg'
-import necklace4 from '../../assets/Necklace/necklace4.jpg'
-import necklace5 from '../../assets/Necklace/necklace5.jpg'
-import necklace6 from '../../assets/Necklace/necklace6.jpg'
-import necklace7 from '../../assets/Necklace/necklace7.jpg'
-import necklace8 from '../../assets/Necklace/necklace8.jpg'
-import necklace9 from '../../assets/Necklace/necklace9.jpg'
-import necklace10 from '../../assets/Necklace/necklace10.jpg'
-
-import bracelet1 from '../../assets/Bracelets/bracelet1.jpg'
-*/}
-
 import products from '../../components/shop/product.js';
-{/*
-const products = [
-  {
-    name: "Sleek Triple-Layer Mangalsutra Set",
-    category: "Mangalsutra",
-    price: "₹499",
-    image:mangalsutra1 ,
-  },
-  {
-    name: "Gold and Diamond Mangalsutra Set with Earrings",
-    category: "Mangalsutra",
-    price: "₹499",
-    image:mangalsutra2,
-  },
-  {
-    name: "Circular Floral Pattern Mangalsutra Set",
-    category: "Mangalsutra",
-    price: "₹499",
-    image: mangalsutra3,
-  },
-  {
-    name: "Silver-Toned Diamond Mangalsutra Set",
-    category: "Mangalsutra",
-    price: "₹499",
-    image: mangalsutra4,
-  },
-  {
-    name: "Peacock Aura Mangalsutra Set",
-    category: "Mangalsutra",
-    price: "₹499",
-    image: mangalsutra5,
-  },
-  {
-    name: "Twilight Bloom Mangalsutra Set",
-    category: "Mangalsutra",
-    price: "₹499",
-    image: mangalsutra6,
-  },
-  {
-    name: "Blush Blossom Set",
-    category: "Necklaces",
-    price: "₹1700",
-    image: Necklace1,
-  },
-{
-    name: "Royal Sapphire Elegance Set",
-    category: "Necklaces",
-    price: "₹1700",
-    image: necklace2,
-  },
-{
-    name: "Elegant Blush Statement Set",
-    category: "Necklaces",
-    price: "₹1700",
-    image: necklace3,
-  },
-{
-    name: "Petal Drop Choker Set",
-    category: "Necklaces",
-    price: "₹1700",
-    image: necklace4,
-  },
-{
-    name: "Mint Bloom Set",
-    category: "Necklaces",
-    price: "₹1700",
-    image: necklace5,
-  },
-{
-    name: "Diamond Mesh Choker Set",
-    category: "Necklaces",
-    price: "₹1700",
-    image: necklace6,
-  },
-{
-    name: "Regal Rainfall Set",
-    category: "Necklaces",
-    price: "₹1700",
-    image: necklace7,
-  },
-{
-    name: "Velvet Bloom Drop Set",
-    category: "Necklaces",
-    price: "₹1700",
-    image: necklace8,
-  },
 
- 
-   {
-    name: "Golden Diva Combo Set",
-    category: "Necklaces",
-    price: "₹1700",
-    image: necklace9,
-  },
-   {
-    name: "Classic Mangalsutra Set",
-    category: "Necklaces",
-    price: "₹1700",
-    image: necklace10,
-  },
+const ProductGrid = ({ category, searchTerm = "" }) => {
+  const filteredProducts = products.filter((product) => {
+    const matchCategory = category
+      ? product.category.toLowerCase() === category.toLowerCase()
+      : true;
 
-  {
-    name: "Diamond Ring",
-    category: "Rings",
-    price: "₹25,000",
-    image: "https://placehold.co/300x300/ADD8E6/black?text=Ring",
-  },
-  {
-    name: "Golden Heart Bracelet",
-    category: "Bracelets",
-    price: "₹600",
-    image: bracelet1,
-  },
-  {
-    name: "Traditional Jhumkas",
-    category: "Earrings",
-    price: "₹5,000",
-    image: "https://placehold.co/300x300/FFD700/black?text=Jhumkas",
-  },
-];
-*/}
+    const matchSearch = searchTerm
+      ? product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.category.toLowerCase().includes(searchTerm.toLowerCase())
+      : true;
 
-const ProductGrid = ({ category }) => {
-  const filteredProducts = category
-    ? products.filter((p) => p.category.toLowerCase() === category.toLowerCase())
-    : products;
+    return matchCategory && matchSearch;
+  });
 
   return (
     <div className="row g-4">
-  {filteredProducts.map((prod, index) => (
-    <div className="col-md-3 col-sm-6" key={index}>
-      <div className="card border-0 shadow-sm h-100 d-flex flex-column overflow-hidden">
-        <img
-          src={prod.image}
-          alt={prod.name}
-          className="card-img-top"
-          style={{
-            height: "250px",
-            width: "100%",
-            objectFit: "cover",
-            objectPosition: "center",
-          }}
-        />
-        <div className="card-body text-center p-4 d-flex flex-column justify-content-between">
-          <h6 className="fw-bold text-lg mb-2">{prod.name}</h6>
-          <p className="text-amber-500 fw-semibold text-xl mb-3">{prod.price}</p>
-          <Link to={`/product/${prod.id}`} className="btn btn-outline-warning btn-sm mt-auto">
-            View Details
-          </Link>
+      {filteredProducts.map((prod, index) => (
+        <div className="col-md-3 col-sm-6" key={index}>
+          <div className="card border-0 shadow-sm h-100 d-flex flex-column overflow-hidden">
+            <img
+              src={prod.image}
+              alt={prod.name}
+              className="card-img-top"
+              style={{
+                height: "250px",
+                width: "100%",
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
+            />
+            <div className="card-body text-center p-4 d-flex flex-column justify-content-between">
+              <h6 className="fw-bold text-lg mb-2">{prod.name}</h6>
+              <p className="text-amber-500 fw-semibold text-xl mb-3">{prod.price}</p>
+              <Link to={`/product/${prod.id || index}`} className="btn btn-outline-warning btn-sm mt-auto">
+                View Details
+              </Link>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  ))}
-  {filteredProducts.length === 0 && (
-    <div className="text-center text-muted mt-4">No products found in this category.</div>
-  )}
-</div>
+      ))}
 
+      {filteredProducts.length === 0 && (
+        <div className="text-center text-muted mt-4">
+          No products found.
+        </div>
+      )}
+    </div>
   );
 };
 
