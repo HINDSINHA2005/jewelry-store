@@ -1,27 +1,54 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { db } from "../../firebase";
-import { doc, setDoc } from "firebase/firestore";
-import products from "../shop/product"; // adjust path if needed
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import products from "../shop/product"; // adjust if needed
+
+const categories = ["Mangalsutra", "Necklaces", "Pendants", "Bracelets", "Rakhi", "Bangles"];
+
+const getFeaturedProducts = () => {
+  const featured = [];
+  categories.forEach((cat) => {
+    const byCategory = products.filter(p => p.category === cat).slice(0, 3);
+    featured.push(...byCategory);
+  });
+  return featured;
+};
 
 const FeaturedProducts = () => {
-  
   const { currentUser } = useAuth();
+  const featuredProducts = getFeaturedProducts();
 
   const handleAddToCart = async (product) => {
     if (!currentUser) {
-      alert("Please sign in to add to cart");
+      alert("Please sign in to add items to cart.");
       return;
     }
 
-    const itemRef = doc(db, "carts", currentUser.uid, "items", product.id);
-    await setDoc(itemRef, {
-      name: product.name,
-      price: product.price,
-      image: product.image,
-      quantity: 1,
-    });
-    alert("Added to cart");
+    const cartItemRef = doc(db, "carts", currentUser.uid, "items", product.id);
+
+    try {
+      const existing = await getDoc(cartItemRef);
+
+      if (existing.exists()) {
+        await updateDoc(cartItemRef, {
+          quantity: existing.data().quantity + 1,
+        });
+      } else {
+        await setDoc(cartItemRef, {
+          productId: product.id,
+          name: product.name,
+          price: product.price,
+          image: product.image, // include image for cart display
+          quantity: 1,
+        });
+      }
+
+      alert("Added to cart!");
+    } catch (err) {
+      console.error("Error adding to cart:", err);
+      alert("Something went wrong while adding to cart.");
+    }
   };
 
   return (
@@ -29,7 +56,7 @@ const FeaturedProducts = () => {
       <div className="container">
         <h2 className="text-center mb-4 text-warning fw-bold">Featured Products</h2>
         <div className="row">
-          {products.slice(0, 6).map((product) => (
+          {featuredProducts.map((product) => (
             <div className="col-sm-6 col-md-4 col-lg-3 mb-4" key={product.id}>
               <div className="card h-100 shadow-sm border-0">
                 <img

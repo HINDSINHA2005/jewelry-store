@@ -97,7 +97,70 @@ import KADHA15 from "../../assets/Kadha/KADHA15.jpg";
 import KADHA16 from "../../assets/Kadha/KADHA16.jpg";
 import KADHA17 from "../../assets/Kadha/KADHA17.jpg";
 
+import bracelet2 from '../../assets/Rajvadi Bracelet/bracelet2.jpg';
+import bracelet3 from '../../assets/Rajvadi Bracelet/bracelet3.jpg';
+import bracelet4 from '../../assets/Rajvadi Bracelet/bracelet4.jpg';
+import bracelet5 from '../../assets/Rajvadi Bracelet/bracelet5.jpg';
+import bracelet6 from '../../assets/Rajvadi Bracelet/bracelet6.jpg';
+import bracelet7 from '../../assets/Rajvadi Bracelet/bracelet7.jpg';
+import bracelet8 from '../../assets/Rajvadi Bracelet/bracelet8.jpg';
+import bracelet9 from '../../assets/Rajvadi Bracelet/bracelet9.jpg';
+
+import bracelet12 from '../../assets/Rajvadi Bracelet/bracelet12.jpg';
+import bracelet13 from '../../assets/Rajvadi Bracelet/bracelet13.jpg';
+import bracelet14 from '../../assets/Rajvadi Bracelet/bracelet14.jpg';
+import bracelet15 from '../../assets/Rajvadi Bracelet/bracelet15.jpg';
+
+import oxidised1 from '../../assets/Oxidised Necklaces/oxidised1.jpg';
+import oxidised2 from '../../assets/Oxidised Necklaces/oxidised2.jpg';
+import oxidised3 from '../../assets/Oxidised Necklaces/oxidised3.jpg';
+import oxidised4 from '../../assets/Oxidised Necklaces/oxidised4.jpg';
+import oxidised5 from '../../assets/Oxidised Necklaces/oxidised5.jpg';
+import oxidised6 from '../../assets/Oxidised Necklaces/oxidised6.jpg';
+
 const products = [
+  {
+    id: "ox-01",
+    name: "Oxidised Tribal Necklace",
+    category: "Oxidised Necklaces",
+    price: "₹499",
+    image: oxidised1,
+  },
+  {
+    id: "ox-02",
+    name: "Antique Mirror Necklace",
+    category: "Oxidised Necklaces",
+    price: "₹499",
+    image: oxidised2,
+  },
+  {
+    id: "ox-03",
+    name: "Ethnic Choker Necklace",
+    category: "Oxidised Necklaces",
+    price: "₹499",
+    image: oxidised3,
+  },
+  {
+    id: "ox-04",
+    name: "Layered Oxidised Set",
+    category: "Oxidised Necklaces",
+    price: "₹499",
+    image: oxidised4,
+  },
+  {
+    id: "ox-05",
+    name: "Oxidised Peacock Design",
+    category: "Oxidised Necklaces",
+    price: "₹499",
+    image: oxidised5,
+  },
+  {
+    id: "ox-06",
+    name: "Boho Statement Necklace",
+    category: "Oxidised Necklaces",
+    price: "₹499",
+    image: oxidised6,
+  },
   {
     id: "m1",
     name: "Sleek Triple-Layer Mangalsutra Set",
@@ -779,6 +842,90 @@ Why Choose Jewelora?
     price: "₹750",
     image: KADHA17,
     description: "Bold kadha wrapped in heritage motifs and embossed lines.",
+  },
+  {
+    id: "rb-01",
+    name: "Royal Rajvadhi Bracelet 1",
+    category: "Rajvadhi Bracelet",
+    price: "₹499",
+    image: bracelet2,
+  },
+  {
+    id: "rb-02",
+    name: "Royal Rajvadhi Bracelet 2",
+    category: "Rajvadhi Bracelet",
+    price: "₹499",
+    image: bracelet3,
+  },
+  {
+    id: "rb-03",
+    name: "Royal Rajvadhi Bracelet 3",
+    category: "Rajvadhi Bracelet",
+    price: "₹499",
+    image: bracelet4,
+  },
+  {
+    id: "rb-04",
+    name: "Royal Rajvadhi Bracelet 4",
+    category: "Rajvadhi Bracelet",
+    price: "₹499",
+    image: bracelet5,
+  },
+  {
+    id: "rb-05",
+    name: "Royal Rajvadhi Bracelet 5",
+    category: "Rajvadhi Bracelet",
+    price: "₹499",
+    image: bracelet6,
+  },
+  {
+    id: "rb-06",
+    name: "Royal Rajvadhi Bracelet 6",
+    category: "Rajvadhi Bracelet",
+    price: "₹499",
+    image: bracelet7,
+  },
+  {
+    id: "rb-07",
+    name: "Royal Rajvadhi Bracelet 7",
+    category: "Rajvadhi Bracelet",
+    price: "₹499",
+    image: bracelet8,
+  },
+  {
+    id: "rb-08",
+    name: "Royal Rajvadhi Bracelet 8",
+    category: "Rajvadhi Bracelet",
+    price: "₹499",
+    image: bracelet9,
+  },
+  {
+    id: "rb-10",
+    name: "Royal Rajvadhi Bracelet 11",
+    category: "Rajvadhi Bracelet",
+    price: "₹499",
+    image: bracelet12,
+  },
+  {
+    id: "rb-11",
+    name: "Royal Rajvadhi Bracelet 12",
+    category: "Rajvadhi Bracelet",
+    price: "₹499",
+    image: bracelet13,
+  },
+  {
+    id: "rb-12",
+    name: "Royal Rajvadhi Bracelet 13",
+    category: "Rajvadhi Bracelet",
+    price: "₹499",
+    image: bracelet14,
+  },
+  {
+    id: "rb-13",
+    name: "Royal Rajvadhi Bracelet 14",
+    category: "Rajvadhi Bracelet",
+    price: "₹499",
+    image: bracelet15,
   },
 
 ];

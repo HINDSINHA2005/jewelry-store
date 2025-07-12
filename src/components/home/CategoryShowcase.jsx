@@ -7,7 +7,8 @@ import pendant from '../../assets/Pendants/pd1.jpg';
 import RAKHI1 from '../../assets/Rakhi/RAKHI26.jpg';
 import BANGLE7 from '../../assets/Bangles/BANGLE7.jpg';
 import KADHA8 from '../../assets/Kadha/KADHA8.jpg';
-
+import bracelet2 from '../../assets/Rajvadi Bracelet/bracelet2.jpg';
+import oxidised1 from '../../assets/Oxidised Necklaces/oxidised1.jpg';
 const categories = [
   {
     name: "Mangalsutra",
@@ -43,7 +44,17 @@ const categories = [
     name:"Rakhi",
     image:RAKHI1,
     slug:"Rakhi",
-  }
+  },
+  {
+    name:"Rajvadhi Bracelet",
+    image:bracelet2,
+    slug:"Rajvadhi Bracelet",
+  },
+  {
+    name:"Oxidised Necklaces",
+    image:oxidised1,
+    slug:"Oxidised Necklaces",
+  },
 
   
 ];
