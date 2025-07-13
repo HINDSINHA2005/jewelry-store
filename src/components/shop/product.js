@@ -4,6 +4,16 @@ import mangalsutra3 from '../../assets/Mangalsutra/mangalsutra3.jpg';
 import mangalsutra4 from '../../assets/Mangalsutra/mangalsutra4.jpg';
 import mangalsutra5 from '../../assets/Mangalsutra/mangalsutra5.jpg';
 import mangalsutra6 from '../../assets/Mangalsutra/mangalsutra6.jpg';
+import mangalsutra7 from '../../assets/Mangalsutra/mangalsutra7.jpg';
+import mangalsutra8 from '../../assets/Mangalsutra/mangalsutra8.jpg';
+import mangalsutra9 from '../../assets/Mangalsutra/mangalsutra9.jpg';
+import mangalsutra10 from '../../assets/Mangalsutra/mangalsutra10.jpg';
+import mangalsutra11 from '../../assets/Mangalsutra/mangalsutra11.jpg';
+import mangalsutra12 from '../../assets/Mangalsutra/mangalsutra12.jpg';
+import mangalsutra13 from '../../assets/Mangalsutra/mangalsutra13.jpg';
+import mangalsutra14 from '../../assets/Mangalsutra/mangalsutra14.jpg';
+import mangalsutra15 from '../../assets/Mangalsutra/mangalsutra15.jpg';
+
 
 import Necklace1 from '../../assets/Necklace/Necklace1.jpg';
 import necklace2 from '../../assets/Necklace/necklace2.jpg';
@@ -119,6 +129,69 @@ import oxidised5 from '../../assets/Oxidised Necklaces/oxidised5.jpg';
 import oxidised6 from '../../assets/Oxidised Necklaces/oxidised6.jpg';
 
 const products = [
+  {
+    id: "ms-07",
+    name: "Premium Mangalsutra Set 1",
+    category: "Mangalsutra",
+    price: "₹1100",
+    image: mangalsutra7,
+  },
+  {
+    id: "ms-08",
+    name: "Premium Mangalsutra Set 2",
+    category: "Mangalsutra",
+    price: "₹1100",
+    image: mangalsutra8,
+  },
+  {
+    id: "ms-09",
+    name: "Premium Mangalsutra Set 3",
+    category: "Mangalsutra",
+    price: "₹1100",
+    image: mangalsutra9,
+  },
+  {
+    id: "ms-10",
+    name: "Premium Mangalsutra Set 4",
+    category: "Mangalsutra",
+    price: "₹1100",
+    image: mangalsutra10,
+  },
+  {
+    id: "ms-11",
+    name: "Premium Mangalsutra Set 5",
+    category: "Mangalsutra",
+    price: "₹1100",
+    image: mangalsutra11,
+  },
+  {
+    id: "ms-12",
+    name: "Premium Mangalsutra Set 6",
+    category: "Mangalsutra",
+    price: "₹1100",
+    image: mangalsutra12,
+  },
+  {
+    id: "ms-13",
+    name: "Premium Mangalsutra Set 7",
+    category: "Mangalsutra",
+    price: "₹1100",
+    image: mangalsutra13,
+  },
+  {
+    id: "ms-14",
+    name: "Premium Mangalsutra Set 8",
+    category: "Mangalsutra",
+    price: "₹1100",
+    image: mangalsutra14,
+  },
+  {
+    id: "ms-15",
+    name: "Premium Mangalsutra Set 9",
+    category: "Mangalsutra",
+    price: "₹1100",
+    image: mangalsutra15,
+  },
   {
     id: "ox-01",
     name: "Oxidised Tribal Necklace",
