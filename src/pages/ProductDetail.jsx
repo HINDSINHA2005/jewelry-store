@@ -65,7 +65,7 @@ const ProductDetail = () => {
         });
       }
 
-      alert("Added to cart!");
+      //alert("Added to cart!");
     } catch (err) {
       console.error("Error adding to cart:", err);
       alert("Something went wrong while adding to cart.");
@@ -79,6 +79,10 @@ const ProductDetail = () => {
   if (!product) {
     return <div className="container py-5 text-center">Product not found.</div>;
   }
+  const goToCheckout = () => {
+  navigate("/checkout", { state: { product } });
+};
+
 
   return (
     <div className="container py-5">
@@ -113,6 +117,9 @@ const ProductDetail = () => {
 
           <button className="btn btn-warning px-4 py-2" onClick={handleAddToCart}>
             Add to Cart
+          </button>
+            <button className="btn btn-success px-6 py-2 ms-3" onClick={goToCheckout}>
+            Buy Now
           </button>
         </div>
       </div>

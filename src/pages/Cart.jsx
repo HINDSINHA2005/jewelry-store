@@ -151,7 +151,7 @@ const Cart = () => {
                 onClick={goToCheckout}
                 className="btn btn-warning w-100 fw-semibold text-white"
               >
-                Proceed to Checkout
+                Proceed to Order
               </button>
             </div>
           </div>
