@@ -9,6 +9,9 @@ import BANGLE7 from '../../assets/Bangles/BANGLE7.jpg';
 import KADHA8 from '../../assets/Kadha/KADHA8.jpg';
 import bracelet2 from '../../assets/Rajvadi Bracelet/bracelet2.jpg';
 import oxidised1 from '../../assets/Oxidised Necklaces/oxidised1.jpg';
+import mod1 from '../../assets/Modern Mangalsutra/1.jpg';
+import ear1 from '../../assets/earrings/e1.jpg';
+import sp1 from '../../assets/Special Collection/sp1.jpg'
 const categories = [
   {
     name: "Mangalsutra",
@@ -55,6 +58,25 @@ const categories = [
     image:oxidised1,
     slug:"Oxidised Necklaces",
   },
+  {
+    name:"Modern Mangalsutra ",
+    image:mod1,
+    slug:"Modern Mangalsutra "
+
+  },
+  {
+    name:"Special Collection ",
+    image:sp1,
+    slug:"Special Collection "
+
+  },
+  {
+    name:"Earrings ",
+    image:ear1,
+    slug:"Earrings "
+
+  },
+
 
   
 ];

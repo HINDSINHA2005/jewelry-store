@@ -44,6 +44,13 @@ import pd78 from '../../assets/Pendants/pd78.jpg';
 
 
 import bracelet1 from '../../assets/Bracelets/bracelet1.jpg';
+import brac2 from '../../assets/Bracelets/bracelet2.jpg';
+import brac3 from '../../assets/Bracelets/bracelet3.jpg';
+import brac4 from '../../assets/Bracelets/bracelet4.jpg';
+import brac5 from '../../assets/Bracelets/bracelet5.jpg';
+import brac6 from '../../assets/Bracelets/bracelet6.jpg';
+import brac7 from '../../assets/Bracelets/bracelet7.jpg';
+
 import RAKHI1 from '../../assets/Rakhi/RAKHI1.jpg'; 
 import RAKHI2 from '../../assets/Rakhi/RAKHI2.jpg';
 import RAKHI3 from '../../assets/Rakhi/RAKHI3.jpg';
@@ -128,7 +135,214 @@ import oxidised4 from '../../assets/Oxidised Necklaces/oxidised4.jpg';
 import oxidised5 from '../../assets/Oxidised Necklaces/oxidised5.jpg';
 import oxidised6 from '../../assets/Oxidised Necklaces/oxidised6.jpg';
 
+import img1 from '../../assets/Modern Mangalsutra/1.jpg';
+import img2 from '../../assets/Modern Mangalsutra/2.jpg';
+import img3 from '../../assets/Modern Mangalsutra/3.jpg';
+import img4 from '../../assets/Modern Mangalsutra/4.jpg';
+import img5 from '../../assets/Modern Mangalsutra/5.jpg';
+import img6 from '../../assets/Modern Mangalsutra/6.jpg';
+import img7 from '../../assets/Modern Mangalsutra/7.jpg';
+import img8 from '../../assets/Modern Mangalsutra/8.jpg';
+import img9 from '../../assets/Modern Mangalsutra/9.jpg';
+import img10 from '../../assets/Modern Mangalsutra/10.jpg';
+import img11 from '../../assets/Modern Mangalsutra/11.jpg';
+import img12 from '../../assets/Modern Mangalsutra/12.jpg';
+import img13 from '../../assets/Modern Mangalsutra/13.jpg';
+import img14 from '../../assets/Modern Mangalsutra/14.jpg';
+import img15 from '../../assets/Modern Mangalsutra/15.jpg';
+import img16 from '../../assets/Modern Mangalsutra/16.jpg';
+import img17 from '../../assets/Modern Mangalsutra/17.jpg';
+
+import e1 from '../../assets/earrings/e1.jpg';
+import e2 from '../../assets/earrings/e2.jpg';
+import e3 from '../../assets/earrings/e3.jpg';
+import e4 from '../../assets/earrings/e4.jpg';
+
+import sp1 from '../../assets/Special Collection/sp1.jpg';
+import b1 from '../../assets/Special Collection/b1.jpg';
+import b2 from '../../assets/Special Collection/b2.jpg';
+import b3 from '../../assets/Special Collection/b3.jpg';
+
+
+
+
 const products = [
+  {
+    id: 'sp1',
+    name: 'Brass HighGold Designer Pandal Set',
+    category: 'Special Collection',
+    price: '₹550',
+    image: sp1,
+  },
+  {
+    id: 'sp2',
+    name: 'Folding Kada Bracelet',
+    category: 'Special Collection',
+    price: '₹550',
+    image: b1,
+  },
+   {
+    id: 'sp3',
+    name: 'Folding Kada Bracelet',
+    category: 'Special Collection',
+    price: '₹550',
+    image: b2,
+  },
+   {
+    id: 'sp4',
+    name: 'Folding Kada Bracelet',
+    category: 'Special Collection',
+    price: '₹550',
+    image: b3,
+  },
+   {
+    id: 'e1',
+    name: 'Zeenat Chandbails earring 1',
+    category: 'earrings',
+    price: '₹550',
+    image: e1,
+  },
+  {
+    id: 'e2',
+    name: 'Zeenat Chandbails earring 2',
+    category: 'earrings',
+    price: '₹550',
+    image: e2,
+  },
+  {
+    id: 'e3',
+    name: 'Zeenat Chandbails earring 3',
+    category: 'earrings',
+    price: '₹550',
+    image: e3,
+  },
+  {
+    id: 'e4',
+    name: 'Zeenat Chandbails earring 4',
+    category: 'earrings',
+    price: '₹550',
+    image: e4,
+  },
+
+  {
+    id: 'AM1',
+    name: 'American Style Modern Mangalsutra 1',
+    category: 'Modern Mangalsutra',
+    price: '₹499',
+    image: img1,
+  },
+  {
+    id: 'AM2',
+    name: 'American Style Modern Mangalsutra 2',
+    category: 'Modern Mangalsutra',
+    price: '₹499',
+    image: img2,
+  },
+  {
+    id: 'AM3',
+    name: 'American Style Modern Mangalsutra 3',
+    category: 'Modern Mangalsutra',
+    price: '₹499',
+    image: img3,
+  },
+  {
+    id: 'AM4',
+    name: 'American Style Modern Mangalsutra 4',
+    category: 'Modern Mangalsutra',
+    price: '₹499',
+    image: img4,
+  },
+  {
+    id: 'AM5',
+    name: 'American Style Modern Mangalsutra 5',
+    category: 'Modern Mangalsutra',
+    price: '₹499',
+    image: img5,
+  },
+  {
+    id: 'AM6',
+    name: 'American Style Modern Mangalsutra 6',
+    category:'Modern Mangalsutra',
+    price: '₹499',
+    image: img6,
+  },
+  {
+    id: 'AM7',
+    name: 'American Style Modern Mangalsutra 7',
+    category: 'Modern Mangalsutra',
+    price: '₹499',
+    image: img7,
+  },
+  {
+    id: 'AM8',
+    name: 'American Style Modern Mangalsutra 8',
+    category: 'Modern Mangalsutra',
+    price: '₹499',
+    image: img8,
+  },
+  {
+    id: 'AM9',
+    name: 'American Style Modern Mangalsutra 9',
+    category: 'Modern Mangalsutra',
+    price: '₹499',
+    image: img9,
+  },
+  {
+    id: 'AM10',
+    name: 'American Style Modern Mangalsutra 10',
+    category: 'Modern Mangalsutra',
+    price: '₹499',
+    image: img10,
+  },
+  {
+    id: 'AM11',
+    name: 'American Style Modern Mangalsutra 11',
+    category: 'Modern Mangalsutra',
+    price: '₹499',
+    image: img11,
+  },
+  {
+    id: 'AM12',
+    name: 'American Style Modern Mangalsutra 12',
+    category: 'Modern Mangalsutra',
+    price: '₹499',
+    image: img12,
+  },
+  {
+    id: 'AM13',
+    name: 'American Style Modern Mangalsutra 13',
+    category: 'Modern Mangalsutra',
+    price: '₹499',
+    image: img13,
+  },
+  {
+    id: 'AM14',
+    name: 'American Style Modern Mangalsutra 14',
+    category: 'Modern Mangalsutra',
+    price: '₹499',
+    image: img14,
+  },
+  {
+    id: 'AM15',
+    name: 'American Style Modern Mangalsutra 15',
+    category: 'Modern Mangalsutra',
+    price: '₹499',
+    image: img15,
+  },
+  {
+    id: 'AM16',
+    name: 'American Style Modern Mangalsutra 16',
+    category: 'Modern Mangalsutra',
+    price: '₹499',
+    image: img16,
+  },
+  {
+    id: 'AM17',
+    name: 'American Style Modern Mangalsutra 17',
+    category: 'Modern Mangalsutra',
+    price: '₹499',
+    image: img17,
+  },
   {
     id: "ms-07",
     name: "Premium Mangalsutra Set 1",
@@ -475,6 +689,49 @@ Why Choose Jewelora?
   },
  
   {
+    id: "br1",
+    name: "Bracelet 1",
+    category: "Bracelets",
+    price: "₹600",
+    image: brac2,
+  },
+    {
+    id: "br2",
+    name: "Bracelet 2",
+    category: "Bracelets",
+    price: "₹600",
+    image: brac3,
+  },
+    {
+    id: "br3",
+    name: "Bracelet 3",
+    category: "Bracelets",
+    price: "₹600",
+    image: brac4,
+  },
+    {
+    id: "br4",
+    name: "Bracelet 4",
+    category: "Bracelets",
+    price: "₹600",
+    image: brac5,
+  },
+    {
+    id: "br5",
+    name: "Bracelet 5",
+    category: "Bracelets",
+    price: "₹600",
+    image: brac6,
+  },
+    {
+    id: "br6",
+    name: "Bracelet 6",
+    category: "Bracelets",
+    price: "₹600",
+    image: brac7,
+  },
+  
+    {
     id: "br1",
     name: "Golden Heart Bracelet",
     category: "Bracelets",

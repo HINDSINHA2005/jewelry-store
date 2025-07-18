@@ -30,9 +30,11 @@ const Footer = () => {
             <h6 className="text-warning mb-3">Quick Links</h6>
             <ul className="list-unstyled">
               <li><Link to="/" className="text-white text-decoration-none d-block py-1">Home</Link></li>
+               <li><Link to="/category" className="text-white text-decoration-none d-block py-1">Category</Link></li>
               <li><Link to="/shop" className="text-white text-decoration-none d-block py-1">Shop</Link></li>
               <li><Link to="/about" className="text-white text-decoration-none d-block py-1">About</Link></li>
               <li><Link to="/contact" className="text-white text-decoration-none d-block py-1">Contact</Link></li>
+             
             </ul>
           </div>
 
