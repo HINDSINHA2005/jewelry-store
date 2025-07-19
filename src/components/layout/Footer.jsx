@@ -29,12 +29,56 @@ const Footer = () => {
           <div className="col-md-4">
             <h6 className="text-warning mb-3">Quick Links</h6>
             <ul className="list-unstyled">
-              <li><Link to="/" className="text-white text-decoration-none d-block py-1">Home</Link></li>
-               <li><Link to="/category" className="text-white text-decoration-none d-block py-1">Category</Link></li>
-              <li><Link to="/shop" className="text-white text-decoration-none d-block py-1">Shop</Link></li>
-              <li><Link to="/about" className="text-white text-decoration-none d-block py-1">About</Link></li>
-              <li><Link to="/contact" className="text-white text-decoration-none d-block py-1">Contact</Link></li>
-             
+              <li>
+                <Link
+                  to="/"
+                  className="text-white text-decoration-none d-block py-1"
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/category"
+                  className="text-white text-decoration-none d-block py-1"
+                >
+                  Category
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/shop"
+                  className="text-white text-decoration-none d-block py-1"
+                >
+                  Shop
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/about"
+                  className="text-white text-decoration-none d-block py-1"
+                >
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/contact"
+                  className="text-white text-decoration-none d-block py-1"
+                >
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="https://collaboration.payment.jewelora.in"
+                  className="text-white text-decoration-none d-block py-1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Collaboration 
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -42,9 +86,24 @@ const Footer = () => {
           <div className="col-md-4">
             <h6 className="text-warning mb-3">Follow Us</h6>
             <div className="d-flex gap-3">
-              <a href="https://www.instagram.com/jew_elora?igsh=MWt6aGZ2ejhmbTFtMg%3D%3D&utm_source=qr" className="text-white fs-5"><Facebook /></a>
-              <a href="https://www.instagram.com/jew_elora?igsh=MWt6aGZ2ejhmbTFtMg%3D%3D&utm_source=qr" className="text-white fs-5"><Instagram /></a>
-              <a href="https://www.instagram.com/jew_elora?igsh=MWt6aGZ2ejhmbTFtMg%3D%3D&utm_source=qr" className="text-white fs-5"><Twitter /></a>
+              <a
+                href="https://www.instagram.com/jew_elora?igsh=MWt6aGZ2ejhmbTFtMg%3D%3D&utm_source=qr"
+                className="text-white fs-5"
+              >
+                <Facebook />
+              </a>
+              <a
+                href="https://www.instagram.com/jew_elora?igsh=MWt6aGZ2ejhmbTFtMg%3D%3D&utm_source=qr"
+                className="text-white fs-5"
+              >
+                <Instagram />
+              </a>
+              <a
+                href="https://www.instagram.com/jew_elora?igsh=MWt6aGZ2ejhmbTFtMg%3D%3D&utm_source=qr"
+                className="text-white fs-5"
+              >
+                <Twitter />
+              </a>
             </div>
           </div>
         </div>
