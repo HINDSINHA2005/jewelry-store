@@ -5,9 +5,9 @@ import person3 from '../../assets/person3.jpg'
 const testimonials = [
   {
     id: 1,
-    name: "Priya Sharma",
+    name: "Rupali Srivastava",
     review:
-      "Absolutely stunning collection! I loved the necklace I bought. Fast delivery and beautiful packaging.",
+      "Absolutely stunning collection! I loved the Peacock Aura Mangalsutra set I bought. Fast delivery and beautiful packaging.",
     image: person1,
   },
   {

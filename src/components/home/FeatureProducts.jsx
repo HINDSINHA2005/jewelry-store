@@ -4,12 +4,13 @@ import { db } from "../../firebase";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import products from "../shop/product"; // adjust if needed
 
-const categories = ["Mangalsutra", "Necklaces", "Pendants", "Bracelets", "Rakhi", "Bangles"];
+const categories = ["Mangalsutra", "Necklaces", "Pendants", "Bracelets", "Rakhi", "Bangles","earrings","Special Collection",,"KADA","Modern Mangalsutra","Oxidised Necklaces","Modern Mangalsutra ","Rajvadhi Bracelet"];
+const PRODUCTS_PER_CATEGORY = 5; 
 
 const getFeaturedProducts = () => {
   const featured = [];
   categories.forEach((cat) => {
-    const byCategory = products.filter(p => p.category === cat).slice(0, 3);
+    const byCategory = products.filter(p => p.category === cat).slice(0, PRODUCTS_PER_CATEGORY);
     featured.push(...byCategory);
   });
   return featured;

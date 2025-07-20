@@ -52,7 +52,10 @@ const Checkout = () => {
   const total = subtotal + shipping;
 
   const handlePlaceOrderClick = async () => {
-    if (!currentUser) return;
+     if (!currentUser) {
+    alert("Please sign in to place an order.");
+    return;
+  }
 
     const order = {
       userId: currentUser.uid,

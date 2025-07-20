@@ -157,6 +157,47 @@ import e1 from '../../assets/earrings/e1.jpg';
 import e2 from '../../assets/earrings/e2.jpg';
 import e3 from '../../assets/earrings/e3.jpg';
 import e4 from '../../assets/earrings/e4.jpg';
+import e5 from "../../assets/earrings/e5.jpg";
+import e6 from "../../assets/earrings/e6.jpg";
+import e7 from "../../assets/earrings/e7.jpg";
+import e8 from "../../assets/earrings/e8.jpg";
+import e9 from "../../assets/earrings/e9.jpg";
+import e10 from "../../assets/earrings/e10.jpg";
+import e11 from "../../assets/earrings/e11.jpg";
+import e12 from "../../assets/earrings/e12.jpg";
+import e13 from "../../assets/earrings/e13.jpg";
+import e14 from "../../assets/earrings/e14.jpg";
+import e15 from "../../assets/earrings/e15.jpg";
+import e16 from "../../assets/earrings/e16.jpg";
+import e17 from "../../assets/earrings/e17.jpg";
+import e18 from "../../assets/earrings/e18.jpg";
+import e19 from "../../assets/earrings/e19.jpg";
+import e20 from "../../assets/earrings/e20.jpg";
+import e21 from "../../assets/earrings/e21.jpg";
+import e22 from "../../assets/earrings/e22.jpg";
+import e23 from "../../assets/earrings/e23.jpg";
+import e24 from "../../assets/earrings/e24.jpg";
+import e25 from "../../assets/earrings/e25.jpg";
+import e26 from "../../assets/earrings/e26.jpg";
+import e27 from "../../assets/earrings/e27.jpg";
+import e28 from "../../assets/earrings/e28.jpg";
+import e29 from "../../assets/earrings/e29.jpg";
+import e30 from "../../assets/earrings/e30.jpg";
+import e31 from "../../assets/earrings/e31.jpg";
+import e32 from "../../assets/earrings/e32.jpg";
+import e33 from "../../assets/earrings/e33.jpg";
+import e34 from "../../assets/earrings/e34.jpg";
+import e35 from "../../assets/earrings/e35.jpg";
+import e36 from "../../assets/earrings/e36.jpg";
+import e37 from "../../assets/earrings/e37.jpg";
+import e38 from "../../assets/earrings/e38.jpg";
+import e39 from "../../assets/earrings/e39.jpg";
+import e40 from "../../assets/earrings/e40.jpg";
+import e41 from "../../assets/earrings/e41.jpg";
+import e42 from "../../assets/earrings/e42.jpg";
+import e43 from "../../assets/earrings/e43.jpg";
+
+
 
 import sp1 from '../../assets/Special Collection/sp1.jpg';
 import b1 from '../../assets/Special Collection/b1.jpg';
@@ -167,6 +208,280 @@ import b3 from '../../assets/Special Collection/b3.jpg';
 
 
 const products = [
+  {
+  id: "e5",
+  name: "Earring e5",
+  category: "Earrings",
+  price: "₹500",
+  image: e5,
+},
+{
+  id: "e6",
+  name: "Earring e6",
+  category: "Earrings",
+  price: "₹500",
+  image: e6,
+},
+{
+  id: "e7",
+  name: "Earring e7",
+  category: "Earrings",
+  price: "₹350",
+  image: e7,
+},
+{
+  id: "e8",
+  name: "Earring e8",
+  category: "Earrings",
+  price: "₹500",
+  image: e8,
+},
+{
+  id: "e9",
+  name: "Earring e9",
+  category: "Earrings",
+  price: "₹500",
+  image: e9,
+},
+{
+  id: "e10",
+  name: "Earring e10",
+  category: "Earrings",
+  price: "₹350",
+  image: e10,
+},
+{
+  id: "e11",
+  name: "Earring e11",
+  category: "Earrings",
+  price: "₹500",
+  image: e11,
+},
+{
+  id: "e12",
+  name: "Earring e12",
+  category: "Earrings",
+  price: "₹500",
+  image: e12,
+},
+{
+  id: "e13",
+  name: "Earring e13",
+  category: "Earrings",
+  price: "₹500",
+  image: e13,
+},
+{
+  id: "e14",
+  name: "Earring e14",
+  category: "Earrings",
+  price: "₹500",
+  image: e14,
+},
+{
+  id: "e15",
+  name: "Earring e15",
+  category: "Earrings",
+  price: "₹500",
+  image: e15,
+},
+{
+  id: "e16",
+  name: "Earring e16",
+  category: "Earrings",
+  price: "₹500",
+  image: e16,
+},
+{
+  id: "e17",
+  name: "Earring e17",
+  category: "Earrings",
+  price: "₹500",
+  image: e17,
+},
+{
+  id: "e18",
+  name: "Earring e18",
+  category: "Earrings",
+  price: "₹500",
+  image: e18,
+},
+{
+  id: "e19",
+  name: "Earring e19",
+  category: "Earrings",
+  price: "₹500",
+  image: e19,
+},
+{
+  id: "e20",
+  name: "Earring e20",
+  category: "Earrings",
+  price: "₹350",
+  image: e20,
+},
+{
+  id: "e21",
+  name: "Earring e21",
+  category: "Earrings",
+  price: "₹500",
+  image: e21,
+},
+{
+  id: "e22",
+  name: "Earring e22",
+  category: "Earrings",
+  price: "₹500",
+  image: e22,
+},
+{
+  id: "e23",
+  name: "Earring e23",
+  category: "Earrings",
+  price: "₹350",
+  image: e23,
+},
+{
+  id: "e24",
+  name: "Earring e24",
+  category: "Earrings",
+  price: "₹500",
+  image: e24,
+},
+{
+  id: "e25",
+  name: "Earring e25",
+  category: "Earrings",
+  price: "₹500",
+  image: e25,
+},
+{
+  id: "e26",
+  name: "Earring e26",
+  category: "Earrings",
+  price: "₹350",
+  image: e26,
+},
+{
+  id: "e27",
+  name: "Earring e27",
+  category: "Earrings",
+  price: "₹500",
+  image: e27,
+},
+{
+  id: "e28",
+  name: "Earring e28",
+  category: "Earrings",
+  price: "₹500",
+  image: e28,
+},
+{
+  id: "e29",
+  name: "Earring e29",
+  category: "Earrings",
+  price: "₹500",
+  image: e29,
+},
+{
+  id: "e30",
+  name: "Earring e30",
+  category: "Earrings",
+  price: "₹500",
+  image: e30,
+},
+{
+  id: "e31",
+  name: "Earring e31",
+  category: "Earrings",
+  price: "₹500",
+  image: e31,
+},
+{
+  id: "e32",
+  name: "Earring e32",
+  category: "Earrings",
+  price: "₹500",
+  image: e32,
+},
+{
+  id: "e33",
+  name: "Earring e33",
+  category: "Earrings",
+  price: "₹500",
+  image: e33,
+},
+{
+  id: "e34",
+  name: "Earring e34",
+  category: "Earrings",
+  price: "₹500",
+  image: e34,
+},
+{
+  id: "e35",
+  name: "Earring e35",
+  category: "Earrings",
+  price: "₹500",
+  image: e35,
+},
+{
+  id: "e36",
+  name: "Earring e36",
+  category: "Earrings",
+  price: "₹500",
+  image: e36,
+},
+{
+  id: "e37",
+  name: "Earring e37",
+  category: "Earrings",
+  price: "₹350",
+  image: e37,
+},
+{
+  id: "e38",
+  name: "Earring e38",
+  category: "Earrings",
+  price: "₹500",
+  image: e38,
+},
+{
+  id: "e39",
+  name: "Earring e39",
+  category: "Earrings",
+  price: "₹500",
+  image: e39,
+},
+{
+  id: "e40",
+  name: "Earring e40",
+  category: "Earrings",
+  price: "₹500",
+  image: e40,
+},
+{
+  id: "e41",
+  name: "Earring e41",
+  category: "Earrings",
+  price: "₹500",
+  image: e41,
+},
+{
+  id: "e42",
+  name: "Earring e42",
+  category: "Earrings",
+  price: "₹500",
+  image: e42,
+},
+{
+  id: "e43",
+  name: "Earring e43",
+  category: "Earrings",
+  price: "₹500",
+  image: e43,
+},
+
   {
     id: 'sp1',
     name: 'Brass HighGold Designer Pandal Set',

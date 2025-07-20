@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Twitter } from "lucide-react";
-import logo from "../../assets/log1.png"; // Use your logo image
+import logo from "../../assets/logt.jpg"; // Use your logo image
 
 const Footer = () => {
   return (
