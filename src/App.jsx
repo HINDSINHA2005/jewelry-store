@@ -1,4 +1,5 @@
 import React from "react";
+import TambolaModal from "./components/TambolaModal";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Home from "./pages/Home";
@@ -23,6 +24,7 @@ import CategoryShowcase from "./components/home/CategoryShowcase";
 function App() {
   return (
     <>
+     <TambolaModal />
     <ScrollToTop/>
       <Navbar />
       <Routes>

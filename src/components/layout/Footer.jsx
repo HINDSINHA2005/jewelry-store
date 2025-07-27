@@ -79,6 +79,16 @@ const Footer = () => {
                   Collaboration 
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://tambola.jewelora.in"
+                  className="text-white text-decoration-none d-block py-1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Participate in Tambola
+                </a>
+              </li>
             </ul>
           </div>
 
