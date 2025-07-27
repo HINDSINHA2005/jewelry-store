@@ -42,7 +42,7 @@ export default function TambolaModal() {
 
           <div className="modal-body text-center">
             <img
-              src="/tambola.png"
+              src="https://res.cloudinary.com/dvxaztwnz/image/upload/v1753637869/tambola_rbdlr0.png"
               alt="Tambola Promo"
               className="img-fluid rounded mb-3"
               style={{ maxHeight: "300px", objectFit: "cover" }}
