@@ -1,4 +1,4 @@
-import person2 from '../../assets/person2.jpg'
+import person2 from '../../assets/person21.jpg'
 import person1 from '../../assets/person1.jpg'
 import person3 from '../../assets/person3.jpg'
 
@@ -12,9 +12,9 @@ const testimonials = [
   },
   {
     id: 2,
-    name: "Amit Verma",
+    name: "Shobhit Srivastava",
     review:
-      "Great quality and amazing customer service. The ring I ordered exceeded my expectations!",
+      "Beautiful Rakhi and great value for money! The quality exceeded my expectations, and the customer service was amazing. Easy refunds made the whole experience hassle-free.",
     image: person2,
   },
   {
