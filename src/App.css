@@ -82,3 +82,94 @@ html, body, #root {
 .custom-toggler .navbar-toggler-icon {
   background-size: 100% 100%;
 }
+.announcement-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #000;
+  color: #d4af37;
+  padding: 6px 12px;
+  font-weight: 600;
+  overflow: hidden;
+}
+
+/* wrapper keeps the text area constrained and hides overflow */
+.offer-wrap {
+  flex: 1;
+  min-width: 0; /* important so children can be clipped */
+  overflow: hidden;
+  position: relative;
+}
+
+/* responsive font sizing: allows very small sizes on tiny screens */
+.offer-text {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: clamp(8px, 3.5vw, 14px); /* min 8px, max 14px, scales with vw */
+  line-height: 1;
+}
+
+/* fallback: show ellipsis when text fits but is long */
+.offer-text.ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+}
+
+/* marquee animation used for tiny screens where text overflows */
+.offer-text.marquee {
+  display: inline-block;
+  position: relative;
+  will-change: transform;
+  animation: marquee 8s linear infinite;
+  padding-left: 8px; /* small gap before animation starts */
+}
+
+/* animation moves the text from right to left */
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* arrow styling */
+.arrow-btn {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* make icon smaller for tiny screens */
+.arrow-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* hide outline but keep accessible focus */
+.arrow-btn:focus {
+  outline: 2px solid rgba(212,175,55,0.25);
+  outline-offset: 2px;
+}
+
+/* MEDIA: extreme small screens adjustments */
+@media (max-width: 320px) {
+  .announcement-bar { padding: 5px 8px; gap: 6px; }
+  .arrow-btn { width: 28px; height: 28px; }
+  .arrow-btn svg { width: 14px; height: 14px; }
+  .offer-text { font-size: clamp(7px, 4.5vw, 13px); }
+}
+
+/* MEDIA: hide arrows on ultra tiny devices to free up space */
+@media (max-width: 265px) {
+  .arrow-btn { display: none; }      /* hide arrows to maximize space */
+  .announcement-bar { padding: 4px 6px; }
+  .offer-text { font-size: clamp(7px, 5.5vw, 12px); }
+  .offer-text.marquee { animation-duration: 6s; } /* faster marquee */
+}
+

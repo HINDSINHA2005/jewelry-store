@@ -840,6 +840,7 @@ import { ShoppingCart, User } from "lucide-react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase";
 import Collapse from "bootstrap/js/dist/collapse";
+import AnnouncementBar from "../AnnouncementBar";
 
 const Navbar = () => {
   const { currentUser, logout } = useAuth();
@@ -892,6 +893,10 @@ const Navbar = () => {
   }, []);
 
   return (
+    <>
+ <AnnouncementBar/>
+
+
     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top py-2">
       <div className="container">
 
@@ -1020,6 +1025,7 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
+    </>
   );
 };
 
