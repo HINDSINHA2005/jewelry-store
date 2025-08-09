@@ -1,5 +1,5 @@
 // import React from "react";
-// import logo from "../assets/logo1.png"
+// import logo from "../assets/jewelora.jpg"
 
 // const About = () => {
 //   return (
@@ -38,8 +38,8 @@
 // export default About;
 
 import React from "react";
-import logo from "../assets/logo1.png";
-import { FaInstagram, FaCheckCircle, FaUsers, FaSyncAlt, FaTags } from "react-icons/fa";
+import logo from "../assets/jewelora.jpg";
+import { FaInstagram, FaCheckCircle, FaUsers, FaSyncAlt, FaTags, FaFacebook } from "react-icons/fa";
 
 const About = () => {
   return (
@@ -87,6 +87,17 @@ const About = () => {
                 rel="noopener noreferrer"
               >
                 <FaInstagram className="me-1" /> @jew_elora
+              </a>
+            </p>
+            <p className="fw-semibold">
+              📸 Follow us on Facebook:
+              <a
+                href="https://www.facebook.com/people/Jewelora-Artificial-Jewells/pfbid0a2B39JvcggZadBbCFHDnHHc5NiAHYpdn6xSVcTNJUYeGFDdcScMmnkvZe5itLVuol/?mibextid=wwXIfr&rdid=hF4pxIgvaay2AjfH&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CcdEpJRH4%2F"
+                className="ms-2 text-decoration-none text-warning"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaFacebook className="me-1" /> Jewelora Artificial Jewells 
               </a>
             </p>
           </div>
