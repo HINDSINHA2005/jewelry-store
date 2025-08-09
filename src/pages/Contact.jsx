@@ -30,7 +30,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="container py-5">
+    <div className="container py-5" style={{ backgroundColor: '#f8f9fa' }}>
       <h2 className="text-center text-warning fw-bold mb-4">Contact Us</h2>
       <div className="row g-4">
         <div className="col-md-6">
