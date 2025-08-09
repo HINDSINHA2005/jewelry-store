@@ -14,7 +14,7 @@ const testimonials = [
     id: 2,
     name: "Shobhit Srivastava",
     review:
-      "Beautiful Rakhi and great value for money! The quality exceeded my expectations, and the customer service was amazing. Easy refunds made the whole experience hassle-free.",
+      "Beautiful Rakhi and great value for money! The quality exceeded my expectations, and the customer service was amazing.",
     image: person2,
   },
   {
