@@ -836,7 +836,6 @@ import { LogIn } from "lucide-react";
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import logo from "../../assets/jewelora.jpg";
 import { ShoppingCart, User } from "lucide-react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase";
@@ -898,7 +897,7 @@ const Navbar = () => {
 
         {/* Hamburger Button */}
         <button
-          className="navbar-toggler me-2"
+          className="navbar-toggler me-4 custom-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarMenu"
@@ -912,7 +911,7 @@ const Navbar = () => {
         {/* Logo + Brand */}
         <NavLink to="/" className="navbar-brand d-flex align-items-center gap-2">
           <img
-            src={logo}
+            src={"https://res.cloudinary.com/dvxaztwnz/image/upload/v1754728677/jewelora_rlc5cq.jpg"}
             alt="Logo"
             className="border border-warning rounded-circle"
             style={{
@@ -952,7 +951,7 @@ const Navbar = () => {
         <div className="d-flex align-items-center gap-3">
           {!isAdmin && currentUser && (
             <NavLink to="/cart" className="btn btn-outline-secondary position-relative btn-sm">
-              <ShoppingCart size={18} />
+              <ShoppingCart size={13} />
               {cartCount > 0 && (
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                   {cartCount}
@@ -970,7 +969,7 @@ const Navbar = () => {
                 aria-expanded="false"
                 style={{ width: "38px", height: "38px" }}
               >
-                <User size={18} />
+                <User size={13} />
               </button>
               <ul
                 className="dropdown-menu dropdown-menu-end shadow border-0 p-2"
@@ -1012,7 +1011,7 @@ const Navbar = () => {
   to="/signin" 
   className="btn btn-sm fw-semibold signin-btn"
 >
-  <LogIn size={18} className="me-2" /> Login
+  <LogIn size={13} className="me-2" /> Login
 </NavLink>
    
 

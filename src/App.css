@@ -67,3 +67,18 @@ html, body, #root {
 .signin-btn:hover svg {
   stroke: #fff;
 }
+
+/* Make the hamburger icon smaller */
+.custom-toggler {
+  padding: 0.2rem 0.4rem; /* Reduce button padding */
+}
+
+.custom-toggler .navbar-toggler-icon {
+  width: 1.0rem;  /* Smaller width */
+  height: 1.0rem; /* Smaller height */
+}
+
+/* Optional: make icon color dark */
+.custom-toggler .navbar-toggler-icon {
+  background-size: 100% 100%;
+}

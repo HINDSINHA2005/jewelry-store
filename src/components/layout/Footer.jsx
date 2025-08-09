@@ -348,7 +348,6 @@
 
 import { Link } from "react-router-dom";
 import { Facebook, Instagram } from "lucide-react";
-import logo from "../../assets/jewelora.jpg";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext"; // adjust path if needed
 
@@ -385,7 +384,7 @@ const Footer = () => {
           <div className="col-lg-3 col-md-6 text-center text-md-start footer-section">
             <div className="d-flex align-items-center justify-content-center justify-content-md-start mb-3">
               <img
-                src={logo}
+                src={"https://res.cloudinary.com/dvxaztwnz/image/upload/v1754728677/jewelora_rlc5cq.jpg"}
                 alt="Logo"
                 width="95"
                 height="91"
