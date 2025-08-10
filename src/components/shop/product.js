@@ -1047,7 +1047,7 @@ Why Choose Jewelora?
   },
   
     {
-    id: "br1",
+    id: "br7",
     name: "Golden Heart Bracelet",
     category: "Bracelets",
     price: "₹600",
