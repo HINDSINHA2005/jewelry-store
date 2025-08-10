@@ -39,6 +39,7 @@
 
 import React from "react";
 import logo from "../assets/jewelora.jpg";
+import CategoryShowcase from "../components/home/CategoryShowcase";
 import { FaInstagram, FaCheckCircle, FaUsers, FaSyncAlt, FaTags, FaFacebook } from "react-icons/fa";
 
 const About = () => {
@@ -103,7 +104,9 @@ const About = () => {
           </div>
         </div>
       </div>
+       <CategoryShowcase />
     </div>
+   
   );
 };
 

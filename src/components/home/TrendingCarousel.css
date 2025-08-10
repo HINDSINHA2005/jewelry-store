@@ -1,4 +1,4 @@
-/* Black carousel controls */
+/* Black carousel controls
 .custom-control .carousel-control-prev-icon,
 .custom-control .carousel-control-next-icon {
   background-image: none;
@@ -18,4 +18,56 @@
 .custom-caption {
   bottom: 20px !important;
   text-align: center;
+} */
+.carousel-img {
+  height: 100px;
+  width: 100px;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+.carousel-item img {
+  max-height: 600px; /* adjust size for desktop */
+  width: auto;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .carousel-item img {
+    max-height: 200px; /* smaller on mobile */
+  }
+}
+.carousel-item.active .carousel-img {
+  animation: zoomFade 1s ease forwards;
+}
+
+@keyframes zoomFade {
+  from {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.glassy-bg {
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+}
+
+.custom-arrow {
+  filter: invert(60%) sepia(90%) saturate(400%) hue-rotate(10deg);
+}
+
+@media (max-width: 768px) {
+  .carousel-img {
+    height: 280px;
+  }
+  .carousel-caption {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
 }

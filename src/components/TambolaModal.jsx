@@ -130,26 +130,27 @@ export default function PromoModal() {
               href="https://instagram.com/jewelora" 
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-outline-danger me-3 px-4 fw-semibold"
+              className="btn btn-outline-danger me-3 px-4 mt-4 fw-semibold"
             >
-              <i className="bi bi-instagram me-2"></i> Follow Instagram
+              <i className="bi bi-instagram me-2 "></i> Follow Instagram
             </a>
             <a
               href="/signup"
-              className="btn btn-warning px-4 fw-bold text-black"
+              className="btn btn-warning px-4 mt-4 fw-bold text-black"
             >
               Sign Up & Sign In
             </a>
+            
           </div>
            <a
               href="/shop"
-              className="btn btn-warning px-4 mb-2 mx-5 fw-semibold text-black"
+              className="btn btn-danger px-4 mb-2 mx-5 fw-semibold text-black"
             >
               Shop Now
             </a>
             <a
               href="/category"
-              className="btn btn-warning px-4 mb-2 mx-5 fw-semibold text-black"
+              className="btn btn-primary px-4 mb-2 mx-5 fw-semibold text-black"
             >
               Categories
             </a>
