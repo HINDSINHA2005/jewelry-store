@@ -231,6 +231,20 @@ const AddProduct = () => {
             <option value="Bracelets">Bracelets</option>
             <option value="Earrings">Earrings</option>
             <option value="Bangles">Bangles</option>
+            <option value="KADA">KADA</option>
+            <option value="Rajvadhi Bracelet">Rajvadhi Bracelet</option>
+            <option value="Oxidised Necklaces">Oxidised Necklaces</option>
+            <option value="Modern Mangalsutra">Modern Mangalsutra</option>
+            <option value="Special Collection">Special Collection</option>
+            <option value="Rakhi">Rakhi</option>
+             <option value="Dhokiya Set">Dhokiya Set</option>
+              <option value="Watch Gift Set">Watch Gift Set</option>
+              <option value="Metal Purse">Metal Purse</option>
+              <option value="Antique Necklaces">Antique Necklaces</option>
+            <option value="Chain Pendant">Chain Pendant</option>
+            <option value="Patala">Patala</option>
+
+
           </select>
         </div>
 

@@ -310,6 +310,12 @@ const categories = [
   { name: "Special Collection", image: sp1, slug: "Special Collection" },
   { name: "Earrings", image: ear1, slug: "Earrings" },
   { name: "Rakhi", image: RAKHI1, slug: "Rakhi" },
+   { name: "Chain Pendant", image: 'https://res.cloudinary.com/dvxaztwnz/image/upload/v1754931017/hh_fvxxuj.jpg', slug: "Chain Pendant" },
+  { name: "Patala", image: 'https://res.cloudinary.com/dvxaztwnz/image/upload/v1754931017/kk_h9ktwe.jpg', slug: "Patala" },
+  { name: "Dhokiya Set", image: 'https://res.cloudinary.com/dvxaztwnz/image/upload/v1754931016/dhokiya_snwxeu.jpg', slug: "Dhokiya Set" }, // Placeholder for Dhokiya Set
+  { name: "Watch Gift Set", image: 'https://res.cloudinary.com/dvxaztwnz/image/upload/v1754931251/WhatsApp_Image_2025-08-11_at_22.23.22_740e875b_xmoim3.jpg', slug: "Watch Gift Set" }, // Placeholder for Watch Gift Set
+  { name: "Metal Purse", image: 'https://res.cloudinary.com/dvxaztwnz/image/upload/v1754931251/WhatsApp_Image_2025-08-11_at_22.23.33_cce7d096_zqyhd8.jpg', slug: "Metal Purse" }, // Placeholder for Metal Purse
+  { name: "Antique Necklaces", image: 'https://res.cloudinary.com/dvxaztwnz/image/upload/v1754931017/hasdiset_cqdrft.jpg', slug: "Antique Necklaces" }, // Placeholder for Antique Necklaces
 ];
 
 /**
