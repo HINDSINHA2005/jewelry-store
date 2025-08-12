@@ -370,6 +370,7 @@ const ProductDetail = () => {
           productId: product.id,
           name: product.name,
           price: product.price,
+          image: product.image || product.imageUrl,
           quantity: 1,
         });
       }
@@ -434,7 +435,7 @@ const ProductDetail = () => {
           </div>
 
           <h3 className="text-warning fw-bold mb-4" style={{ fontSize: "1.8rem" }}>
-            ₹{product.price}
+            {product.price}
           </h3>
 
           <div className="d-flex gap-3">

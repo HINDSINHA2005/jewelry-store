@@ -189,15 +189,31 @@ const Cart = () => {
         ...doc.data(),
       }));
 
-      const merged = firebaseItems.map((item) => {
-        const local = products.find((p) => p.id === item.productId);
-        return {
-          ...item,
-          image: local?.image || "",
-        };
-      });
+//       const merged = firebaseItems.map((item) => {
+//         const local = products.find((p) => p.id === item.productId);
+//         return {
+//           ...item,
+//           image: local?.image || "",
+//         };
+//       });
 
-      setCartItems(merged);
+
+// setCartItems(merged);
+
+
+    const merged = firebaseItems.map((item) => {
+  const local = products.find((p) => p.id === item.productId);
+  return {
+    ...item,
+    // Always have image set, using local image or Firestore imageUrl
+    image: local?.image || item.imageUrl || item.image || "",
+    name: item.name || local?.name || "Unnamed Product",
+    price: item.price || local?.price || 0,
+  };
+});
+
+setCartItems(merged);
+
     };
 
     fetchCart();
