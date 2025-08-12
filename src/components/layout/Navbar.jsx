@@ -920,14 +920,14 @@ const Navbar = () => {
             alt="Logo"
             className="border border-warning rounded-circle"
             style={{
-              width: "70px",
-              height: "70px",
+              width: "75px",
+              height: "75px",
               objectFit: "contain",
               backgroundColor: "white"
             }}
           />
           <span className="fw-bold fs-5 text-warning d-none d-sm-inline">
-            Jewelora.in
+            Jewelora
           </span>
         </NavLink>
 
