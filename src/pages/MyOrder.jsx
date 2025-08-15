@@ -58,6 +58,7 @@ import { useAuth } from "../context/AuthContext";
 import { collection, getDocs } from "firebase/firestore";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import ReceiptInvoice from "../components/ReceiptInvoice";
 
 const MyOrders = () => {
   const { currentUser } = useAuth();
@@ -149,12 +150,9 @@ const MyOrders = () => {
                 </ul>
               </div>
 
-              <button
-                onClick={() => generateInvoice(order)}
-                className="btn btn-outline-primary mt-4"
-              >
-                Download Invoice
-              </button>
+              <div className="text-end">
+<ReceiptInvoice order={order} />
+</div>
             </div>
           </div>
         ))
