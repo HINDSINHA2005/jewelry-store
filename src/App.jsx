@@ -21,6 +21,7 @@ import AdminContactMessages from "./pages/AdminContactPage";
 import CategoryShowcase from "./components/home/CategoryShowcase";
 import "../src/App.css"; // Import your CSS file
 import SavedAddresses from "./pages/SavedAddresses";
+import Sale from "./pages/Sale"; // Import Sale page
 
 
 // function App() {
@@ -77,6 +78,8 @@ function App() {
           <Route path="/addproduct" element={<AddProduct />} />
           <Route path="/order-confirmation" element={<OrderConfirmation />} />
           <Route path="/saved-address" element={<SavedAddresses />} />
+          <Route path="/sale" element={<Sale />} />
+
         </Routes>
       </div>
       <Footer />

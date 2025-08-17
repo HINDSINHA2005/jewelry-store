@@ -934,8 +934,8 @@ const Navbar = () => {
         {/* Collapsible Menu */}
         <div className="collapse navbar-collapse" id="navbarMenu">
           <ul className="navbar-nav ms-auto me-4 text-center">
-            {["/", "/shop", "/category", "/about", "/contact"].map((path, idx) => {
-              const labels = ["Home", "Shop", "Category", "About", "Contact"];
+            {["/", "/shop","/sale","/category", "/about", "/contact"].map((path, idx) => {
+              const labels = ["Home", "Shop","Sale", "Category", "About", "Contact"];
               return (
                 <li className="nav-item" key={path}>
                   <NavLink

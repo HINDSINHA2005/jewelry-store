@@ -123,7 +123,7 @@ export default function PromoModal() {
             <p className="fs-5 text-dark mb-3">
               ✨ <strong>Follow us on Instagram</strong> to enjoy <span className="text-success">FREE SHIPPING</span> and exclusive discounts!
             </p>
-            <p className="fs-6 text-secondary mb-4">
+            <p className="fs-6 text-secondary mb-2">
               Sign up, place your first order, and grab amazing offers on your favorite jewelry.
             </p>
             <a
@@ -135,12 +135,18 @@ export default function PromoModal() {
               <i className="bi bi-instagram me-2 "></i> Follow Instagram
             </a>
             <a
+              href="/sale"
+              className="btn btn-warning px-4 mt-4 fw-bold text-black"
+            >
+              SALE UP TO 70% OFF
+            </a>
+            <a
               href="/signup"
               className="btn btn-warning px-4 mt-4 fw-bold text-black"
             >
               Sign Up & Sign In
             </a>
-            
+             
           </div>
            <a
               href="/shop"

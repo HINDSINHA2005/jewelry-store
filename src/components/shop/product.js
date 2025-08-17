@@ -208,6 +208,71 @@ import b3 from '../../assets/Special Collection/b3.jpg';
 
 
 const products = [
+   // 🔥 Sale Mangalsutra Products
+  {
+    id: "sale1",
+    name: "A.D. Mangalsutra 1",
+    category: "Sale",
+    price:"₹599",
+    salePrice:"₹150",
+    image: "https://res.cloudinary.com/dvxaztwnz/image/upload/v1755410568/WhatsApp_Image_2025-08-17_at_10.57.53_bc25f60f_bo5pte.jpg",
+  },
+  {
+    id: "sale2",
+    name: "A.D. Mangalsutra 2",
+    category: "Sale",
+    price: "₹599",
+    salePrice:"₹150",
+    image: "https://res.cloudinary.com/dvxaztwnz/image/upload/v1755410568/WhatsApp_Image_2025-08-17_at_10.57.53_4e54cd23_fckn7u.jpg",
+  },
+  {
+    id:"sale3",
+    name: "A.D. Mangalsutra 3",
+    category: "Sale",
+    price: "₹599",
+    salePrice:"₹150",
+    image: "https://res.cloudinary.com/dvxaztwnz/image/upload/v1755410567/WhatsApp_Image_2025-08-17_at_10.57.52_f9881197_a6mydh.jpg",
+  },
+  {
+    id:"sale4",
+    name: "A.D. Mangalsutra 4",
+    category: "Sale",
+    price: "₹599",
+    salePrice:"₹150",
+    image: "https://res.cloudinary.com/dvxaztwnz/image/upload/v1755410567/WhatsApp_Image_2025-08-17_at_10.57.53_9acb3740_q3do9s.jpg",
+  },
+  {
+    id:"sale5",
+    name: "A.D. Mangalsutra 5",
+    category: "Sale",
+    price:"₹599",
+    salePrice:"₹150",
+    image: "https://res.cloudinary.com/dvxaztwnz/image/upload/v1755410567/WhatsApp_Image_2025-08-17_at_10.57.52_5def5b07_vwvsdy.jpg",
+  },
+  {
+    id:"sale6",
+    name: "A.D. Mangalsutra 6",
+    category: "Sale",
+    price: "₹599",
+    salePrice:"₹150",
+    image: "https://res.cloudinary.com/dvxaztwnz/image/upload/v1755410567/WhatsApp_Image_2025-08-17_at_10.57.51_3278c960_e7cdew.jpg",
+  },
+  {
+    id:"sale7",
+    name: "A.D. Mangalsutra 7",
+    category: "Sale",
+    price: "₹599",
+    salePrice:"₹150",
+    image: "https://res.cloudinary.com/dvxaztwnz/image/upload/v1755410567/WhatsApp_Image_2025-08-17_at_10.57.51_745e7b75_vkfhnq.jpg",
+  },
+  {
+    id:"sale8",
+    name: "A.D. Mangalsutra 8",
+    category: "Sale",
+    price: "₹599",
+    salePrice: "₹150",
+    image: "https://res.cloudinary.com/dvxaztwnz/image/upload/v1755410567/WhatsApp_Image_2025-08-17_at_10.57.51_ee5b4558_cagrdg.jpg",
+  },
   {
   id: "e5",
   name: "Earring e5",

@@ -283,12 +283,40 @@ const ProductGrid = ({ category, searchTerm = "" }) => {
                   {prod.name}
                 </Link>
 
-                <p
+                {/* <p
                   className="fw-semibold mb-3"
                   style={{ color: "#110e14ff", fontSize: "1.25rem" }}
                 >
                   {prod.price}
-                </p>
+                </p> */}
+                {prod.salePrice ? (
+  <p
+    className="fw-semibold mb-3"
+    style={{ fontSize: "1.25rem" }}
+  >
+    <span
+      style={{
+        textDecoration: "line-through",
+        color: "gray",
+        marginRight: "8px",
+        fontSize: "1rem",
+      }}
+    >
+      {prod.price}
+    </span>
+    <span style={{ color: "red", fontWeight: "bold" }}>
+      {prod.salePrice}
+    </span>
+  </p>
+) : (
+  <p
+    className="fw-semibold mb-3"
+    style={{ color: "#110e14ff", fontSize: "1.25rem" }}
+  >
+    {prod.price}
+  </p>
+)}
+
 
                 <Link
                   to={`/product/${prod.id || index}`}
