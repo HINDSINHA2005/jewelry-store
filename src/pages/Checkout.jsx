@@ -629,8 +629,9 @@ const Checkout = () => {
     return sum + price * (item.quantity || 1);
   }, 0);
 
-  const shipping = 0;
-  const total = subtotal + shipping;
+const shipping = paymentMethod.startsWith("Cash on Delivery") ? 69 : 0;
+const total = subtotal + shipping;
+
 
   const handlePlaceOrderClick = async () => {
     if (!currentUser) {
@@ -830,8 +831,8 @@ const Checkout = () => {
                     value={paymentMethod}
                     onChange={(e) => setPaymentMethod(e.target.value)}
                   >
-                    <option>Cash on Delivery</option>
-                    <option>Online Payment</option>
+                    <option>Cash on Delivery( 69rs extra Charge )</option>
+                    <option>Online Payment(Free Shipping)</option>
                   </select>
                 </div>
 
@@ -854,6 +855,7 @@ const Checkout = () => {
                   )}
                 </div>
               </div>
+              <h2>For Online Payment,You Will receive Our Qr Code on whatsapp or email,kindly Make Payment on this QR to complete the order</h2>
             </form>
 
             {/* Delivery Preview */}
