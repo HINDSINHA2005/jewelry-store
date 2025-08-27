@@ -601,7 +601,8 @@ import { doc, setDoc, getDoc, updateDoc, collection, query, where, getDocs } fro
 import { db } from "../firebase";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-
+import CategoryGrid from "../components/shop/CategoryGrid";
+import FeaturedProducts from "../components/home/FeatureProducts.jsx";
 const ProductDetail = () => {
   const navigate = useNavigate();
   const { currentUser } = useAuth();
@@ -777,8 +778,11 @@ const ProductDetail = () => {
           </p>
         </div>
       </div>
+    <FeaturedProducts/>
     </div>
+    
   );
+  
 };
 
 export default ProductDetail;

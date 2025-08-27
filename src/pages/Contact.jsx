@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { db } from "../firebase"; // make sure you have firebase config & Firestore initialized
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import FeaturedProducts from "../components/home/FeatureProducts";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -100,6 +101,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      <FeaturedProducts/>
     </div>
   );
 };
