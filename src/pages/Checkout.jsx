@@ -553,7 +553,7 @@ const Checkout = () => {
   const [pincode, setPincode] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("Cash on Delivery");
+  const [paymentMethod, setPaymentMethod] = useState("Prepaid");
 
   // Checkbox for saving address
   const [saveAddress, setSaveAddress] = useState(false);
@@ -621,7 +621,7 @@ const Checkout = () => {
     setPincode(addr.pincode);
     setCity(addr.city);
     setState(addr.state);
-    setPaymentMethod(addr.paymentMethod || "Cash on Delivery");
+    setPaymentMethod("Prepaid");
   };
 
   const subtotal = cartItems.reduce((sum, item) => {
@@ -629,7 +629,7 @@ const Checkout = () => {
     return sum + price * (item.quantity || 1);
   }, 0);
 
-const shipping = paymentMethod.startsWith("Cash on Delivery") ? 69 : 0;
+const shipping = 0
 const total = subtotal + shipping;
 
 
@@ -831,8 +831,7 @@ const total = subtotal + shipping;
                     value={paymentMethod}
                     onChange={(e) => setPaymentMethod(e.target.value)}
                   >
-                    <option>Cash on Delivery( 69rs extra Charge )</option>
-                    <option>Online Payment(Free Shipping)</option>
+                    <option>Prepaid</option>
                   </select>
                 </div>
 

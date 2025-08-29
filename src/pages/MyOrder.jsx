@@ -290,6 +290,12 @@ const MyOrders = () => {
                 <strong>Payment Method:</strong>{" "}
                 {order.shippingInfo?.paymentMethod}
               </p>
+              {order.items?.map((item, index) => (
+  <p key={index}>
+    <strong>Additional Detail:</strong> {item.customDetails || "—"}
+  </p>
+))}
+
 
               <div className="mt-3">
                 <h6 className="fw-semibold">Shipping Address</h6>

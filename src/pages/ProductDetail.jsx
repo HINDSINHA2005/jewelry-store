@@ -608,6 +608,8 @@ const ProductDetail = () => {
   const { currentUser } = useAuth();
   const { id } = useParams();
   const [dynamicProduct, setDynamicProduct] = useState(null);
+  const [customDetails, setCustomDetails] = useState("");
+
   const [loading, setLoading] = useState(true);
 
   const localProduct = products.find((p) => String(p.id) === id);
@@ -663,6 +665,8 @@ const ProductDetail = () => {
       if (existing.exists()) {
         await updateDoc(cartItemRef, {
           quantity: existing.data().quantity + 1,
+          customDetails: customDetails || existing.data().customDetails || "", // ✅ Save/Update details
+      
         });
       } else {
         await setDoc(cartItemRef, {
@@ -671,8 +675,10 @@ const ProductDetail = () => {
           price: product.salePrice || product.price,
           image: product.image || product.imageUrl,
           quantity: 1,
+          customDetails: customDetails,
         });
       }
+      alert("Added to cart successfully!");
     } catch (err) {
       console.error("Error adding to cart:", err);
       alert("Something went wrong while adding to cart.");
@@ -685,7 +691,8 @@ const ProductDetail = () => {
   const goToCheckout = () => {
   const checkoutProduct = {
     ...product,
-    price: product.salePrice || product.price, // ✅ force sale price priority
+    price: product.salePrice || product.price,
+    customDetails: customDetails, // ✅ force sale price priority
   };
   navigate("/checkout", { state: { product: checkoutProduct } });
 };
@@ -772,9 +779,21 @@ const ProductDetail = () => {
               💎 Buy Now
             </button>
           </div>
+          <div className="mt-4">
+  <label className="fw-semibold mb-2">Add Custom Details (optional):</label>
+  <textarea
+    className="form-control shadow-sm"
+    rows="3"
+    placeholder="E.g., Bangle size: 2.4, Preferred color: Silver"
+    value={customDetails}
+    onChange={(e) => setCustomDetails(e.target.value)}
+    style={{ borderRadius: "12px" }}
+  />
+</div>
+
 
           <p className="mt-4 text-muted small">
-            ✨ Free Shipping on orders above ₹999 | Easy Returns
+            ✨ Free Shipping | Easy Returns
           </p>
         </div>
       </div>
