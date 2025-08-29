@@ -153,7 +153,7 @@ const Shop = () => {
               <Search size={20} className="search-icon" />
               <input
                 type="text"
-                placeholder="Search products..."
+                placeholder="Double Tap to Search products..."
                 className="form-control search-input"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
