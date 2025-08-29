@@ -186,33 +186,53 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getAllProducts } from "../shop/getAllProduct"; // Merges local + Firebase
 
-const ProductGrid = ({ category, searchTerm = "" }) => {
+const ProductGrid = ({ category, searchTerm = "",sortOrder="" }) => {
   const [visibleProducts, setVisibleProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
 
-  useEffect(() => {
-    // Fetch merged products (local + firebase)
-    getAllProducts().then((merged) => {
-      setAllProducts(merged);
+useEffect(() => {
+  getAllProducts().then((merged) => {
+    const normalized = merged.map((p) => {
+      // Remove any non-digit characters from price/salePrice
+      const cleanPrice = p.price ? Number(String(p.price).replace(/[^\d.]/g, "")) : 0;
+      const cleanSale = p.salePrice ? Number(String(p.salePrice).replace(/[^\d.]/g, "")) : null;
+
+      return {
+        ...p,
+        price: cleanPrice,
+        salePrice: cleanSale,
+      };
     });
-  }, []);
 
-  useEffect(() => {
-    // Apply category & search filter
-    const filtered = allProducts.filter((product) => {
-      const matchCategory = category
-        ? product.category.toLowerCase() === category.toLowerCase()
-        : true;
+    setAllProducts(normalized);
+  });
+}, []); // <-- dependency array (run once on mount)
 
-      const matchSearch = searchTerm
-        ? product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          product.category.toLowerCase().includes(searchTerm.toLowerCase())
-        : true;
 
-      return matchCategory && matchSearch;
-    });
-    setVisibleProducts(filtered);
-  }, [allProducts, category, searchTerm]);
+
+
+useEffect(() => {
+  let filtered = allProducts.filter((product) => {
+    const matchCategory = category
+      ? product.category.toLowerCase() === category.toLowerCase()
+      : true;
+
+    const matchSearch = searchTerm
+      ? product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.category.toLowerCase().includes(searchTerm.toLowerCase())
+      : true;
+
+    return matchCategory && matchSearch;
+  });
+
+  if (sortOrder === "asc") {
+    filtered = [...filtered].sort((a, b) => (a.salePrice || a.price) - (b.salePrice || b.price));
+  } else if (sortOrder === "desc") {
+    filtered = [...filtered].sort((a, b) => (b.salePrice || b.price) - (a.salePrice || a.price));
+  }
+
+  setVisibleProducts(filtered);
+}, [allProducts, category, searchTerm, sortOrder]);
 
   return (
     <>
@@ -273,7 +293,6 @@ const ProductGrid = ({ category, searchTerm = "" }) => {
                   }}
                 />
               </Link>
-
               <div className="card-body text-center p-4 d-flex flex-column justify-content-between">
                 <Link
                   to={`/product/${prod.id || index}`}
@@ -283,40 +302,27 @@ const ProductGrid = ({ category, searchTerm = "" }) => {
                   {prod.name}
                 </Link>
 
-                {/* <p
-                  className="fw-semibold mb-3"
-                  style={{ color: "#110e14ff", fontSize: "1.25rem" }}
-                >
-                  {prod.price}
-                </p> */}
                 {prod.salePrice ? (
-  <p
-    className="fw-semibold mb-3"
-    style={{ fontSize: "1.25rem" }}
-  >
-    <span
-      style={{
-        textDecoration: "line-through",
-        color: "gray",
-        marginRight: "8px",
-        fontSize: "1rem",
-      }}
-    >
-      {prod.price}
-    </span>
-    <span style={{ color: "red", fontWeight: "bold" }}>
-      {prod.salePrice}
-    </span>
-  </p>
-) : (
-  <p
-    className="fw-semibold mb-3"
-    style={{ color: "#110e14ff", fontSize: "1.25rem" }}
-  >
-    {prod.price}
-  </p>
-)}
-
+                  <p className="fw-semibold mb-3" style={{ fontSize: "1.25rem" }}>
+                    <span
+                      style={{
+                        textDecoration: "line-through",
+                        color: "gray",
+                        marginRight: "8px",
+                        fontSize: "1rem",
+                      }}
+                    >
+                      {prod.price}
+                    </span>
+                    <span style={{ color: "red", fontWeight: "bold" }}>
+                      {prod.salePrice}
+                    </span>
+                  </p>
+                ) : (
+                  <p className="fw-semibold mb-3" style={{ color: "#110e14ff", fontSize: "1.25rem" }}>
+                    {prod.price}
+                  </p>
+                )}
 
                 <Link
                   to={`/product/${prod.id || index}`}
@@ -333,9 +339,7 @@ const ProductGrid = ({ category, searchTerm = "" }) => {
         ))}
 
         {visibleProducts.length === 0 && (
-          <div className="text-center text-muted mt-4 fs-5">
-            No products found.
-          </div>
+          <div className="text-center text-muted mt-4 fs-5">No products found.</div>
         )}
       </div>
     </>
@@ -343,7 +347,3 @@ const ProductGrid = ({ category, searchTerm = "" }) => {
 };
 
 export default ProductGrid;
-
-
-
-

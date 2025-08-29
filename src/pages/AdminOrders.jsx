@@ -325,6 +325,11 @@ const AdminOrders = () => {
               <p className="mb-1"><strong>State:</strong> {order.shippingInfo?.state}</p>
               <p className="mb-1"><strong>Pincode:</strong> {order.shippingInfo?.pincode}</p>
               <p className="mb-1"><strong>Payment Method:</strong> {order.shippingInfo?.paymentMethod}</p>
+               {order.items?.map((item, index) => (
+  <p key={index}>
+    <strong>Additional Detail:</strong> {item.customDetails || "—"}
+  </p>
+))}
             </div>
 
             <div className="mb-3">
