@@ -535,11 +535,24 @@ import {
 } from "firebase/firestore";
 import { FaShippingFast, FaCreditCard } from "react-icons/fa";
 
+// Add this near the top of your component
+const coupons = [
+  { code: "DISCOUNT10", discount: 50 },
+  { code: "DISCOUNT20", discount: 50 },
+  { code: "WELCOME25", discount: 25 },
+];
+
+
+
+
 const Checkout = () => {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const buyNowProduct = location.state?.product;
+const [couponCode, setCouponCode] = useState("");
+const [discountAmount, setDiscountAmount] = useState(0);
+const [couponMessage, setCouponMessage] = useState("");
 
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -630,7 +643,19 @@ const Checkout = () => {
   }, 0);
 
 const shipping = 0
-const total = subtotal + shipping;
+const total = subtotal + shipping - discountAmount;
+
+// Function to apply coupon
+const handleApplyCoupon = () => {
+  const coupon = coupons.find(c => c.code.toUpperCase() === couponCode.toUpperCase());
+  if (coupon) {
+    setDiscountAmount(coupon.discount);
+    setCouponMessage(`Coupon applied! ₹${coupon.discount} off.`);
+  } else {
+    setDiscountAmount(0);
+    setCouponMessage("Invalid coupon code.");
+  }
+};
 
 
   const handlePlaceOrderClick = async () => {
@@ -878,6 +903,22 @@ const total = subtotal + shipping;
               <FaCreditCard className="me-2" />
               Order Summary
             </h5>
+<div className="mb-3">
+  <label className="form-label fw-semibold">Coupon Code</label>
+  <div className="d-flex">
+    <input
+      type="text"
+      className="form-control me-2"
+      value={couponCode}
+      onChange={(e) => setCouponCode(e.target.value)}
+      placeholder="Enter coupon code"
+    />
+    <button className="btn btn-primary" onClick={handleApplyCoupon}>
+      Apply
+    </button>
+  </div>
+  {couponMessage && <small className="text-success">{couponMessage}</small>}
+</div>
 
             <ul className="list-group mb-3">
               {cartItems.map((item, index) => (
