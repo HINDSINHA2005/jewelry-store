@@ -70,10 +70,12 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const images = [
+
   "https://res.cloudinary.com/dvxaztwnz/image/upload/f_auto,q_auto,w_1600/hero_kccogq.jpg",
   "https://res.cloudinary.com/dvxaztwnz/image/upload/f_auto,q_auto,w_1600/hero2_yeb0am.jpg",
   "https://res.cloudinary.com/dvxaztwnz/image/upload/f_auto,q_auto,w_1600/hero3_nownv3.jpg",
-  "https://res.cloudinary.com/dvxaztwnz/image/upload/f_auto,q_auto,w_1600/hero0_eeqrbo.jpg"
+  "https://res.cloudinary.com/dvxaztwnz/image/upload/f_auto,q_auto,w_1600/hero0_eeqrbo.jpg",
+  
 ];
 
 const Hero = () => {

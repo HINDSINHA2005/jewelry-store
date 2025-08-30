@@ -526,6 +526,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { useAuth } from "../context/AuthContext";
+import QRCode from "../assets/qr.jpg";
 import {
   collection,
   getDocs,
@@ -879,7 +880,8 @@ const handleApplyCoupon = () => {
                   )}
                 </div>
               </div>
-              <h2>For Online Payment,You Will receive Our Qr Code on whatsapp or email,kindly Make Payment on this QR to complete the order</h2>
+              {/* ✅ Show QR code if Prepaid is selected */}
+
             </form>
 
             {/* Delivery Preview */}
@@ -953,7 +955,19 @@ const handleApplyCoupon = () => {
                 <span>₹{total}</span>
               </li>
             </ul>
-
+{paymentMethod === "Prepaid" && (
+  <div className="mt-1 text-center bg-light p-3 rounded shadow-sm">
+    <h6 className="fw-bold text-success">Scan & Pay via UPI</h6>
+    <img
+      src={QRCode}
+      alt="UPI QR"
+      className="img-fluid mb-2"
+      style={{ maxWidth: "200px" }}
+    />
+    <p className="mb-1 fw-semibold">UPI ID: <span className="text-primary">7417542861@ptsbi</span></p>
+    <p className="small text-muted">Please complete payment before placing your order.</p>
+  </div>
+)}
             <p className="text-muted mb-3">
               <strong>Estimated Delivery:</strong> {estimatedDelivery}
             </p>
@@ -968,7 +982,9 @@ const handleApplyCoupon = () => {
           </div>
         </div>
       </div>
+      
     </div>
+    
   );
 };
 
