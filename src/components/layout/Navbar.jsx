@@ -1000,6 +1000,8 @@ const Navbar = () => {
                     <li><NavLink to="/admin/orders" className="dropdown-item">Orders</NavLink></li>
                     <li><NavLink to="/admin/message" className="dropdown-item">Messages</NavLink></li>
                     <li><NavLink to="/addproduct" className="dropdown-item">Add Product</NavLink></li>
+                    <li><NavLink to="/admin/finance" className="dropdown-item">Finance</NavLink></li>
+                    <li><NavLink to="/admin/finance/add" className="dropdown-item">Add Finance Entry</NavLink></li>
                   </>
                 )}
 

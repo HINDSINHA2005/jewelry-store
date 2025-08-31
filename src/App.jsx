@@ -22,6 +22,8 @@ import CategoryShowcase from "./components/home/CategoryShowcase";
 import "../src/App.css"; // Import your CSS file
 import SavedAddresses from "./pages/SavedAddresses";
 import Sale from "./pages/Sale"; // Import Sale page
+import FinanceDashboard from "./pages/FinanceDashboard"; // Import FinanceDashboard
+import AddFinanceEntry from "./pages/AddFinanceEntry"; // Import AddFinanceEntry
 
 
 // function App() {
@@ -79,6 +81,9 @@ function App() {
           <Route path="/order-confirmation" element={<OrderConfirmation />} />
           <Route path="/saved-address" element={<SavedAddresses />} />
           <Route path="/sale" element={<Sale />} />
+          <Route path="/admin/finance" element={<FinanceDashboard />} />
+          <Route path="/admin/finance/add" element={<AddFinanceEntry />} />
+          {/* Add more routes here */}
 
         </Routes>
       </div>
