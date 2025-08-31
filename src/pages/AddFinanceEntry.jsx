@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { db } from "../firebase";
+import { useState, useEffect } from "react";
+import { db, auth } from "../firebase"; // make sure auth is exported
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { motion, AnimatePresence } from "framer-motion";
+import { onAuthStateChanged } from "firebase/auth";
 
 export default function AddFinanceEntry() {
   const [type, setType] = useState("sale");
@@ -11,9 +12,26 @@ export default function AddFinanceEntry() {
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user && user.email === "info@jewelora.in") {
+        setIsAdmin(true);
+      } else {
+        setIsAdmin(false);
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!isAdmin) return;
+
     const totalAmount =
       type === "sale" ? Number(price) * Number(quantity) : Number(amount);
 
@@ -36,6 +54,18 @@ export default function AddFinanceEntry() {
     setCategory("");
     setDescription("");
   };
+
+  if (loading) {
+    return <p className="p-4 text-center">Loading...</p>;
+  }
+
+  if (!isAdmin) {
+    return (
+      <div className="p-6 text-center text-red-600 font-bold">
+        Access Denied. Only Admin Can Add Finance Entries.
+      </div>
+    );
+  }
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">

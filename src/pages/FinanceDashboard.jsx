@@ -1,23 +1,48 @@
 import { useEffect, useState } from "react";
-import { db } from "../firebase";
+import { db, auth } from "../firebase"; // make sure auth is exported from firebase.js
 import { collection, getDocs } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 
 export default function FinanceDashboard() {
   const [records, setRecords] = useState([]);
   const [totals, setTotals] = useState({ sales: 0, expenses: 0, profit: 0 });
+  const [loading, setLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const querySnapshot = await getDocs(collection(db, "financeRecords"));
-      const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-      setRecords(data);
+    // Check if the logged-in user is the admin
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user && user.email === "info@jewelora.in") {
+        setIsAdmin(true);
 
-      const sales = data.filter(r => r.type === "sale").reduce((acc, cur) => acc + cur.amount, 0);
-      const expenses = data.filter(r => r.type === "expense").reduce((acc, cur) => acc + cur.amount, 0);
-      setTotals({ sales, expenses, profit: sales - expenses });
-    };
-    fetchData();
+        // Fetch finance records
+        const querySnapshot = await getDocs(collection(db, "financeRecords"));
+        const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        setRecords(data);
+
+        const sales = data.filter(r => r.type === "sale").reduce((acc, cur) => acc + cur.amount, 0);
+        const expenses = data.filter(r => r.type === "expense").reduce((acc, cur) => acc + cur.amount, 0);
+        setTotals({ sales, expenses, profit: sales - expenses });
+      } else {
+        setIsAdmin(false); // Not admin
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
   }, []);
+
+  if (loading) {
+    return <p className="p-4">Loading...</p>;
+  }
+
+  if (!isAdmin) {
+    return (
+      <div className="p-4 text-center text-red-600 font-bold">
+        Access Denied. Only Admin Can View This Page.
+      </div>
+    );
+  }
 
   return (
     <div className="p-4 md:p-6 space-y-6">
