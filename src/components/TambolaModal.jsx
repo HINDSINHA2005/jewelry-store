@@ -127,7 +127,7 @@ export default function PromoModal() {
               Sign up, place your first order, and grab amazing offers on your favorite jewelry.
             </p>
             <a
-              href="https://instagram.com/jewelora" 
+              href="https://www.instagram.com/jew_elora/" 
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-outline-danger me-3 px-4 mt-4 fw-semibold"
