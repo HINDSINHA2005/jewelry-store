@@ -539,8 +539,7 @@ import { FaShippingFast, FaCreditCard } from "react-icons/fa";
 // Add this near the top of your component
 const coupons = [
   { code: "DISCOUNT10", discount: 50 },
-  { code: "DISCOUNT20", discount: 50 },
-  { code: "WELCOME25", discount: 25 },
+  
 ];
 
 

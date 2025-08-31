@@ -73,22 +73,29 @@ import * as bootstrap from "bootstrap";
 
 export default function PromoModal() {
   useEffect(() => {
-    const modalElement = document.getElementById("promoModal");
-    if (modalElement) {
-      const modal = new bootstrap.Modal(modalElement);
-      modal.show();
+    // Check if promo was already shown in this session
+    const hasSeenPromo = sessionStorage.getItem("promoShown");
 
-      // Cleanup on modal close to prevent body freeze
-      modalElement.addEventListener("hidden.bs.modal", () => {
-        document.body.classList.remove("modal-open");
-        document.body.style.overflow = "";
-        const backdrop = document.querySelector(".modal-backdrop");
-        if (backdrop) backdrop.remove();
-      });
+    if (!hasSeenPromo) {
+      const modalElement = document.getElementById("promoModal");
+      if (modalElement) {
+        const modal = new bootstrap.Modal(modalElement);
+        modal.show();
+
+        // Mark as shown for this session only
+        sessionStorage.setItem("promoShown", "true");
+
+        // Cleanup on modal close to prevent body freeze
+        modalElement.addEventListener("hidden.bs.modal", () => {
+          document.body.classList.remove("modal-open");
+          document.body.style.overflow = "";
+          const backdrop = document.querySelector(".modal-backdrop");
+          if (backdrop) backdrop.remove();
+        });
+      }
     }
   }, []);
-
-  return (
+return (
     <div
       className="modal fade"
       id="promoModal"
@@ -121,13 +128,14 @@ export default function PromoModal() {
               style={{ maxHeight: "220px", objectFit: "cover" }}
             />
             <p className="fs-5 text-dark mb-3">
-              ✨ <strong>Follow us on Instagram</strong> to enjoy <span className="text-success">FREE SHIPPING</span> and exclusive discounts!
+              ✨ <strong>Follow us on Instagram</strong> to enjoy{" "}
+              <span className="text-success">FREE SHIPPING</span> and exclusive discounts!
             </p>
             <p className="fs-6 text-secondary mb-2">
               Sign up, place your first order, and grab amazing offers on your favorite jewelry.
             </p>
             <a
-              href="https://www.instagram.com/jew_elora/" 
+              href="https://www.instagram.com/jew_elora/"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-outline-danger me-3 px-4 mt-4 fw-semibold"
@@ -146,20 +154,20 @@ export default function PromoModal() {
             >
               Sign Up & Sign In
             </a>
-             
           </div>
-           <a
-              href="/shop"
-              className="btn btn-danger px-4 mb-2 mx-5 fw-semibold text-black"
-            >
-              Shop Now
-            </a>
-            <a
-              href="/category"
-              className="btn btn-primary px-4 mb-2 mx-5 fw-semibold text-black"
-            >
-              Categories
-            </a>
+
+          <a
+            href="/shop"
+            className="btn btn-danger px-4 mb-2 mx-5 fw-semibold text-black"
+          >
+            Shop Now
+          </a>
+          <a
+            href="/category"
+            className="btn btn-primary px-4 mb-2 mx-5 fw-semibold text-black"
+          >
+            Categories
+          </a>
         </div>
       </div>
     </div>
