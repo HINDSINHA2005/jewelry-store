@@ -23,7 +23,13 @@ import "../src/App.css"; // Import your CSS file
 import SavedAddresses from "./pages/SavedAddresses";
 import Sale from "./pages/Sale"; // Import Sale page
 import FinanceDashboard from "./pages/FinanceDashboard"; // Import FinanceDashboard
-import AddFinanceEntry from "./pages/AddFinanceEntry"; // Import AddFinanceEntry
+import AddFinanceEntry from "./pages/AddFinanceEntry";
+import Terms from "./pages/policies/Terms";
+import Privacy from "./pages/policies/Privacy";
+import Refund from "./pages/policies/Refund";
+import Replacement from "./pages/policies/Replacement";
+import Cancellation from "./pages/policies/Cancellation";
+import Shipping from "./pages/policies/Shipping"; // Import AddFinanceEntry
 
 
 // function App() {
@@ -83,6 +89,12 @@ function App() {
           <Route path="/sale" element={<Sale />} />
           <Route path="/admin/finance" element={<FinanceDashboard />} />
           <Route path="/admin/finance/add" element={<AddFinanceEntry />} />
+          <Route path="/policies/terms" element={<Terms />} />
+        <Route path="/policies/privacy" element={<Privacy />} />
+        <Route path="/policies/refund" element={<Refund />} />
+        <Route path="/policies/replacement" element={<Replacement />} />
+        <Route path="/policies/cancellation" element={<Cancellation />} />
+        <Route path="/policies/shipping" element={<Shipping />} />
           {/* Add more routes here */}
 
         </Routes>

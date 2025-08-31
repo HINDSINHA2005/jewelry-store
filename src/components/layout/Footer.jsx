@@ -491,7 +491,18 @@ const Footer = () => {
             </li>
           </>
         )}
-
+<li>
+  <Link to="/policies/terms">Terms</Link></li>
+  <li><Link to="/policies/privacy">Privacy</Link></li>
+  <li> <Link to="/policies/refund">Refund</Link></li>
+  <li>  <Link to="/policies/replacement">Replacement</Link></li>
+  <li> <Link to="/policies/cancellation">Cancellation</Link></li>
+  <li> <Link to="/policies/shipping">Shipping</Link></li>
+        
+       
+      
+       
+       
         <li>
           <a
             href="https://collaboration.payment.jewelora.in"
