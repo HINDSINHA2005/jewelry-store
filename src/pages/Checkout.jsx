@@ -539,6 +539,8 @@ import { FaShippingFast, FaCreditCard } from "react-icons/fa";
 // Add this near the top of your component
 const coupons = [
   { code: "DISCOUNT10", discount: 50 },
+  { code: "DISCOUNTGIVEAWAY", discount: 30 },
+
   
 ];
 
@@ -642,8 +644,10 @@ const [couponMessage, setCouponMessage] = useState("");
     return sum + price * (item.quantity || 1);
   }, 0);
 
-const shipping = 0
-const total = subtotal + shipping - discountAmount;
+const shipping = 0;
+
+const total = Math.max(0, subtotal + shipping - discountAmount);
+
 
 // Function to apply coupon
 const handleApplyCoupon = () => {
