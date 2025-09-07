@@ -1,308 +1,312 @@
-// import { useState } from "react";
-// import { db } from "../firebase";
-// import { collection, addDoc } from "firebase/firestore";
-
-// const AddProduct = () => {
-//   const [formData, setFormData] = useState({
-//     id:"",
-//     name: "",
-//     category: "Necklaces",
-//     price: "",
-//     description: "",
-//     imageUrl: "",
-//   });
-
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   const handleAddProduct = async (e) => {
-//     e.preventDefault();
-//     try {
-//       await addDoc(collection(db, "dynamic_products"), formData);
-//       alert("Product added successfully");
-//       setFormData({id:"", name: "", category: "Necklaces", price: "", description: "", imageUrl: "" });
-//     } catch (error) {
-//       alert("Error adding product: " + error.message);
-//     }
-//   };
-
-//   return (
-//     <div className="container py-5">
-//       <h2 className="text-warning fw-bold mb-4">Add New Product</h2>
-//       <form onSubmit={handleAddProduct} className="card p-4 shadow-sm">
-//         <div className="mb-3">
-//           <label className="form-label">Product id</label>
-//           <input name="id" className="form-control" value={formData.id} onChange={handleChange} required />
-//         </div>
-//         <div className="mb-3">
-//           <label className="form-label">Product Name</label>
-//           <input name="name" className="form-control" value={formData.name} onChange={handleChange} required />
-//         </div>
-//         <div className="mb-3">
-//           <label className="form-label">Category</label>
-//           <select name="category" className="form-select" value={formData.category} onChange={handleChange}>
-//             <option value="Mangalsutra">Mangalsutra</option>
-//             <option value="Necklaces">Necklaces</option>
-//             <option value="Pendants">Pendants</option>
-//             <option value="Bracelets">Bracelets</option>
-//             <option value="Earrings">Earrings</option>
-//           </select>
-//         </div>
-//         <div className="mb-3">
-//           <label className="form-label">Price</label>
-//           <input name="price" className="form-control" value={formData.price} onChange={handleChange} required />
-//         </div>
-//         <div className="mb-3">
-//           <label className="form-label">Description</label>
-//           <textarea name="description" className="form-control" value={formData.description} onChange={handleChange} required />
-//         </div>
-//         <div className="mb-3">
-//           <label className="form-label">Image URL</label>
-//           <input name="imageUrl" className="form-control" value={formData.imageUrl} onChange={handleChange} required />
-//           <small className="text-muted">Use Google Drive direct link (converted)</small>
-//         </div>
-//         <button className="btn btn-warning text-white fw-semibold">Add Product</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default AddProduct;
 
 
-import { useState } from "react";
+
+
+
+import { useEffect, useState } from "react";
 import { db } from "../firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { useAuth } from "../context/AuthContext";
+import { collection, getDocs, doc, updateDoc, addDoc, serverTimestamp } from "firebase/firestore";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
+import ReceiptInvoice from "../components/ReceiptInvoice";
 
-const AddProduct = () => {
-  const [formData, setFormData] = useState({
-    id: "", // Keep manual ID like e11, b7
-    name: "",
-    category: "Necklaces",
-    price: "",
-    description: "",
-    imageUrl: "",
-  });
+// ⭐ Star Component
+const StarRating = ({ rating, onRate }) => (
+  <div>
+    {[1, 2, 3, 4, 5].map((star) => (
+      <span
+        key={star}
+        style={{
+          cursor: onRate ? "pointer" : "default",
+          color: star <= rating ? "#FFD700" : "#ccc",
+          fontSize: "1.5rem",
+          marginRight: "5px",
+        }}
+        onClick={() => onRate && onRate(star)}
+      >
+        ★
+      </span>
+    ))}
+  </div>
+);
+
+// ⭐ Review Form (with Cloudinary upload)
+const ReviewForm = ({ orderId, productId, onReviewSubmit }) => {
+  const { currentUser } = useAuth();
+  const [rating, setRating] = useState(0);
+  const [desc, setDesc] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [uploading, setUploading] = useState(false);
-  const [message, setMessage] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  // Cloudinary upload
-  // const handleImageUpload = async (e) => {
-  //   const file = e.target.files[0];
-  //   if (!file) return;
-
-  //   setUploading(true);
-  //   const cloudData = new FormData();
-  //   cloudData.append("file", file);
-  //   cloudData.append("upload_preset", "your_unsigned_preset"); // Cloudinary preset
-
-  //   try {
-  //     const res = await fetch(
-  //       `https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/image/upload`,
-  //       {
-  //         method: "POST",
-  //         body: cloudData,
-  //       }
-  //     );
-  //     const data = await res.json();
-  //     setFormData((prev) => ({ ...prev, imageUrl: data.secure_url }));
-  //   } catch (error) {
-  //     setMessage({ type: "danger", text: "Image upload failed!" });
-  //   } finally {
-  //     setUploading(false);
-  //   }
-  // };
-
+  // Upload image to Cloudinary
   const handleImageUpload = async (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
+    const file = e.target.files[0];
+    if (!file) return;
 
-  setUploading(true);
+    setUploading(true);
 
-  const cloudData = new FormData();
-  cloudData.append("file", file);
-  cloudData.append("upload_preset", "jewelora_upload"); // your unsigned preset
-
-  try {
-    const res = await fetch(
-      `https://api.cloudinary.com/v1_1/dvxaztwnz/image/upload`,
-      {
-        method: "POST",
-        body: cloudData,
-      }
-    );
-
-    const data = await res.json();
-    setFormData((prev) => ({ ...prev, imageUrl: data.secure_url }));
-  } catch (error) {
-    setMessage({ type: "danger", text: "Image upload failed!" });
-  } finally {
-    setUploading(false);
-  }
-};
-
-  const handleAddProduct = async (e) => {
-    e.preventDefault();
-
-    if (!formData.id) {
-      setMessage({ type: "warning", text: "Please enter product ID" });
-      return;
-    }
-    if (!formData.imageUrl) {
-      setMessage({ type: "warning", text: "Please upload an image first" });
-      return;
-    }
+    const cloudData = new FormData();
+    cloudData.append("file", file);
+    cloudData.append("upload_preset", "jewelora_upload"); // your unsigned preset
 
     try {
-      await addDoc(collection(db, "dynamic_products"), {
-        id: formData.id,
-        name: formData.name,
-        category: formData.category,
-        price: parseFloat(formData.price),
-        description: formData.description,
-        imageUrl: formData.imageUrl,
-        createdAt: new Date(),
-      });
+      const res = await fetch(
+        `https://api.cloudinary.com/v1_1/dvxaztwnz/image/upload`,
+        {
+          method: "POST",
+          body: cloudData,
+        }
+      );
 
-      setMessage({ type: "success", text: "✅ Product added successfully!" });
-      setFormData({
-        id: "",
-        name: "",
-        category: "Necklaces",
-        price: "",
-        description: "",
-        imageUrl: "",
-      });
+      const data = await res.json();
+      setImageUrl(data.secure_url);
     } catch (error) {
-      setMessage({ type: "danger", text: "Error: " + error.message });
+      console.error("Upload failed", error);
+      alert("Image upload failed!");
+    } finally {
+      setUploading(false);
     }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!currentUser) return;
+
+    setLoading(true);
+
+    const reviewRef = collection(db, "reviews");
+    await addDoc(reviewRef, {
+      userId: currentUser.uid,
+      orderId,
+      productId,
+      rating,
+      description: desc,
+      photoUrl: imageUrl || "",
+      createdAt: serverTimestamp(),
+      userName: currentUser.displayName || "Anonymous",
+    });
+
+    setRating(0);
+    setDesc("");
+    setImageUrl("");
+    setLoading(false);
+    onReviewSubmit && onReviewSubmit();
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="border p-3 rounded bg-light mt-3">
+      <h6 className="fw-semibold">Write a Review</h6>
+
+      {/* Rating */}
+      <div className="mb-2">
+        <label className="form-label">Rating</label>
+        <div>
+          {[1, 2, 3, 4, 5].map((star) => (
+            <span
+              key={star}
+              style={{
+                cursor: "pointer",
+                color: star <= rating ? "#FFD700" : "#ccc",
+                fontSize: "1.5rem",
+                marginRight: "5px",
+              }}
+              onClick={() => setRating(star)}
+            >
+              ★
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Description */}
+      <div className="mb-2">
+        <label className="form-label">Description</label>
+        <textarea
+          className="form-control"
+          value={desc}
+          onChange={(e) => setDesc(e.target.value)}
+          required
+        />
+      </div>
+
+      {/* Image Upload */}
+      <div className="mb-2">
+        <label className="form-label">Upload Photo</label>
+        <input
+          type="file"
+          className="form-control"
+          accept="image/*"
+          onChange={handleImageUpload}
+        />
+        {uploading && <small className="text-muted">Uploading...</small>}
+        {imageUrl && (
+          <img
+            src={imageUrl}
+            alt="Preview"
+            className="img-fluid mt-2 rounded"
+            style={{ maxHeight: "200px" }}
+          />
+        )}
+      </div>
+
+      <button className="btn btn-primary" type="submit" disabled={loading || uploading}>
+        {loading ? "Submitting..." : "Submit Review"}
+      </button>
+    </form>
+  );
+};
+
+const MyOrders = () => {
+  const { currentUser } = useAuth();
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      if (!currentUser) return;
+
+      const orderRef = collection(db, "orders", currentUser.uid, "orders");
+      const snapshot = await getDocs(orderRef);
+      const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      setOrders(data);
+    };
+    fetchOrders();
+  }, [currentUser]);
+
+  const generateInvoice = (order) => {
+    const doc = new jsPDF();
+    doc.setFontSize(16);
+    doc.text("Jewelora Invoice", 14, 20);
+    doc.setFontSize(12);
+    doc.text(`Order ID: ${order.id}`, 14, 30);
+    doc.text(
+      `Date: ${new Date(order.createdAt?.seconds * 1000).toLocaleString()}`,
+      14,
+      37
+    );
+    doc.text(`Customer: ${order.shippingInfo?.fullName}`, 14, 44);
+    doc.text(`Email: ${order.shippingInfo?.email}`, 14, 51);
+    doc.text(`Phone: ${order.shippingInfo?.phone}`, 14, 58);
+    doc.text(
+      `Address: ${order.shippingInfo?.address}, ${order.shippingInfo?.city}, ${order.shippingInfo?.state}, ${order.shippingInfo?.pincode}`,
+      14,
+      65
+    );
+
+    autoTable(doc, {
+      startY: 75,
+      head: [["Item", "Qty", "Price", "Total"]],
+      body: order.items.map((item) => [
+        item.name,
+        item.quantity,
+        `₹${item.price}`,
+        `₹${item.price * item.quantity}`,
+      ]),
+    });
+
+    const totalY = doc.lastAutoTable.finalY + 10;
+    doc.setFontSize(12);
+    doc.text(`Total: ₹${order.total}`, 14, totalY);
+
+    doc.save(`Invoice_${order.id}.pdf`);
   };
 
   return (
     <div className="container py-5">
-      <h2 className="text-warning fw-bold mb-4">Add New Product</h2>
+      <h2 className="text-warning fw-bold mb-4">My Orders</h2>
 
-      {message && (
-        <div className={`alert alert-${message.type}`} role="alert">
-          {message.text}
-        </div>
-      )}
-
-      <form onSubmit={handleAddProduct} className="card p-4 shadow-sm">
-        <div className="mb-3">
-          <label className="form-label fw-semibold">Product ID</label>
-          <input
-            name="id"
-            className="form-control"
-            value={formData.id}
-            onChange={handleChange}
-            placeholder="e.g., e11 for Earring, b5 for Bangle"
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <label className="form-label fw-semibold">Product Name</label>
-          <input
-            name="name"
-            className="form-control"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <label className="form-label fw-semibold">Category</label>
-          <select
-            name="category"
-            className="form-select"
-            value={formData.category}
-            onChange={handleChange}
-          >
-            <option value="Mangalsutra">Mangalsutra</option>
-            <option value="Necklaces">Necklaces</option>
-            <option value="Pendants">Pendants</option>
-            <option value="Bracelets">Bracelets</option>
-            <option value="Earrings">Earrings</option>
-            <option value="Bangles">Bangles</option>
-            <option value="KADA">KADA</option>
-            <option value="Rajvadhi Bracelet">Rajvadhi Bracelet</option>
-            <option value="Oxidised Necklaces">Oxidised Necklaces</option>
-            <option value="Modern Mangalsutra">Modern Mangalsutra</option>
-            <option value="Special Collection">Special Collection</option>
-            <option value="Rakhi">Rakhi</option>
-             <option value="Dhokiya Set">Dhokiya Set</option>
-              <option value="Watch Gift Set">Watch Gift Set</option>
-              <option value="Metal Purse">Metal Purse</option>
-              <option value="Antique Necklaces">Antique Necklaces</option>
-            <option value="Chain Pendant">Chain Pendant</option>
-            <option value="Patala">Patala</option>
-
-
-          </select>
-        </div>
-
-        <div className="mb-3">
-          <label className="form-label fw-semibold">Price (₹)</label>
-          <input
-            type="number"
-            step="0.01"
-            name="price"
-            className="form-control"
-            value={formData.price}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <label className="form-label fw-semibold">Description</label>
-          <textarea
-            name="description"
-            className="form-control"
-            rows="3"
-            value={formData.description}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        {/* Cloudinary Upload */}
-        <div className="mb-3">
-          <label className="form-label fw-semibold">Product Image</label>
-          <input
-            type="file"
-            accept="image/*"
-            className="form-control"
-            onChange={handleImageUpload}
-          />
-          {uploading && <small className="text-muted">Uploading...</small>}
-          {formData.imageUrl && (
-            <div className="mt-2">
-              <img
-                src={formData.imageUrl}
-                alt="Preview"
-                style={{ height: "120px", borderRadius: "6px" }}
-              />
+      {orders.length === 0 ? (
+        <p className="text-muted">No orders yet.</p>
+      ) : (
+        orders.map((order) => (
+          <div key={order.id} className="card mb-4 shadow-sm border-0">
+            <div className="card-header bg-light d-flex justify-content-between">
+              <h5 className="fw-bold mb-0">Order ID: {order.id}</h5>
+              <span className="badge bg-success">
+                {order.status || "Ordered"}
+              </span>
             </div>
-          )}
-        </div>
 
-        <button
-          className="btn btn-warning text-white fw-semibold"
-          disabled={uploading}
-        >
-          {uploading ? "Uploading..." : "Add Product"}
-        </button>
-      </form>
+            <div className="card-body">
+              <p>
+                <strong>Date:</strong>{" "}
+                {new Date(order.createdAt?.seconds * 1000).toLocaleString()}
+              </p>
+              <p>
+                <strong>Total:</strong> ₹{order.total}
+              </p>
+              <p>
+                <strong>Payment Method:</strong>{" "}
+                {order.shippingInfo?.paymentMethod}
+              </p>
+
+              {order.items?.map((item, index) => (
+                <p key={index}>
+                  <strong>Additional Detail:</strong>{" "}
+                  {item.customDetails || "—"}
+                </p>
+              ))}
+
+              {/* Shipping */}
+              <div className="mt-3">
+                <h6 className="fw-semibold">Shipping Address</h6>
+                <p className="mb-1">
+                  <strong>Name:</strong> {order.shippingInfo?.fullName}
+                </p>
+                <p className="mb-1">
+                  <strong>Email:</strong> {order.shippingInfo?.email}
+                </p>
+                <p className="mb-1">
+                  <strong>Phone:</strong> {order.shippingInfo?.phone}
+                </p>
+                <p className="mb-1">
+                  <strong>State:</strong> {order.shippingInfo?.state}
+                </p>
+                <p className="mb-1">
+                  <strong>Address:</strong> {order.shippingInfo?.address},{" "}
+                  {order.shippingInfo?.city} - {order.shippingInfo?.pincode}
+                </p>
+              </div>
+
+              {/* Items */}
+              <div className="mt-3">
+                <h6 className="fw-semibold">Items</h6>
+                <ul className="list-group">
+                  {order.items.map((item, idx) => (
+                    <li
+                      key={idx}
+                      className="list-group-item d-flex justify-content-between align-items-center"
+                    >
+                      <div>
+                        <span className="fw-medium">{item.name}</span>
+                        <br />
+                        <small className="text-muted">Qty: {item.quantity}</small>
+                      </div>
+                      <span>₹{item.price}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* ⭐ Review Section (only after delivery) */}
+              {order.status === "delivered" && (
+                <ReviewForm
+                  orderId={order.id}
+                  productId={order.items[0]?.id}
+                  onReviewSubmit={() => console.log("Review submitted")}
+                />
+              )}
+
+              <div className="text-end mt-3">
+                <ReceiptInvoice order={order} />
+              </div>
+            </div>
+          </div>
+        ))
+      )}
     </div>
   );
 };
 
-export default AddProduct;
+export default MyOrders;

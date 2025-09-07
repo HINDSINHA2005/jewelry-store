@@ -5,8 +5,9 @@ import FeaturedProducts from "../components/home/FeatureProducts";
 import Testimonials from "../components/home/Testimonials";
 import WhyChooseUs from "../components/home/WhyChoose";
 import TrendingCarousel from "../components/home/TrendingCarousel";
-import Newsletter from "../components/home/Newsletter";
+
 import Hero from '../components/home/hero.jsx'
+
 
 const Home = () => {
   return (
@@ -14,8 +15,10 @@ const Home = () => {
       
       <Hero/>
       <CategoryShowcase />
-      <FeaturedProducts />
       <Testimonials />
+      <FeaturedProducts />
+      
+      
       <WhyChooseUs />
        {/* <Newsletter /> */}
       <TrendingCarousel />

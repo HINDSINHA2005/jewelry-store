@@ -30,38 +30,9 @@ import Refund from "./pages/policies/Refund";
 import Replacement from "./pages/policies/Replacement";
 import Cancellation from "./pages/policies/Cancellation";
 import Shipping from "./pages/policies/Shipping"; // Import AddFinanceEntry
+import CustomerReviews from "./pages/CustomerReviews"; // Import CustomerReviews
+import AddReview from "./pages/AddReview"; // Import AddReview
 
-
-// function App() {
-//   return (
-//     <>
-//      <TambolaModal />
-//     <ScrollToTop/>
-//       <Navbar />
-//       <Routes>
-//         <Route path="/" element={<Home />} />
-//         <Route path="/shop" element={<Shop />} />
-//         <Route path="/product/:id" element={<ProductDetail />} />
-//         <Route path="/about" element={<About />} />
-//         <Route path="/contact" element={<Contact />} />
-//         <Route path="/signin" element={<SignIn />} />
-//         <Route path="/signup" element={<SignUp />} />
-//         <Route path="/cart" element={<Cart />} />
-//         <Route path="/orders" element={<MyOrders />} />
-//         <Route path="/checkout" element={<Checkout />} />
-//         <Route path="/category" element={<CategoryShowcase />} />
-//         <Route path="/admin/orders" element={<AdminOrders />} />
-//         <Route path="/admin/message" element={<AdminContactMessages />} />
-        
-//         <Route path="/addproduct" element={<AddProduct />} />
-        
-//         <Route path="/order-confirmation" element={<OrderConfirmation />} />
-//         {/* Add more routes here */}
-//       </Routes>
-//       <Footer />
-//     </>
-//   );
-// }
 function App() {
   return (
     <div className="app-container">
@@ -96,6 +67,9 @@ function App() {
         <Route path="/policies/cancellation" element={<Cancellation />} />
         <Route path="/policies/shipping" element={<Shipping />} />
           {/* Add more routes here */}
+          <Route path="/reviews" element={<CustomerReviews />} />
+<Route path="/add-review" element={<AddReview />} />
+
 
         </Routes>
       </div>
