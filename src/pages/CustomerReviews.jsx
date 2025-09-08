@@ -46,7 +46,7 @@ const CustomerReviews = () => {
 
                     <div>
                       <h6 className="fw-semibold mb-0">
-                        {review.customerName}
+                         {review.customerName }
                       </h6>
                       <div>
                         {[1, 2, 3, 4, 5].map((star) => (
