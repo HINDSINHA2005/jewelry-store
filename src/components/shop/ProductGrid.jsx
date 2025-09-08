@@ -101,7 +101,7 @@ useEffect(() => {
                   src={prod.image}
                   alt={prod.name}
                   className="card-img-top"
-                  loading="lazy"
+                 
                   style={{
                     height: "250px",
                     width: "100%",
