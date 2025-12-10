@@ -15,6 +15,7 @@ import {
   doc,
 } from "firebase/firestore";
 import { FaShippingFast, FaCreditCard } from "react-icons/fa";
+import emailjs from "emailjs-com";
 
 // Add this near the top of your component
 const coupons = [
@@ -203,6 +204,29 @@ const handleApplyCoupon = () => {
       order
     );
 
+
+    // ---------------------------------------------------------
+    // ✅ SEND EMAIL TO YOU USING EMAILJS
+    // ---------------------------------------------------------
+    emailjs.send(
+      "service_f5e8tg8",
+      "template_ny7aehi",
+      {
+        order_id: newOrder.id,
+        customer_name: fullName,
+        customer_email: email,
+        customer_phone: phone,
+        order_total: total,
+        payment_method: paymentMethod,
+        address: `${address}, ${city}, ${state} - ${pincode}`,
+        order_items: cartItems
+          .map((item) => `${item.name} × ${item.quantity}`)
+          .join(", "),
+      },
+      "AL9Hdy7gl6JXUpK5z" // ← Replace with your EmailJS PUBLIC KEY
+    )
+    .then(() => console.log("Order email sent!"))
+    .catch((err) => console.error("EmailJS Error:", err));
     if (!buyNowProduct) {
       const cartRef = collection(db, "carts", currentUser.uid, "items");
       const snapshot = await getDocs(cartRef);
