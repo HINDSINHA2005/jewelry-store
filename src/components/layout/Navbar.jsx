@@ -101,7 +101,7 @@ const Navbar = () => {
         {/* Collapsible Menu */}
         <div className="collapse navbar-collapse" id="navbarMenu">
           <ul className="navbar-nav ms-auto me-4 text-center">
-            {["/", "/shop","/category", "/about", "/contact","/add-review"].map((path, idx) => {
+            {/* {["/", "/shop","/category", "/about", "/contact","/add-review"].map((path, idx) => {
               const labels = ["Home","Shop","Category","About","Contact","Give Review"];
               return (
                 <li className="nav-item" key={path}>
@@ -115,7 +115,27 @@ const Navbar = () => {
                   </NavLink>
                 </li>
               );
-            })}
+            })} */}
+            {[
+  { path: "/", label: "Home" },
+  { path: "/shop", label: "Shop" },
+  { path: "/category", label: "Category" },
+  { path: "/about", label: "About" },
+  { path: "/contact", label: "Contact" },
+  { path: "/add-review", label: "Give Review" },
+].map(({ path, label }) => (
+  <li className="nav-item" key={path}>
+    <NavLink
+      to={path}
+      className={({ isActive }) =>
+        `nav-link fw-semibold ${isActive ? "text-warning" : ""}`
+      }
+    >
+      {label}
+    </NavLink>
+  </li>
+))}
+
           </ul>
         </div>
 
