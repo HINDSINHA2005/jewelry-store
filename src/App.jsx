@@ -57,7 +57,7 @@ function App() {
           <Route path="/addproduct" element={<AddProduct />} />
           <Route path="/order-confirmation" element={<OrderConfirmation />} />
           <Route path="/saved-address" element={<SavedAddresses />} />
-          <Route path="/sale" element={<Sale />} />
+          
           <Route path="/admin/finance" element={<FinanceDashboard />} />
           <Route path="/admin/finance/add" element={<AddFinanceEntry />} />
           <Route path="/policies/terms" element={<Terms />} />
