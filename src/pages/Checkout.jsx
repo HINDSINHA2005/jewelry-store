@@ -1,12 +1,8 @@
 
-
-
-
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { useAuth } from "../context/AuthContext";
-import QRCode from "../assets/qr.jpg";
 import {
   collection,
   getDocs,
@@ -17,25 +13,21 @@ import {
 import { FaShippingFast, FaCreditCard } from "react-icons/fa";
 import emailjs from "emailjs-com";
 
-// Add this near the top of your component
+// Coupons
 const coupons = [
   { code: "DISCOUNT10", discount: 50 },
   { code: "DISCOUNTGIVEAWAY", discount: 30 },
-
-  
 ];
-
-
-
 
 const Checkout = () => {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const buyNowProduct = location.state?.product;
-const [couponCode, setCouponCode] = useState("");
-const [discountAmount, setDiscountAmount] = useState(0);
-const [couponMessage, setCouponMessage] = useState("");
+
+  const [couponCode, setCouponCode] = useState("");
+  const [discountAmount, setDiscountAmount] = useState(0);
+  const [couponMessage, setCouponMessage] = useState("");
 
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -49,16 +41,13 @@ const [couponMessage, setCouponMessage] = useState("");
   const [pincode, setPincode] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("Prepaid");
 
-  // Checkbox for saving address
+  // Save address
   const [saveAddress, setSaveAddress] = useState(false);
-
-  // Saved addresses loaded from Firestore
   const [savedAddresses, setSavedAddresses] = useState([]);
   const [loadingAddresses, setLoadingAddresses] = useState(false);
 
-  // Estimated Delivery Dates (unchanged)
+  // Estimated delivery
   const today = new Date();
   const deliveryStart = new Date(today);
   const deliveryEnd = new Date(today);
@@ -70,9 +59,11 @@ const [couponMessage, setCouponMessage] = useState("");
       month: "short",
       year: "numeric",
     });
-  const estimatedDelivery = `${formatDate(deliveryStart)} – ${formatDate(deliveryEnd)}`;
+  const estimatedDelivery = `${formatDate(deliveryStart)} – ${formatDate(
+    deliveryEnd
+  )}`;
 
-  // Load cart or Buy Now
+  // Load cart / buy now
   useEffect(() => {
     if (buyNowProduct) {
       setCartItems([{ ...buyNowProduct, quantity: 1 }]);
@@ -83,9 +74,9 @@ const [couponMessage, setCouponMessage] = useState("");
         const snapshot = await getDocs(
           collection(db, "carts", currentUser.uid, "items")
         );
-        const items = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
+        const items = snapshot.docs.map((d) => ({
+          id: d.id,
+          ...d.data(),
         }));
         setCartItems(items);
         setLoading(false);
@@ -94,21 +85,20 @@ const [couponMessage, setCouponMessage] = useState("");
     }
   }, [currentUser, buyNowProduct]);
 
-  // Load saved addresses on mount if user logged in
+  // Load saved addresses
   useEffect(() => {
     if (!currentUser) return;
     const fetchAddresses = async () => {
       setLoadingAddresses(true);
-      const addressesRef = collection(db, "users", currentUser.uid, "addresses");
-      const snapshot = await getDocs(addressesRef);
-      const list = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-      setSavedAddresses(list);
+      const snapshot = await getDocs(
+        collection(db, "users", currentUser.uid, "addresses")
+      );
+      setSavedAddresses(snapshot.docs.map((d) => ({ id: d.id, ...d.data() })));
       setLoadingAddresses(false);
     };
     fetchAddresses();
   }, [currentUser]);
 
-  // When user selects a saved address, auto-fill form
   const handleSelectSavedAddress = (addr) => {
     setFullName(addr.fullName);
     setEmail(addr.email || currentUser.email);
@@ -117,142 +107,307 @@ const [couponMessage, setCouponMessage] = useState("");
     setPincode(addr.pincode);
     setCity(addr.city);
     setState(addr.state);
-    setPaymentMethod("Prepaid");
   };
 
+  // Price calculation
   const subtotal = cartItems.reduce((sum, item) => {
-    const price = parseInt(item.price?.toString().replace(/[^\d]/g, "")) || 0;
+    const price =
+      parseInt(item.price?.toString().replace(/[^\d]/g, "")) || 0;
     return sum + price * (item.quantity || 1);
   }, 0);
 
-const shipping = 0;
+  const shipping = 0;
+  const total = Math.max(0, subtotal + shipping - discountAmount);
 
-const total = Math.max(0, subtotal + shipping - discountAmount);
-
-
-// Function to apply coupon
-const handleApplyCoupon = () => {
-  const coupon = coupons.find(c => c.code.toUpperCase() === couponCode.toUpperCase());
-  if (coupon) {
-    setDiscountAmount(coupon.discount);
-    setCouponMessage(`Coupon applied! ₹${coupon.discount} off.`);
-  } else {
-    setDiscountAmount(0);
-    setCouponMessage("Invalid coupon code.");
-  }
-};
-
-
-  const handlePlaceOrderClick = async () => {
-    if (!currentUser) {
-      alert("Please sign in to place an order.");
-      return;
-    }
-
-    if (!fullName || !phone || !address || !pincode || !city || !state) {
-      alert("Please fill in all required fields.");
-      return;
-    }
-
-    setPlacingOrder(true);
-
-    // Save address if checkbox checked
-    if (saveAddress) {
-      try {
-        await addDoc(collection(db, "users", currentUser.uid, "addresses"), {
-          fullName,
-          email,
-          phone,
-          address,
-          pincode,
-          city,
-          state,
-          paymentMethod,
-          createdAt: new Date(),
-        });
-        // Refresh saved addresses list after saving new address
-        const snapshot = await getDocs(collection(db, "users", currentUser.uid, "addresses"));
-        setSavedAddresses(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-        alert("Address saved successfully!");
-      } catch (err) {
-        console.error("Error saving address:", err);
-        alert("Failed to save address.");
-      }
-    }
-
-    const order = {
-      userId: currentUser.uid,
-      items: cartItems,
-      total,
-      shipping,
-      shippingInfo: {
-        fullName,
-        email,
-        phone,
-        address,
-        pincode,
-        city,
-        state,
-        paymentMethod,
-      },
-      status: "ordered",
-      createdAt: new Date(),
-    };
-
-    const newOrder = await addDoc(
-      collection(db, "orders", currentUser.uid, "orders"),
-      order
+  // Apply coupon
+  const handleApplyCoupon = () => {
+    const coupon = coupons.find(
+      (c) => c.code.toUpperCase() === couponCode.toUpperCase()
     );
-
-
-    // ---------------------------------------------------------
-    // ✅ SEND EMAIL TO YOU USING EMAILJS
-    // ---------------------------------------------------------
-    emailjs.send(
-      "service_f5e8tg8",
-      "template_ny7aehi",
-      {
-        order_id: newOrder.id,
-        customer_name: fullName,
-        customer_email: email,
-        customer_phone: phone,
-        order_total: total,
-        payment_method: paymentMethod,
-        address: `${address}, ${city}, ${state} - ${pincode}`,
-        order_items: cartItems
-          .map((item) => `${item.name} × ${item.quantity}`)
-          .join(", "),
-      },
-      "AL9Hdy7gl6JXUpK5z" // ← Replace with your EmailJS PUBLIC KEY
-    )
-    .then(() => console.log("Order email sent!"))
-    .catch((err) => console.error("EmailJS Error:", err));
-    if (!buyNowProduct) {
-      const cartRef = collection(db, "carts", currentUser.uid, "items");
-      const snapshot = await getDocs(cartRef);
-      snapshot.forEach(async (docSnap) => {
-        await deleteDoc(doc(db, "carts", currentUser.uid, "items", docSnap.id));
-      });
+    if (coupon) {
+      setDiscountAmount(coupon.discount);
+      setCouponMessage(`Coupon applied! ₹${coupon.discount} off.`);
+    } else {
+      setDiscountAmount(0);
+      setCouponMessage("Invalid coupon code.");
     }
-
-    setPlacingOrder(false);
-    navigate("/order-confirmation", {
-      state: {
-        orderId: newOrder.id,
-        total,
-        paymentMethod,
-        shippingInfo: order.shippingInfo,
-      },
-    });
   };
+
+//   // PLACE ORDER
+//   const handlePlaceOrderClick = async () => {
+//     if (!currentUser) {
+//       alert("Please sign in to place an order.");
+//       return;
+//     }
+
+//     if (!fullName || !phone || !address || !pincode || !city || !state) {
+//       alert("Please fill all required fields.");
+//       return;
+//     }
+
+//     setPlacingOrder(true);
+
+//     // Save address
+//     if (saveAddress) {
+//       await addDoc(collection(db, "users", currentUser.uid, "addresses"), {
+//         fullName,
+//         email,
+//         phone,
+//         address,
+//         pincode,
+//         city,
+//         state,
+//         createdAt: new Date(),
+//       });
+//     }
+
+//     // Create order (payment pending)
+//     const order = {
+//       userId: currentUser.uid,
+//       items: cartItems,
+//       total,
+//       shipping,
+//       paymentMethod: "Razorpay-Link",
+//       paymentStatus: "pending",
+//       status: "payment_pending",
+//       shippingInfo: {
+//         fullName,
+//         email,
+//         phone,
+//         address,
+//         pincode,
+//         city,
+//         state,
+//       },
+//       createdAt: new Date(),
+//     };
+
+//     const newOrder = await addDoc(
+//       collection(db, "orders", currentUser.uid, "orders"),
+//       order
+//     );
+// // // ---------------------------------------------------------
+// // ✅ SEND ORDER EMAIL USING EMAILJS (PAYMENT PENDING)
+// // ---------------------------------------------------------
+// emailjs
+//   .send(
+//     "service_f5e8tg8",          // your EmailJS SERVICE ID
+//     "template_ny7aehi",         // your EmailJS TEMPLATE ID
+//     {
+//       order_id: newOrder.id,
+//       customer_name: fullName,
+//       customer_email: email,
+//       customer_phone: phone,
+//       order_total: total,
+//       payment_method: "Razorpay (Payment Link)",
+//       address: `${address}, ${city}, ${state} - ${pincode}`,
+//       order_items: cartItems
+//         .map((item) => `${item.name} × ${item.quantity}`)
+//         .join(", "),
+//       payment_status: "Payment Pending",
+//     },
+//     "AL9Hdy7gl6JXUpK5z"   // 🔴 replace with your PUBLIC KEY
+//   )
+//   .then(() => {
+//     console.log("Order email sent successfully");
+//   })
+//   .catch((err) => {
+//     console.error("EmailJS Error:", err);
+//   });
+
+//     // Clear cart (not for Buy Now)
+//     if (!buyNowProduct) {
+//       const cartRef = collection(db, "carts", currentUser.uid, "items");
+//       const snapshot = await getDocs(cartRef);
+//       await Promise.all(
+//         snapshot.docs.map((d) =>
+//           deleteDoc(doc(db, "carts", currentUser.uid, "items", d.id))
+//         )
+//       );
+//     }
+
+//     // Open Razorpay Payment Link (FIXED AMOUNT)
+//     window.open("https://rzp.io/rzp/5Ynpp1x", "_blank");
+
+//     setPlacingOrder(false);
+
+// // 1️⃣ Go to confirmation page FIRST
+// navigate("/order-confirmation", {
+//   state: {
+//     orderId: newOrder.id,
+//     total,
+    
+//     shippingInfo: order.shippingInfo,
+//     paymentStatus: "pending",
+//   },
+// });
+
+// // 2️⃣ Open Razorpay AFTER navigation
+// setTimeout(() => {
+//   window.open("https://rzp.io/rzp/RbggqJoW", "_blank");
+// }, 500);
+//   }
+const handlePlaceOrderClick = async () => {
+  if (!currentUser) {
+    alert("Please sign in to place an order.");
+    return;
+  }
+
+  if (!fullName || !phone || !address || !pincode || !city || !state) {
+    alert("Please fill all required fields.");
+    return;
+  }
+
+  setPlacingOrder(true);
+
+  // 1️⃣ Save address (optional)
+  if (saveAddress) {
+    await addDoc(collection(db, "users", currentUser.uid, "addresses"), {
+      fullName,
+      email,
+      phone,
+      address,
+      pincode,
+      city,
+      state,
+      createdAt: new Date(),
+    });
+  }
+
+  // 2️⃣ Create Firestore order (payment pending)
+  const orderData = {
+    userId: currentUser.uid,
+    items: cartItems,
+    total,
+    shipping,
+    paymentMethod: "Razorpay",
+    paymentStatus: "pending",
+    status: "payment_pending",
+    shippingInfo: {
+      fullName,
+      email,
+      phone,
+      address,
+      pincode,
+      city,
+      state,
+    },
+    createdAt: new Date(),
+  };
+
+  const orderRef = await addDoc(
+    collection(db, "orders", currentUser.uid, "orders"),
+    orderData
+  );
+
+  // 3️⃣ Ask backend to create Razorpay order
+  const response = await fetch(
+    "https://jewelorabackend.onrender.com/create-razorpay-order",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        amount: total,
+        firestoreOrderId: orderRef.id,
+      }),
+    }
+  );
+
+  const razorpayOrder = await response.json();
+
+  // 4️⃣ Open Razorpay Checkout SDK
+  const options = {
+    key: "rzp_test_RtzFwfWXoLUgnM", // 🔴 PUT TEST KEY ID (not secret)
+    amount: razorpayOrder.amount,
+    currency: "INR",
+    name: "Jewelora",
+    description: "Order Payment",
+    order_id: razorpayOrder.id,
+
+    handler: async function (response) {
+      // 5️⃣ Verify payment via backend
+      const verifyRes = await fetch(
+        "https://jewelorabackend.onrender.com/verify-payment",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_signature: response.razorpay_signature,
+            firestoreOrderId: orderRef.id,
+            userId: currentUser.uid,
+          }),
+        }
+      );
+
+      const verifyData = await verifyRes.json();
+
+      if (verifyData.success) {
+        // 6️⃣ Clear cart
+        if (!buyNowProduct) {
+          const cartRef = collection(db, "carts", currentUser.uid, "items");
+          const snapshot = await getDocs(cartRef);
+          await Promise.all(
+            snapshot.docs.map((d) =>
+              deleteDoc(doc(db, "carts", currentUser.uid, "items", d.id))
+            )
+          );
+        }
+
+        // 7️⃣ Navigate AFTER successful payment
+       navigate("/order-confirmation", {
+  state: {
+    orderId: orderRef.id,
+    total,
+    paymentStatus: "paid",
+
+    // 👇 Customer details
+    fullName,
+    email,
+    phone,
+
+    // 👇 Shipping details
+    address,
+    city,
+    state,
+    pincode,
+
+    // 👇 Payment info
+    paymentMethod: "Razorpay",
+  },
+});
+
+      } else {
+        alert("Payment verification failed");
+      }
+    },
+
+    prefill: {
+      name: fullName,
+      email: email,
+      contact: phone,
+    },
+
+    theme: {
+      color: "#f5b700",
+    },
+  };
+
+  const rzp = new window.Razorpay(options);
+  rzp.open();
+
+  setPlacingOrder(false);
+};
 
   if (loading) return <div className="text-center py-5">Loading...</div>;
 
   return (
     <div className="container py-5">
       <h2 className="mb-4 text-center text-warning fw-bold">Checkout</h2>
+
       <div className="row g-4">
-        {/* Shipping Form */}
+        {/* Shipping */}
         <div className="col-md-7">
           <div className="card shadow-sm border-0 p-4">
             <h5 className="mb-4 fw-bold text-primary d-flex align-items-center">
@@ -260,17 +415,20 @@ const handleApplyCoupon = () => {
               Shipping Information
             </h5>
 
-            {/* Saved addresses dropdown */}
             {loadingAddresses ? (
               <p>Loading saved addresses...</p>
             ) : savedAddresses.length > 0 ? (
               <div className="mb-3">
-                <label className="form-label fw-semibold">Select Saved Address</label>
+                <label className="form-label fw-semibold">
+                  Select Saved Address
+                </label>
                 <select
                   className="form-select"
                   onChange={(e) => {
-                    const selected = savedAddresses.find(addr => addr.id === e.target.value);
-                    if(selected) handleSelectSavedAddress(selected);
+                    const selected = savedAddresses.find(
+                      (a) => a.id === e.target.value
+                    );
+                    if (selected) handleSelectSavedAddress(selected);
                   }}
                   defaultValue=""
                 >
@@ -286,153 +444,117 @@ const handleApplyCoupon = () => {
               </div>
             ) : null}
 
-            <form>
-              <div className="row g-3">
-                <div className="col-md-6">
-                  <label className="form-label">Full Name *</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    required
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                  />
-                </div>
-                <div className="col-md-6">
-                  <label className="form-label">Email (optional)</label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-                <div className="col-md-6">
-                  <label className="form-label">Phone *</label>
-                  <input
-                    type="tel"
-                    className="form-control"
-                    required
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                  />
-                </div>
-                <div className="col-12">
-                  <label className="form-label">Address *</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    required
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                  />
-                </div>
-                <div className="col-md-6">
-                  <label className="form-label">Pincode *</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    required
-                    value={pincode}
-                    onChange={(e) => setPincode(e.target.value)}
-                  />
-                </div>
-                <div className="col-md-6">
-                  <label className="form-label">City *</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    required
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
-                  />
-                </div>
-                <div className="col-md-6">
-                  <label className="form-label">State *</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    required
-                    value={state}
-                    onChange={(e) => setState(e.target.value)}
-                  />
-                </div>
-                <div className="col-md-6">
-                  <label className="form-label">Payment Method</label>
-                  <select
-                    className="form-select"
-                    value={paymentMethod}
-                    onChange={(e) => setPaymentMethod(e.target.value)}
-                  >
-                    <option>Prepaid</option>
-                  </select>
-                </div>
-
-                <div className="col-12 form-check mt-3">
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    id="saveAddressCheck"
-                    checked={saveAddress}
-                    onChange={() => setSaveAddress(!saveAddress)}
-                    disabled={!currentUser}
-                  />
-                  <label className="form-check-label" htmlFor="saveAddressCheck">
-                    Save this address for future use
-                  </label>
-                  {!currentUser && (
-                    <small className="text-danger d-block mt-1">
-                      Please sign in to save your address.
-                    </small>
-                  )}
-                </div>
+            <div className="row g-3">
+              <div className="col-md-6">
+                <label className="form-label">Full Name *</label>
+                <input
+                  className="form-control"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                />
               </div>
-              {/* ✅ Show QR code if Prepaid is selected */}
 
-            </form>
-
-            {/* Delivery Preview */}
-            {fullName && address && city && pincode && (
-              <div className="mt-4 bg-light p-3 rounded shadow-sm">
-                <h6 className="fw-bold text-secondary">📦 Delivery Address Preview</h6>
-                <p className="mb-1">{fullName}</p>
-                <p className="mb-1">
-                  {address}, {city}, {state} - {pincode}
-                </p>
-                <p className="mb-1">Phone: {phone}</p>
+              <div className="col-md-6">
+                <label className="form-label">Email</label>
+                <input
+                  className="form-control"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </div>
-            )}
+
+              <div className="col-md-6">
+                <label className="form-label">Phone *</label>
+                <input
+                  className="form-control"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              </div>
+
+              <div className="col-12">
+                <label className="form-label">Address *</label>
+                <input
+                  className="form-control"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                />
+              </div>
+
+              <div className="col-md-6">
+                <label className="form-label">Pincode *</label>
+                <input
+                  className="form-control"
+                  value={pincode}
+                  onChange={(e) => setPincode(e.target.value)}
+                />
+              </div>
+
+              <div className="col-md-6">
+                <label className="form-label">City *</label>
+                <input
+                  className="form-control"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                />
+              </div>
+
+              <div className="col-md-6">
+                <label className="form-label">State *</label>
+                <input
+                  className="form-control"
+                  value={state}
+                  onChange={(e) => setState(e.target.value)}
+                />
+              </div>
+
+              <div className="col-12 form-check mt-3">
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={saveAddress}
+                  onChange={() => setSaveAddress(!saveAddress)}
+                />
+                <label className="form-check-label">
+                  Save this address for future use
+                </label>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Order Summary */}
+        {/* Summary */}
         <div className="col-md-5">
           <div className="card shadow-sm border-0 p-4 bg-light">
             <h5 className="mb-4 fw-bold text-primary d-flex align-items-center">
               <FaCreditCard className="me-2" />
               Order Summary
             </h5>
-<div className="mb-3">
-  <label className="form-label fw-semibold">Coupon Code</label>
-  <div className="d-flex">
-    <input
-      type="text"
-      className="form-control me-2"
-      value={couponCode}
-      onChange={(e) => setCouponCode(e.target.value)}
-      placeholder="Enter coupon code"
-    />
-    <button className="btn btn-primary" onClick={handleApplyCoupon}>
-      Apply
-    </button>
-  </div>
-  {couponMessage && <small className="text-success">{couponMessage}</small>}
-</div>
+
+            <div className="mb-3">
+              <label className="form-label fw-semibold">Coupon Code</label>
+              <div className="d-flex">
+                <input
+                  className="form-control me-2"
+                  value={couponCode}
+                  onChange={(e) => setCouponCode(e.target.value)}
+                />
+                <button
+                  className="btn btn-primary"
+                  onClick={handleApplyCoupon}
+                >
+                  Apply
+                </button>
+              </div>
+              {couponMessage && (
+                <small className="text-success">{couponMessage}</small>
+              )}
+            </div>
 
             <ul className="list-group mb-3">
-              {cartItems.map((item, index) => (
+              {cartItems.map((item, i) => (
                 <li
-                  key={index}
+                  key={i}
                   className="list-group-item d-flex justify-content-between"
                 >
                   <div>
@@ -441,12 +563,7 @@ const handleApplyCoupon = () => {
                       Qty: {item.quantity || 1}
                     </div>
                   </div>
-                  <span>
-                    ₹
-                    {parseInt(
-                      item.price.toString().replace(/[^\d]/g, "")
-                    )}
-                  </span>
+                  <span>₹{item.price}</span>
                 </li>
               ))}
               <li className="list-group-item d-flex justify-content-between">
@@ -462,19 +579,7 @@ const handleApplyCoupon = () => {
                 <span>₹{total}</span>
               </li>
             </ul>
-{paymentMethod === "Prepaid" && (
-  <div className="mt-1 text-center bg-light p-3 rounded shadow-sm">
-    <h6 className="fw-bold text-success">Scan & Pay via UPI</h6>
-    <img
-      src={QRCode}
-      alt="UPI QR"
-      className="img-fluid mb-2"
-      style={{ maxWidth: "200px" }}
-    />
-    <p className="mb-1 fw-semibold">UPI ID: <span className="text-primary">7417542861@ptsbi</span></p>
-    <p className="small text-muted">Please complete payment before placing your order.</p>
-  </div>
-)}
+
             <p className="text-muted mb-3">
               <strong>Estimated Delivery:</strong> {estimatedDelivery}
             </p>
@@ -489,9 +594,7 @@ const handleApplyCoupon = () => {
           </div>
         </div>
       </div>
-      
     </div>
-    
   );
 };
 

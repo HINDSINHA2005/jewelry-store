@@ -228,10 +228,17 @@ const MyOrders = () => {
               <p>
                 <strong>Total:</strong> ₹{order.total}
               </p>
-              <p>
+              {/* <p>
                 <strong>Payment Method:</strong>{" "}
                 {order.shippingInfo?.paymentMethod}
-              </p>
+              </p> */}
+              <p>
+  <strong>Payment Method:</strong>{" "}
+  {order.paymentMethod === "Razorpay-Link"
+    ? "Razorpay (Payment Link)"
+    : order.paymentMethod}
+</p>
+
 
               {order.items?.map((item, index) => (
                 <p key={index}>
