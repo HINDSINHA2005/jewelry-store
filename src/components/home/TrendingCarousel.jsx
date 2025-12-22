@@ -1,12 +1,122 @@
 
 
 
-import mangalsutra2 from "../../assets/Mangalsutra/mangalsutra2.jpg";
-import mangalsutra3 from "../../assets/Mangalsutra/mangalsutra5.jpg";
-import mangalsutra from "../../assets/Mangalsutra/mangalsutra4.jpg";
+// import mangalsutra2 from "../../assets/Mangalsutra/mangalsutra2.jpg";
+// import mangalsutra3 from "../../assets/Mangalsutra/mangalsutra5.jpg";
+// import mangalsutra from "../../assets/Mangalsutra/mangalsutra4.jpg";
+// import "../home/TrendingCarousel.css";
+
+// const TrendingCarousel = () => {
+//   return (
+//     <section className="py-5" style={{ backgroundColor: "#fffaf3" }}>
+//       <div className="container">
+//         <h2
+//           className="text-center fw-bold mb-4"
+//           style={{
+//             color: "#b8860b",
+//             fontFamily: "'Playfair Display', serif",
+//           }}
+//         >
+//           Trending Jewelry
+//         </h2>
+
+//         <div
+//           id="trendingCarousel"
+//           className="carousel slide"
+//           data-bs-ride="carousel"
+//         >
+//           <div
+//             className="carousel-inner rounded-4 shadow-lg overflow-hidden"
+//             style={{ border: "3px solid #f4e1b6" }}
+//           >
+//             {/* Slide 1 */}
+//             <div className="carousel-item active">
+//               <img
+//                 src={mangalsutra2}
+//                 className="d-block w-100 carousel-img"
+//                 alt="Trending 1"
+//               />
+//               <div className="carousel-caption custom-caption glassy-bg p-3 rounded">
+//                 <h5 className="text-warning fw-bold fs-5">
+//                   Circular Floral Pattern Mangalsutra
+//                 </h5>
+//                 <p className="mb-0">Pure craftsmanship with 22K brilliance.</p>
+//               </div>
+//             </div>
+
+//             {/* Slide 2 */}
+//             <div className="carousel-item">
+//               <img
+//                 src={mangalsutra3}
+//                 className="d-block w-100 carousel-img"
+//                 alt="Trending 2"
+//               />
+//               <div className="carousel-caption custom-caption glassy-bg p-3 rounded">
+//                 <h5 className="text-warning fw-bold fs-5">
+//                   Peacock Aura Mangalsutra Set
+//                 </h5>
+//                 <p className="mb-0">
+//                   Shine bright with our bestseller mangalsutras.
+//                 </p>
+//               </div>
+//             </div>
+
+//             {/* Slide 3 */}
+//             <div className="carousel-item">
+//               <img
+//                 src={mangalsutra}
+//                 className="d-block w-100 carousel-img"
+//                 alt="Trending 3"
+//               />
+//               <div className="carousel-caption custom-caption glassy-bg p-3 rounded">
+//                 <h5 className="text-warning fw-bold fs-5">
+//                   Twilight Bloom Mangalsutra Set
+//                 </h5>
+//                 <p className="mb-0">Classic design with a modern twist.</p>
+//               </div>
+//             </div>
+//           </div>
+
+//           {/* Carousel Controls */}
+//           <button
+//             className="carousel-control-prev"
+//             type="button"
+//             data-bs-target="#trendingCarousel"
+//             data-bs-slide="prev"
+//           >
+//             <span
+//               className="carousel-control-prev-icon custom-arrow"
+//               aria-hidden="true"
+//             />
+//           </button>
+//           <button
+//             className="carousel-control-next"
+//             type="button"
+//             data-bs-target="#trendingCarousel"
+//             data-bs-slide="next"
+//           >
+//             <span
+//               className="carousel-control-next-icon custom-arrow"
+//               aria-hidden="true"
+//             />
+//           </button>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default TrendingCarousel;
+
+import products from "../shop/product"; // adjust path
 import "../home/TrendingCarousel.css";
 
 const TrendingCarousel = () => {
+  // pick only trending products
+  const trendingProducts = products.filter(p => p.trending);
+
+  if (trendingProducts.length === 0) return null;
+
   return (
     <section className="py-5" style={{ backgroundColor: "#fffaf3" }}>
       <div className="container">
@@ -29,76 +139,53 @@ const TrendingCarousel = () => {
             className="carousel-inner rounded-4 shadow-lg overflow-hidden"
             style={{ border: "3px solid #f4e1b6" }}
           >
-            {/* Slide 1 */}
-            <div className="carousel-item active">
-              <img
-                src={mangalsutra2}
-                className="d-block w-100 carousel-img"
-                alt="Trending 1"
-              />
-              <div className="carousel-caption custom-caption glassy-bg p-3 rounded">
-                <h5 className="text-warning fw-bold fs-5">
-                  Circular Floral Pattern Mangalsutra
-                </h5>
-                <p className="mb-0">Pure craftsmanship with 22K brilliance.</p>
-              </div>
-            </div>
+            {trendingProducts.map((product, index) => (
+              <div
+                key={product.id}
+                className={`carousel-item ${index === 0 ? "active" : ""}`}
+              >
+                <img
+                  src={product.image}
+                  className="d-block w-100 carousel-img"
+                  alt={product.name}
+                />
 
-            {/* Slide 2 */}
-            <div className="carousel-item">
-              <img
-                src={mangalsutra3}
-                className="d-block w-100 carousel-img"
-                alt="Trending 2"
-              />
-              <div className="carousel-caption custom-caption glassy-bg p-3 rounded">
-                <h5 className="text-warning fw-bold fs-5">
-                  Peacock Aura Mangalsutra Set
-                </h5>
-                <p className="mb-0">
-                  Shine bright with our bestseller mangalsutras.
-                </p>
-              </div>
-            </div>
+                <div className="carousel-caption custom-caption glassy-bg p-3 rounded">
+                  <h5 className="text-warning fw-bold fs-5">
+                    {product.name}
+                  </h5>
 
-            {/* Slide 3 */}
-            <div className="carousel-item">
-              <img
-                src={mangalsutra}
-                className="d-block w-100 carousel-img"
-                alt="Trending 3"
-              />
-              <div className="carousel-caption custom-caption glassy-bg p-3 rounded">
-                <h5 className="text-warning fw-bold fs-5">
-                  Twilight Bloom Mangalsutra Set
-                </h5>
-                <p className="mb-0">Classic design with a modern twist.</p>
+                  {product.stock === 0 ? (
+                    <span className="badge bg-danger">Out of Stock</span>
+                  ) : product.stock <= 5 ? (
+                    <span className="badge bg-warning text-dark">
+                      Only {product.stock} left
+                    </span>
+                  ) : (
+                    <span className="badge bg-success">In Stock</span>
+                  )}
+                </div>
               </div>
-            </div>
+            ))}
           </div>
 
-          {/* Carousel Controls */}
+          {/* Controls */}
           <button
             className="carousel-control-prev"
             type="button"
             data-bs-target="#trendingCarousel"
             data-bs-slide="prev"
           >
-            <span
-              className="carousel-control-prev-icon custom-arrow"
-              aria-hidden="true"
-            />
+            <span className="carousel-control-prev-icon custom-arrow" />
           </button>
+
           <button
             className="carousel-control-next"
             type="button"
             data-bs-target="#trendingCarousel"
             data-bs-slide="next"
           >
-            <span
-              className="carousel-control-next-icon custom-arrow"
-              aria-hidden="true"
-            />
+            <span className="carousel-control-next-icon custom-arrow" />
           </button>
         </div>
       </div>

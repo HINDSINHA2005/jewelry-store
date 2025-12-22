@@ -842,6 +842,7 @@ Why Choose Jewelora?
     category: "Mangalsutra",
     price: "₹499",
     image: mangalsutra6,
+    trending: true,
   },
   {
     id: "n1",
@@ -849,6 +850,7 @@ Why Choose Jewelora?
     category: "Necklaces",
     price: "₹1700",
     image: Necklace1,
+    trending: true,
   },
   {
     id: "n2",
@@ -856,6 +858,7 @@ Why Choose Jewelora?
     category: "Necklaces",
     price: "₹1700",
     image: necklace2,
+    trending: true,
   },
   {
     id: "n3",
@@ -863,6 +866,7 @@ Why Choose Jewelora?
     category: "Necklaces",
     price: "₹1700",
     image: necklace3,
+    trending: true,
   },
   {
     id: "n4",
@@ -919,6 +923,7 @@ Why Choose Jewelora?
     category: "Pendants",
     price: "₹499",
     image: pd5,
+    trending: true,
   },
   {
     id: "p2",
@@ -926,6 +931,7 @@ Why Choose Jewelora?
     category: "Pendants",
     price: "₹499",
     image: pd,
+    trending: true,
   },
   {
     id: "p3",
@@ -933,6 +939,7 @@ Why Choose Jewelora?
     category: "Pendants",
     price: "₹499",
     image:pd7 ,
+    trending: true,
   },
   {
     id: "p4",
@@ -940,6 +947,7 @@ Why Choose Jewelora?
     category: "Pendants",
     price: "₹499",
     image: pd6,
+    trending: true,
   },
   {
     id: "p5",
@@ -1248,6 +1256,7 @@ Why Choose Jewelora?
     category: "Rakhi",
     price: "₹55",
     image: RAKHI28,
+    trending: true,
   },
  
   {
@@ -1256,6 +1265,7 @@ Why Choose Jewelora?
     category: "Rakhi",
     price: "₹42",
     image: RAKHI30,
+    trending: true,
   },
   {
     id: "b1",
@@ -1400,6 +1410,7 @@ Why Choose Jewelora?
     category: "Kada",
     price: "₹750",
     image: KADHA6,
+    trending: true,
     description: "Twisting spiral-style kadha with a touch of royal elegance.",
   },
   {
@@ -1566,6 +1577,7 @@ Why Choose Jewelora?
     category: "Rajvadhi Bracelet",
     price: "₹499",
     image: bracelet14,
+    trending: true,
   },
   {
     id: "rb-13",
