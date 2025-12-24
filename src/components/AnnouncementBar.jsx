@@ -6,9 +6,6 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const AnnouncementBar = () => {
   const offers = [
-    "Buy 2 Bangle, Get 1 FREE",
-   " Buy 1 Pendant, Get 1 FREE",
-   "Free Shipping on Orders Above Rs.699",
     "Free Shipping on Prepaid Orders ",
     "Follow Us on Instagram for Exclusive Offers",
    ];
