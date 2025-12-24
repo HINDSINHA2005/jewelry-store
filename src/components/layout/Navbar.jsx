@@ -189,6 +189,7 @@ const Navbar = () => {
                     <li><NavLink to="/addproduct" className="dropdown-item">Add Product</NavLink></li>
                     <li><NavLink to="/admin/finance" className="dropdown-item">Finance</NavLink></li>
                     <li><NavLink to="/admin/finance/add" className="dropdown-item">Add Finance Entry</NavLink></li>
+                    <li><NavLink to="/admin/inventory"className="dropdown-item">Product Inventory</NavLink></li>
                   </>
                 )}
 

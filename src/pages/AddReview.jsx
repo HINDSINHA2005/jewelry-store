@@ -168,6 +168,7 @@
 import { useState } from "react";
 import { db } from "../firebase"; // adjust path if needed
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import FeaturedProducts from "../components/home/FeatureProducts";
 
 const AddReview = () => {
   const [formData, setFormData] = useState({
@@ -356,7 +357,9 @@ const AddReview = () => {
           Submit Review
         </button>
       </form>
+      <FeaturedProducts/>
     </div>
+    
   );
 };
 

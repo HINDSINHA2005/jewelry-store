@@ -32,7 +32,7 @@ import Cancellation from "./pages/policies/Cancellation";
 import Shipping from "./pages/policies/Shipping"; // Import AddFinanceEntry
 import CustomerReviews from "./pages/CustomerReviews"; // Import CustomerReviews
 import AddReview from "./pages/AddReview"; // Import AddReview
-
+import ProductInventory from "./pages/ProductInventory";
 function App() {
   return (
     <div className="app-container">
@@ -69,6 +69,7 @@ function App() {
           {/* Add more routes here */}
           <Route path="/reviews" element={<CustomerReviews />} />
 <Route path="/add-review" element={<AddReview />} />
+<Route path="/admin/inventory" element={<ProductInventory />} />
 
 
         </Routes>
