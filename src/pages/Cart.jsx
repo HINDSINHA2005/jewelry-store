@@ -26,16 +26,6 @@ const Cart = () => {
         ...doc.data(),
       }));
 
-//       const merged = firebaseItems.map((item) => {
-//         const local = products.find((p) => p.id === item.productId);
-//         return {
-//           ...item,
-//           image: local?.image || "",
-//         };
-//       });
-
-
-// setCartItems(merged);
 
 
     const merged = firebaseItems.map((item) => {

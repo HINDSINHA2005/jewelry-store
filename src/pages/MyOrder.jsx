@@ -248,7 +248,7 @@ const MyOrders = () => {
               ))}
 
               {/* Shipping */}
-              <div className="mt-3">
+              {/* <div className="mt-3">
                 <h6 className="fw-semibold">Shipping Address</h6>
                 <p className="mb-1">
                   <strong>Name:</strong> {order.shippingInfo?.fullName}
@@ -266,7 +266,63 @@ const MyOrders = () => {
                   <strong>Address:</strong> {order.shippingInfo?.address},{" "}
                   {order.shippingInfo?.city} - {order.shippingInfo?.pincode}
                 </p>
-              </div>
+
+              </div> */}
+<div className="mt-3">
+  <h6 className="fw-semibold">Shipping Address</h6>
+
+  <p className="mb-1">
+    <strong>Name:</strong> {order.shippingInfo?.fullName || "N/A"}
+  </p>
+
+  <p className="mb-1">
+    <strong>Email:</strong> {order.shippingInfo?.email || "N/A"}
+  </p>
+
+  <p className="mb-1">
+    <strong>Phone:</strong> {order.shippingInfo?.phone || "N/A"}
+  </p>
+
+  <p className="mb-1">
+    <strong>State:</strong> {order.shippingInfo?.state || "N/A"}
+  </p>
+
+  <p className="mb-1">
+    <strong>Address:</strong>{" "}
+    {order.shippingInfo?.address
+      ? `${order.shippingInfo.address}, ${order.shippingInfo.city} - ${order.shippingInfo.pincode}`
+      : "N/A"}
+  </p>
+
+  <hr className="my-2" />
+
+  <h6 className="fw-semibold">Tracking Details</h6>
+
+  <p className="mb-1">
+    <strong>Tracking Message:</strong>{" "}
+    {order.trackingMessage || "N/A"}
+  </p>
+
+  <p className="mb-1">
+    <strong>Tracking Link:</strong>{" "}
+    {order.trackingLink ? (
+      <a
+        href={
+          order.trackingLink.startsWith("http")
+            ? order.trackingLink
+            : `https://${order.trackingLink}`
+        }
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-primary fw-semibold"
+      >
+        Track Order
+      </a>
+    ) : (
+      "N/A"
+    )}
+  </p>
+</div>
 
               {/* Items */}
               <div className="mt-3">

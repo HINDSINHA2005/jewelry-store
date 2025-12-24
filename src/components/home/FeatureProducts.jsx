@@ -309,38 +309,63 @@ const FeaturedProducts = () => {
   const [featuredProducts, setFeaturedProducts] = useState([]);
 
   // 🔥 ONLY LOGIC CHANGE STARTS HERE
-  useEffect(() => {
-    const fetchFeaturedProducts = async () => {
-      try {
-        const q = query(
-          collection(db, "dynamic_products"),
-          where("visible", "==", true),
-          where("stock", ">", 0)
-        );
+  // useEffect(() => {
+  //   const fetchFeaturedProducts = async () => {
+  //     try {
+  //       const q = query(
+  //         collection(db, "dynamic_products"),
+  //         where("visible", "==", true),
+  //         where("stock", ">", 0)
+  //       );
 
-        const snapshot = await getDocs(q);
-        const products = snapshot.docs.map((doc) => ({
-          firestoreId: doc.id,
-          ...doc.data(),
-        }));
+  //       const snapshot = await getDocs(q);
+  //       const products = snapshot.docs.map((doc) => ({
+  //         firestoreId: doc.id,
+  //         ...doc.data(),
+  //       }));
 
-        // ✅ pick ONE product per category (no hardcoding)
-        const categoryMap = {};
-        products.forEach((p) => {
-          if (!categoryMap[p.category]) {
-            categoryMap[p.category] = p;
-          }
-        });
+  //       // ✅ pick ONE product per category (no hardcoding)
+  //       const categoryMap = {};
+  //       products.forEach((p) => {
+  //         if (!categoryMap[p.category]) {
+  //           categoryMap[p.category] = p;
+  //         }
+  //       });
 
-        setFeaturedProducts(Object.values(categoryMap));
-      } catch (err) {
-        console.error("Featured fetch error:", err);
-      }
-    };
+  //       setFeaturedProducts(Object.values(categoryMap));
+  //     } catch (err) {
+  //       console.error("Featured fetch error:", err);
+  //     }
+  //   };
 
-    fetchFeaturedProducts();
-  }, []);
+  //   fetchFeaturedProducts();
+  // }, []);
   // 🔥 ONLY LOGIC CHANGE ENDS HERE
+useEffect(() => {
+  const fetchFeaturedProducts = async () => {
+    try {
+      const q = query(
+        collection(db, "dynamic_products"),
+        where("visible", "==", true),
+        where("stock", ">", 0)
+      );
+
+      const snapshot = await getDocs(q);
+
+      const products = snapshot.docs.map((doc) => ({
+        firestoreId: doc.id,
+        ...doc.data(),
+      }));
+
+      // ✅ SHOW ALL PRODUCTS
+      setFeaturedProducts(products);
+    } catch (err) {
+      console.error("Featured fetch error:", err);
+    }
+  };
+
+  fetchFeaturedProducts();
+}, []);
 
   const handleAddToCart = async (product, e) => {
     e.stopPropagation();
