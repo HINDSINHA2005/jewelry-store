@@ -21,6 +21,7 @@ import { FaShippingFast, FaCreditCard } from "react-icons/fa";
 const coupons = [
   { code: "DISCOUNT10", discount: 50 },
   { code: "DISCOUNTGIVEAWAY", discount: 30 },
+  {code:"DISCOUNTOWNER",discount:298},
 ];
 
 const Checkout = () => {
@@ -205,7 +206,7 @@ const Checkout = () => {
       setShowLoader(false);
 
       const options = {
-        key: "rzp_test_RtzFwfWXoLUgnM",
+        key: "rzp_live_Rw9rVaR1u2yTDV",
         amount: razorpayOrder.amount,
         currency: "INR",
         name: "Jewelora",
