@@ -892,7 +892,7 @@ const AdminOrders = () => {
                 className="list-group-item d-flex align-items-center gap-3"
               >
                 <img
-                  src={item.image}
+                  src={item.image || item.imageUrl}
                   alt={item.name}
                   style={{
                     width: 60,
