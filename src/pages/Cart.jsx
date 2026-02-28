@@ -5,7 +5,7 @@ import { collection, getDocs, updateDoc, deleteDoc, doc } from "firebase/firesto
 import { db } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import products from "../components/shop/product";
+// import products from "../components/shop/product";
 import { FiMinus, FiPlus, FiTrash2 } from "react-icons/fi";
 
 const Cart = () => {
