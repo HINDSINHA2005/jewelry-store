@@ -5,7 +5,7 @@ import { collection, getDocs, updateDoc, deleteDoc, doc } from "firebase/firesto
 import { db } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-// import products from "../components/shop/product";
+import products from "../components/shop/product";
 import { FiMinus, FiPlus, FiTrash2 } from "react-icons/fi";
 
 const Cart = () => {
@@ -109,7 +109,7 @@ setCartItems(merged);
               >
                 <div className="row g-0 align-items-center">
                   <div className="col-md-4 p-3">
-                    <img
+                    {/* <img
                       src={item.image}
                       alt={item.name}
                       className="img-fluid rounded-4 shadow"
@@ -119,7 +119,28 @@ setCartItems(merged);
                         height: "180px",
                         borderRadius: "1rem",
                       }}
-                    />
+                    /> */}
+                    <div
+  style={{
+    height: "180px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: "#fff",
+    borderRadius: "1rem",
+    overflow: "hidden",
+  }}
+>
+  <img
+    src={item.image}
+    alt={item.name}
+    style={{
+      maxHeight: "100%",
+      maxWidth: "100%",
+      objectFit: "contain",
+    }}
+  />
+</div>
                   </div>
                   <div className="col-md-5 px-4">
                     <div className="card-body">
