@@ -275,7 +275,7 @@ const Navbar = () => {
 
   const isAdmin = currentUser?.email === "info@jewelora.in";
 
-  // Cart count realtime
+  // Cart realtime
   useEffect(() => {
     if (!currentUser || isAdmin) return;
 
@@ -287,7 +287,7 @@ const Navbar = () => {
     return () => unsub();
   }, [currentUser, isAdmin]);
 
-  // Initialize Bootstrap Collapse once
+  // Init collapse once
   useEffect(() => {
     if (collapseRef.current) {
       collapseInstance.current = new Collapse(collapseRef.current, {
@@ -296,7 +296,6 @@ const Navbar = () => {
     }
   }, []);
 
-  // Close drawer properly
   const closeMenu = () => {
     if (collapseInstance.current) {
       collapseInstance.current.hide();
@@ -314,11 +313,11 @@ const Navbar = () => {
       <AnnouncementBar />
 
       <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top py-2">
-        <div className="container">
+        <div className="container position-relative">
 
           {/* Hamburger */}
           <button
-            className="navbar-toggler me-3"
+            className="navbar-toggler me-3 custom-toggler"
             type="button"
             onClick={() => collapseInstance.current.toggle()}
           >
@@ -326,7 +325,11 @@ const Navbar = () => {
           </button>
 
           {/* Logo */}
-          <NavLink to="/" className="navbar-brand d-flex align-items-center gap-2" onClick={closeMenu}>
+          <NavLink
+            to="/"
+            className="navbar-brand d-flex align-items-center gap-2 mobile-center-logo"
+            onClick={closeMenu}
+          >
             <img
               src="https://res.cloudinary.com/dvxaztwnz/image/upload/v1754728677/jewelora_rlc5cq.jpg"
               alt="Logo"
@@ -376,11 +379,12 @@ const Navbar = () => {
           {/* Right Side */}
           <div className="d-flex align-items-center gap-3">
 
+            {/* Cart (hide mobile via CSS) */}
             {!isAdmin && currentUser && (
               <NavLink
                 to="/cart"
                 onClick={closeMenu}
-                className="btn btn-outline-secondary position-relative btn-sm"
+                className="btn btn-outline-secondary position-relative btn-sm mobile-hide-cart"
               >
                 <ShoppingCart size={15} />
                 {cartCount > 0 && (
@@ -402,6 +406,7 @@ const Navbar = () => {
                 </button>
 
                 <ul className="dropdown-menu dropdown-menu-end shadow border-0 p-2">
+
                   <li className="px-3 py-2 text-center">
                     <strong>{currentUser.displayName || "User"}</strong>
                     <div className="small text-muted">{currentUser.email}</div>
@@ -409,18 +414,23 @@ const Navbar = () => {
 
                   <li><hr className="dropdown-divider" /></li>
 
+                  {/* USER MENU */}
                   {!isAdmin && (
                     <>
-                      <li>
-                        <NavLink to="/orders" className="dropdown-item">
-                          My Orders
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink to="/saved-address" className="dropdown-item">
-                          Saved Addresses
-                        </NavLink>
-                      </li>
+                      <li><NavLink to="/orders" className="dropdown-item">My Orders</NavLink></li>
+                      <li><NavLink to="/saved-address" className="dropdown-item">Saved Addresses</NavLink></li>
+                    </>
+                  )}
+
+                  {/* ADMIN MENU RESTORED */}
+                  {isAdmin && (
+                    <>
+                      <li><NavLink to="/admin/orders" className="dropdown-item">Orders</NavLink></li>
+                      <li><NavLink to="/admin/message" className="dropdown-item">Messages</NavLink></li>
+                      <li><NavLink to="/addproduct" className="dropdown-item">Add Product</NavLink></li>
+                      <li><NavLink to="/admin/finance" className="dropdown-item">Finance</NavLink></li>
+                      <li><NavLink to="/admin/finance/add" className="dropdown-item">Add Finance Entry</NavLink></li>
+                      <li><NavLink to="/admin/inventory" className="dropdown-item">Product Inventory</NavLink></li>
                     </>
                   )}
 
@@ -445,39 +455,42 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+      {/* ===== Mobile Bottom Navigation ===== */}
+<div className="mobile-bottom-nav d-lg-none">
+  <NavLink to="/" onClick={closeMenu} className="bottom-nav-item">
+    <i className="bi bi-house"></i>
+    <span>Home</span>
+  </NavLink>
 
-      {/* Mobile Bottom Navigation */}
-      <div className="mobile-bottom-nav d-lg-none">
-        <NavLink to="/" onClick={closeMenu} className="bottom-nav-item">
-          <i className="bi bi-house"></i>
-          <span>Home</span>
-        </NavLink>
+  <NavLink to="/shop" onClick={closeMenu} className="bottom-nav-item">
+    <i className="bi bi-bag"></i>
+    <span>Shop</span>
+  </NavLink>
 
-        <NavLink to="/shop" onClick={closeMenu} className="bottom-nav-item">
-          <i className="bi bi-bag"></i>
-          <span>Shop</span>
-        </NavLink>
+  <NavLink to="/category" onClick={closeMenu} className="bottom-nav-item">
+    <i className="bi bi-grid"></i>
+    <span>Category</span>
+  </NavLink>
 
-        <NavLink to="/category" onClick={closeMenu} className="bottom-nav-item">
-          <i className="bi bi-grid"></i>
-          <span>Category</span>
-        </NavLink>
+  {!isAdmin && currentUser && (
+    <NavLink
+      to="/cart"
+      onClick={closeMenu}
+      className="bottom-nav-item position-relative"
+    >
+      <i className="bi bi-cart"></i>
+      <span>Cart</span>
+      {cartCount > 0 && (
+        <small className="cart-badge">{cartCount}</small>
+      )}
+    </NavLink>
+  )}
 
-        {!isAdmin && currentUser && (
-          <NavLink to="/cart" onClick={closeMenu} className="bottom-nav-item position-relative">
-            <i className="bi bi-cart"></i>
-            <span>Cart</span>
-            {cartCount > 0 && (
-              <small className="cart-badge">{cartCount}</small>
-            )}
-          </NavLink>
-        )}
-
-        <NavLink to="/about" onClick={closeMenu} className="bottom-nav-item">
-          <i className="bi bi-info-circle"></i>
-          <span>About</span>
-        </NavLink>
-      </div>
+  <NavLink to="/about" onClick={closeMenu} className="bottom-nav-item">
+    <i className="bi bi-info-circle"></i>
+    <span>About</span>
+  </NavLink>
+</div>
     </>
   );
 };

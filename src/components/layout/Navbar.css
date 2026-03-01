@@ -61,21 +61,3 @@
 }
 
 
-/* Smaller Hamburger Button */
-.custom-toggler {
-  padding: 4px 6px !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-/* Reduce icon size */
-.custom-toggler .navbar-toggler-icon {
-  width: 18px;
-  height: 18px;
-  background-size: 18px 18px;
-}
-
-/* Remove blue focus outline */
-.custom-toggler:focus {
-  box-shadow: none !important;
-}
