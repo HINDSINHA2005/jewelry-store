@@ -71,6 +71,151 @@
 // export default Hero;
 
 
+// import React, { useEffect, useState } from "react";
+// import { Link } from "react-router-dom";
+// import { collection, getDocs, query, where } from "firebase/firestore";
+// import { db } from "../../firebase";
+
+// const Hero = () => {
+//   const [products, setProducts] = useState([]);
+
+//   useEffect(() => {
+//     const fetchProducts = async () => {
+//       try {
+//         const q = query(
+//           collection(db, "dynamic_products"),
+//           where("visible", "==", true),
+//           where("stock", ">", 0),
+//           where("trending", "==", true) // 🔥 only trending
+//         );
+
+//         const snapshot = await getDocs(q);
+
+//         let data = snapshot.docs.map((doc) => ({
+//           ...doc.data(),
+//           firestoreId: doc.id,
+//           price: Number(doc.data().price) || 0,
+//           salePrice: doc.data().salePrice
+//             ? Number(doc.data().salePrice)
+//             : null,
+//         }));
+
+//         // 🔥 Emerald Noor ko first me lao agar trending me ho
+//         data.sort((a, b) => {
+//           if (a.name === "Emerald Noor Bridal Kundan Necklace Set")
+//             return -1;
+//           if (b.name === "Emerald Noor Bridal Kundan Necklace Set")
+//             return 1;
+//           return 0;
+//         });
+
+//         setProducts(data);
+//       } catch (err) {
+//         console.error("Hero fetch error:", err);
+//       }
+//     };
+
+//     fetchProducts();
+//   }, []);
+
+//   if (products.length === 0) return null;
+
+//   return (
+//     <div
+//       id="productHeroCarousel"
+//       className="carousel slide"
+//       data-bs-ride="carousel"
+//       data-bs-interval="3000"
+//     >
+//       <div className="carousel-inner">
+//         {products.map((prod, index) => (
+//           <div
+//             key={prod.firestoreId}
+//             className={`carousel-item ${index === 0 ? "active" : ""}`}
+//             style={{
+//               height: "55vh",
+//               backgroundColor: "#000",
+//             }}
+//           >
+//             <div
+//               style={{
+//                 height: "100%",
+//                 display: "flex",
+//                 justifyContent: "center",
+//                 alignItems: "center",
+//               }}
+//             >
+//               <img
+//                 src={prod.imageUrl}
+//                 alt={prod.name}
+//                 style={{
+//                   maxHeight: "100%",
+//                   maxWidth: "100%",
+//                   objectFit: "contain",
+//                 }}
+//               />
+//             </div>
+
+//             <div className="carousel-caption d-flex flex-column justify-content-center align-items-center h-100" style={{ color: "#FF8C00" }}>
+//               <h2 className="fw-bold">{prod.name}</h2>
+
+//               {prod.salePrice ? (
+//                 <p className="fs-5 mt-2">
+//                   <span
+//                     style={{
+//                       textDecoration: "line-through",
+//                       marginRight: "8px",
+//                       color: "#070305",
+//                     }}
+//                   >
+//                     ₹{prod.price}
+//                   </span>
+//                   <span className="text-warning fw-bold">
+//                     ₹{prod.salePrice}
+//                   </span>
+//                 </p>
+//               ) : (
+//                 <p className="fs-5 mt-2 fw-semibold">
+//                   ₹{prod.price}
+//                 </p>
+//               )}
+
+//               <Link
+//                 to={`/product/${prod.firestoreId}`}
+//                 className="btn btn-warning mt-3 px-4 fw-semibold"
+//               >
+//                 Shop Now
+//               </Link>
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+
+//       <button
+//         className="carousel-control-prev"
+//         type="button"
+//         data-bs-target="#productHeroCarousel"
+//         data-bs-slide="prev"
+//       >
+//         <span className="carousel-control-prev-icon"></span>
+//       </button>
+
+//       <button
+//         className="carousel-control-next"
+//         type="button"
+//         data-bs-target="#productHeroCarousel"
+//         data-bs-slide="next"
+//       >
+//         <span className="carousel-control-next-icon"></span>
+//       </button>
+//     </div>
+//   );
+// };
+
+// export default Hero;
+
+
+
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -78,6 +223,7 @@ import { db } from "../../firebase";
 
 const Hero = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -86,7 +232,7 @@ const Hero = () => {
           collection(db, "dynamic_products"),
           where("visible", "==", true),
           where("stock", ">", 0),
-          where("trending", "==", true) // 🔥 only trending
+          where("trending", "==", true)
         );
 
         const snapshot = await getDocs(q);
@@ -100,23 +246,33 @@ const Hero = () => {
             : null,
         }));
 
-        // 🔥 Emerald Noor ko first me lao agar trending me ho
         data.sort((a, b) => {
-          if (a.name === "Emerald Noor Bridal Kundan Necklace Set")
-            return -1;
-          if (b.name === "Emerald Noor Bridal Kundan Necklace Set")
-            return 1;
+          if (a.name === "Emerald Noor Bridal Kundan Necklace Set") return -1;
+          if (b.name === "Emerald Noor Bridal Kundan Necklace Set") return 1;
           return 0;
         });
 
         setProducts(data);
       } catch (err) {
         console.error("Hero fetch error:", err);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchProducts();
   }, []);
+
+  if (loading) {
+    return (
+      <div
+        style={{
+          height: "55vh",
+          background: "#f3f3f3",
+        }}
+      />
+    );
+  }
 
   if (products.length === 0) return null;
 
@@ -125,9 +281,10 @@ const Hero = () => {
       id="productHeroCarousel"
       className="carousel slide"
       data-bs-ride="carousel"
-      data-bs-interval="3000"
+      data-bs-interval="3500"
     >
       <div className="carousel-inner">
+
         {products.map((prod, index) => (
           <div
             key={prod.firestoreId}
@@ -145,15 +302,18 @@ const Hero = () => {
                 alignItems: "center",
               }}
             >
+
               <img
                 src={prod.imageUrl}
                 alt={prod.name}
+                loading={index === 0 ? "eager" : "lazy"} // 🔥 main fix
                 style={{
                   maxHeight: "100%",
                   maxWidth: "100%",
                   objectFit: "contain",
                 }}
               />
+
             </div>
 
             <div className="carousel-caption d-flex flex-column justify-content-center align-items-center h-100" style={{ color: "#FF8C00" }}>
@@ -170,6 +330,7 @@ const Hero = () => {
                   >
                     ₹{prod.price}
                   </span>
+
                   <span className="text-warning fw-bold">
                     ₹{prod.salePrice}
                   </span>
@@ -186,9 +347,11 @@ const Hero = () => {
               >
                 Shop Now
               </Link>
+
             </div>
           </div>
         ))}
+
       </div>
 
       <button
@@ -208,6 +371,7 @@ const Hero = () => {
       >
         <span className="carousel-control-next-icon"></span>
       </button>
+
     </div>
   );
 };
